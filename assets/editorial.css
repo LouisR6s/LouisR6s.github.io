@@ -47,6 +47,7 @@ body {
 .brand > span:last-child { font-weight: 500; font-size: .78rem; }
 nav { gap: clamp(1.25rem, 3vw, 2.8rem); }
 nav a { color: var(--ink); font-size: .86rem; font-weight: 500; }
+.theme-toggle .theme-label { font-size: .86rem; font-weight: 500; line-height: 1; }
 nav a:hover, nav a:focus-visible { color: var(--accent); }
 .nav-cta { border: 0; padding: 0; }
 .nav-cta::before { content: ""; display: inline-block; width: 7px; height: 7px; margin-right: .55rem; border-radius: 50%; background: var(--accent); }
