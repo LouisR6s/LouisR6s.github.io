@@ -629,7 +629,7 @@ function talkToGoupille(message) {
   goupilleSpeechTimer = setTimeout(() => goupilleWidget.classList.remove("is-open"), 5000);
   if (message === goupilleLastIdea) {
     cancelGoupilleAutoSleep();
-    goupilleAutoCoverTimer = setTimeout(tuckGoupilleAutomatically, 700);
+    tuckGoupilleAutomatically();
   }
 }
 
