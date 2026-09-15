@@ -8,6 +8,7 @@ function updateThemeToggle() {
   if (themeToggle) {
     themeToggle.querySelector(".theme-moon").style.opacity = dark ? ".45" : "1";
     themeToggle.querySelector(".theme-sun").style.opacity = dark ? "1" : ".45";
+    themeToggle.querySelector(".theme-label").textContent = dark ? "Mode clair" : "Mode sombre";
     themeToggle.setAttribute("aria-label", dark ? "Activer le mode clair" : "Activer le mode sombre");
   }
 }
