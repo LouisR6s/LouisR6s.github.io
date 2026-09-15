@@ -552,6 +552,6 @@ html[data-theme="dark"] .skill-tabs button[aria-selected="true"], html[data-them
 html[data-theme="dark"] .contact-section { background: #090909; }
 html[data-theme="dark"] .contact-section .button-primary { background: #d0d0d0; color: #111; }
 html[data-theme="dark"] .contact-section .button-secondary { color: #d0d0d0; border-color: #666; }
-html[data-theme="dark"] .theme-toggle { background: var(--ink); color: var(--paper); }
+html[data-theme="dark"] .theme-toggle { background: transparent; color: var(--ink); }
 html[data-theme="dark"] .theme-toggle:hover, html[data-theme="dark"] .theme-toggle:focus-visible { background: transparent; border-color: transparent; color: var(--accent); }
  .theme-toggle:hover, .theme-toggle:focus-visible { color: var(--accent); }
