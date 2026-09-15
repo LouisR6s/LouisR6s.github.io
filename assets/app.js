@@ -603,8 +603,11 @@ function talkToGoupille(message) {
     cvButton.className = "goupille-cv-link";
     cvButton.textContent = "Oui, allons-y";
     cvButton.addEventListener("click", () => {
-      document.querySelector('a[href="assets/CV-Louis-Jouhannet.pdf"]')?.scrollIntoView({ behavior: "smooth", block: "center" });
-      goupilleWidget.classList.remove("is-open");
+      const contactSection = document.querySelector("#contact");
+      contactSection?.scrollIntoView({ behavior: "smooth", block: "start" });
+      contactSection?.classList.add("is-highlighted");
+      setTimeout(() => contactSection?.classList.remove("is-highlighted"), 1400);
+      setTimeout(() => goupilleWidget.classList.remove("is-open"), 350);
     });
     goupilleMessage.append(cvButton);
   }
