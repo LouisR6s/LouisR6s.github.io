@@ -512,7 +512,6 @@ document.addEventListener("keydown", event => { if (event.key === "Escape" && sl
 document.addEventListener("visibilitychange", () => { if (document.hidden) stopSlideshow(); else scheduleStandbyMode(); });
 scheduleStandbyMode();
 
-document.querySelector("#edit-launcher").addEventListener("click", () => editorDialog.showModal());
 document.querySelector(".editor-close").addEventListener("click", () => editorDialog.close());
 editorDialog.addEventListener("click", event => { if (event.target === editorDialog) editorDialog.close(); });
 
