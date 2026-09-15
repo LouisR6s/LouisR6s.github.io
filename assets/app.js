@@ -604,7 +604,12 @@ function talkToGoupille(message) {
     cvButton.textContent = "Oui, allons-y";
     cvButton.addEventListener("click", () => {
       const contactSection = document.querySelector("#contact");
-      contactSection?.scrollIntoView({ behavior: "smooth", block: "start" });
+      const cvLink = contactSection?.querySelector('a[href="assets/CV-Louis-Jouhannet.pdf"]');
+      if (!contactSection) return;
+      const targetY = contactSection.getBoundingClientRect().top + window.scrollY - 82;
+      window.scrollTo({ top: targetY, behavior: "smooth" });
+      window.history.replaceState(null, "", "#contact");
+      cvLink?.focus({ preventScroll: true });
       contactSection?.classList.add("is-highlighted");
       setTimeout(() => contactSection?.classList.remove("is-highlighted"), 1400);
       setTimeout(() => goupilleWidget.classList.remove("is-open"), 350);
