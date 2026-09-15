@@ -538,5 +538,14 @@ html[data-theme="dark"] .skill-proof { background: #20211e; }
 html[data-theme="dark"] .stat-card, html[data-theme="dark"] .project-card, html[data-theme="dark"] .github-card, html[data-theme="dark"] .certification-card { background: var(--panel); }
 html[data-theme="dark"] .journey-section { background: var(--paper); }
 html[data-theme="dark"] .timeline li::before { background: var(--paper); }
+html[data-theme="dark"] .skill-panel, html[data-theme="dark"] .skill-content { background: var(--panel); color: var(--ink); }
+html[data-theme="dark"] .skill-panel h2, html[data-theme="dark"] .skill-panel h3, html[data-theme="dark"] .skill-panel p { color: var(--ink); }
+html[data-theme="dark"] .skill-proof { background: var(--panel-2); }
+html[data-theme="dark"] .terminal-art { background: #1b1c19; color: #d4d2ca; }
+html[data-theme="dark"] .certifications-section, html[data-theme="dark"] .journey-section { background: var(--paper); }
+html[data-theme="dark"] .certification-card, html[data-theme="dark"] .github-preview { background: var(--panel); }
+html[data-theme="dark"] .github-section { background: #1b1c19; }
+html[data-theme="dark"] .github-profile:hover, html[data-theme="dark"] .github-repository:hover { background: var(--panel-2); }
+html[data-theme="dark"] .goupille-bubble, html[data-theme="dark"] .goupille-bubble::after { background: var(--panel); color: var(--ink); }
 html[data-theme="dark"] .theme-toggle { background: var(--ink); color: var(--paper); }
 html[data-theme="dark"] .theme-toggle:hover, html[data-theme="dark"] .theme-toggle:focus-visible { background: var(--accent); border-color: var(--accent); color: #fff; }
