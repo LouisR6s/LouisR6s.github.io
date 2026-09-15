@@ -416,7 +416,6 @@ function renderProjects(projects) {
 function applyState() { const state = readState(); applyTexts(state.texts); renderProjects(state.projects); }
 applyState();
 
-const slideshowToggle = document.querySelector("#slideshow-toggle");
 const standbySlides = [
   { index: "01 / PROFIL", title: "Louis Jouhannet", text: "Master 2 Cybersécurité à l’ESGI Reims. Réseaux, systèmes et sécurité au quotidien.", tags: ["CYBERSÉCURITÉ", "RÉSEAUX", "SYSTÈMES"] },
   { index: "02 / COMPÉTENCES", title: "Construire, superviser, sécuriser.", text: "Des environnements fiables, de la configuration réseau à la protection des systèmes.", tags: ["LINUX", "VLAN", "FIREWALL", "WAZUH"] },
@@ -436,20 +435,12 @@ let standbyInactivityTimer;
 let slideshowActive = false;
 let slideshowIndex = 0;
 
-function updateSlideshowToggle() {
-  slideshowToggle.setAttribute("aria-pressed", String(slideshowActive));
-  slideshowToggle.innerHTML = slideshowActive
-    ? '<span aria-hidden="true">■</span> Arrêter le mode veille'
-    : '<span aria-hidden="true">▸</span> Mode veille';
-}
-
 function stopSlideshow(showNotice = false) {
   if (!slideshowActive) return;
   slideshowActive = false;
   clearTimeout(slideshowTimer);
   standbyDeck.classList.remove("open");
   if (document.fullscreenElement === standbyDeck) document.exitFullscreen().catch(() => {});
-  updateSlideshowToggle();
   if (showNotice) notify("Mode veille arrêté");
 }
 
@@ -460,7 +451,6 @@ function startSlideshow() {
   slideshowActive = true;
   standbyDeck.classList.add("open");
   standbyDeck.requestFullscreen?.().catch(() => {});
-  updateSlideshowToggle();
   showNextSlide();
 }
 
@@ -490,16 +480,11 @@ function showNextSlide() {
   slideshowTimer = setTimeout(showNextSlide, 5200);
 }
 
-slideshowToggle.addEventListener("click", () => {
-  if (slideshowActive) { stopSlideshow(); scheduleStandbyMode(); return; }
-  startSlideshow();
-});
-
 standbyDeck.querySelector(".standby-close").addEventListener("click", () => { stopSlideshow(); scheduleStandbyMode(); });
 
 ["wheel", "touchstart", "keydown", "pointerdown"].forEach(eventName => {
   document.addEventListener(eventName, event => {
-    if (event.target === slideshowToggle || slideshowToggle.contains(event.target) || standbyDeck.contains(event.target)) return;
+    if (standbyDeck.contains(event.target)) return;
     if (slideshowActive) stopSlideshow(true);
     scheduleStandbyMode();
   }, { passive: eventName !== "keydown" });
