@@ -552,6 +552,8 @@ const goupillePhrases = [
 ];
 let goupillePhraseIndex = -1;
 let goupilleSpeechTimer;
+let goupilleSpamTimer;
+let goupilleSpamCount = 0;
 
 function talkToGoupille(message) {
   clearTimeout(goupilleSpeechTimer);
@@ -567,6 +569,18 @@ if (goupilleButton && goupilleWidget) {
     goupilleWidget.classList.add("is-petted");
     goupillePhraseIndex = (goupillePhraseIndex + 1) % goupillePhrases.length;
     talkToGoupille(goupillePhrases[goupillePhraseIndex]);
+
+    goupilleSpamCount += 1;
+    clearTimeout(goupilleSpamTimer);
+    goupilleSpamTimer = setTimeout(() => { goupilleSpamCount = 0; }, 900);
+
+    if (goupilleSpamCount >= 5) {
+      goupilleSpamCount = 0;
+      goupilleWidget.classList.remove("is-petted", "is-stretched");
+      void goupilleWidget.offsetWidth;
+      goupilleWidget.classList.add("is-stretched");
+      setTimeout(() => goupilleWidget.classList.remove("is-stretched"), 720);
+    }
   });
 }
 document.querySelector("#reset-content").addEventListener("click", () => {
