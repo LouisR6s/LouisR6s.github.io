@@ -375,23 +375,15 @@
         </div>
       </div>
     </section>
-    <section class="guestbook-section" id="livre-d-or" aria-labelledby="guestbook-title">
-      <div class="guestbook-shell">
-        <div class="guestbook-heading">
-          <p class="section-label">09 / LIVRE D’OR</p>
-          <h2 id="guestbook-title">Laissez un<br>petit mot.</h2>
-          <p>Un retour, un encouragement ou une prise de contact : votre message sera visible par tous, sans créer de compte.</p>
-        </div>
-        <div class="guestbook-content">
-          <form class="guestbook-form" id="guestbook-form">
-            <label>Pseudo<input id="guestbook-pseudonym" name="pseudonym" required minlength="2" maxlength="32" autocomplete="nickname" placeholder="Votre pseudo"></label>
-            <label>Commentaire<textarea id="guestbook-message" name="message" required minlength="2" maxlength="600" rows="5" placeholder="Votre message…"></textarea></label>
-            <input class="guestbook-trap" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
-            <button class="button button-primary" type="submit">Publier le message</button>
-            <p class="guestbook-status" id="guestbook-status" aria-live="polite">Chargement du livre d’or…</p>
-          </form>
-          <div class="guestbook-comments" id="guestbook-comments" aria-live="polite"></div>
-        </div>
+    <section class="goupille-section" aria-labelledby="goupille-title">
+      <div class="goupille-inner">
+        <p class="section-label">09 / PAUSE TECHNIQUE</p>
+        <h2 id="goupille-title">Une pause<br>avec Goupille.</h2>
+        <p>Clique sur lui pour le caresser.</p>
+        <button class="goupille-button" id="goupille-button" type="button" aria-describedby="goupille-message">
+          <img src="assets/goupille.png" alt="Goupille, un petit chat noir assis">
+          <span class="goupille-bubble" id="goupille-message" role="status" aria-live="polite">Je m’appelle Goupille.</span>
+        </button>
       </div>
     </section>
   </main>
@@ -486,7 +478,6 @@
 
   <div class="edit-toast" id="edit-toast" role="status" aria-live="polite"></div>
 
-  <script src="assets/guestbook-config.js"></script>
   <script src="assets/app.js"></script>
 </body>
 </html>
