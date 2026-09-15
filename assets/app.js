@@ -565,6 +565,16 @@ function talkToGoupille(message) {
 
 if (goupilleButton && goupilleWidget) {
   goupilleButton.addEventListener("click", () => {
+    if (goupilleWidget.classList.contains("is-tucked")) {
+      clearTimeout(goupilleSpeechTimer);
+      goupilleWidget.classList.remove("is-open", "is-petted");
+      goupilleWidget.classList.add("is-asleep");
+      goupilleButton.setAttribute("aria-label", "Goupille dort sous sa couverture");
+      return;
+    }
+
+    goupilleWidget.classList.remove("is-asleep");
+    goupilleButton.setAttribute("aria-label", "Caresser Goupille");
     goupilleWidget.classList.remove("is-petted");
     void goupilleWidget.offsetWidth;
     goupilleWidget.classList.add("is-petted");
@@ -590,7 +600,12 @@ if (goupilleBlanketToggle && goupilleWidget) {
     const isTucked = goupilleWidget.classList.toggle("is-tucked");
     goupilleBlanketToggle.setAttribute("aria-pressed", String(isTucked));
     goupilleBlanketToggle.textContent = isTucked ? "Découvrir Goupille" : "Couvrir Goupille";
-    talkToGoupille(isTucked ? "Mrrr… merci pour la couverture." : "J’étais bien au chaud.");
+    clearTimeout(goupilleSpeechTimer);
+    goupilleWidget.classList.remove("is-open", "is-petted");
+    if (!isTucked) {
+      goupilleWidget.classList.remove("is-asleep");
+      goupilleButton.setAttribute("aria-label", "Caresser Goupille");
+    }
   });
 }
 document.querySelector("#reset-content").addEventListener("click", () => {
