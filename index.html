@@ -375,24 +375,23 @@
         </div>
       </div>
     </section>
-    <section class="goupille-section" aria-labelledby="goupille-title">
-      <div class="goupille-inner">
-        <p class="section-label">09 / PAUSE TECHNIQUE</p>
-        <h2 id="goupille-title">Une pause<br>avec Goupille.</h2>
-        <p>Clique sur lui pour le caresser.</p>
-        <button class="goupille-button" id="goupille-button" type="button" aria-describedby="goupille-message">
-          <img src="assets/goupille.png" alt="Goupille, un petit chat noir assis">
-          <span class="goupille-bubble" id="goupille-message" role="status" aria-live="polite">Je m’appelle Goupille.</span>
-        </button>
-      </div>
-    </section>
   </main>
 
   <footer>
-    <a class="brand" href="#top"><span class="brand-mark">LJ</span><span class="footer-brand-copy"><span>Louis Jouhannet</span><small>Clara je t’aime</small></span></a>
+    <a class="brand" href="#top"><span class="brand-mark">LJ</span><span>Louis Jouhannet</span></a>
     <p>Portfolio cybersécurité · Reims</p>
     <p>© <span id="year"></span> Louis Jouhannet</p>
   </footer>
+
+  <aside class="goupille-widget" id="goupille-widget" aria-label="Goupille, le chat du portfolio">
+    <p class="goupille-bubble" id="goupille-message" role="status" aria-live="polite">Je m’appelle Goupille.</p>
+    <div class="goupille-actions" aria-label="Prendre soin de Goupille">
+      <button id="goupille-water" type="button">💧 Eau</button>
+    </div>
+    <button class="goupille-button" id="goupille-button" type="button" aria-describedby="goupille-message" aria-label="Caresser Goupille">
+      <img src="assets/goupille.png" alt="Goupille, un petit chat noir assis">
+    </button>
+  </aside>
 
   <aside class="contact-phone" id="contact-phone" role="dialog" aria-modal="true" aria-label="Coordonnées de Louis Jouhannet" hidden>
     <div class="phone-shell">

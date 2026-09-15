@@ -540,12 +540,33 @@ document.querySelector("#import-content").addEventListener("change", async event
 });
 
 const goupilleButton = document.querySelector("#goupille-button");
-if (goupilleButton) {
+const goupilleWidget = document.querySelector("#goupille-widget");
+const goupilleMessage = document.querySelector("#goupille-message");
+const goupilleWater = document.querySelector("#goupille-water");
+let goupilleThirsty = false;
+
+function talkToGoupille(message) {
+  goupilleMessage.textContent = message;
+  goupilleWidget.classList.add("is-open");
+}
+
+if (goupilleButton && goupilleWidget) {
   goupilleButton.addEventListener("click", () => {
-    goupilleButton.classList.remove("is-petted");
-    void goupilleButton.offsetWidth;
-    goupilleButton.classList.add("is-petted");
+    goupilleWidget.classList.remove("is-petted");
+    void goupilleWidget.offsetWidth;
+    goupilleWidget.classList.add("is-petted");
+    talkToGoupille("Mrrr… Je m’appelle Goupille.");
   });
+  goupilleWater.addEventListener("click", () => {
+    goupilleThirsty = false;
+    goupilleWidget.classList.remove("is-thirsty");
+    talkToGoupille("Miaou, merci pour l’eau !");
+  });
+  setTimeout(() => {
+    goupilleThirsty = true;
+    goupilleWidget.classList.add("is-thirsty");
+    talkToGoupille("Miaou… j’ai soif. Tu as un peu d’eau ?");
+  }, 45000);
 }
 document.querySelector("#reset-content").addEventListener("click", () => {
   if (!confirm("Restaurer tous les textes et supprimer les cartes ajoutées ?")) return;
