@@ -538,6 +538,89 @@ document.querySelector("#import-content").addEventListener("change", async event
   } catch { notify("Fichier de sauvegarde invalide"); }
   event.target.value = "";
 });
+
+const guestbookForm = document.querySelector("#guestbook-form");
+const guestbookComments = document.querySelector("#guestbook-comments");
+const guestbookStatus = document.querySelector("#guestbook-status");
+const guestbookConfig = window.GUESTBOOK_CONFIG || {};
+const guestbookReady = Boolean(guestbookConfig.supabaseUrl && guestbookConfig.supabasePublishableKey);
+
+function guestbookHeaders(extra = {}) {
+  return {
+    apikey: guestbookConfig.supabasePublishableKey,
+    Authorization: `Bearer ${guestbookConfig.supabasePublishableKey}`,
+    ...extra
+  };
+}
+
+function formatGuestbookDate(value) {
+  return new Intl.DateTimeFormat("fr-FR", { dateStyle: "medium" }).format(new Date(value));
+}
+
+function renderGuestbookComments(comments) {
+  guestbookComments.replaceChildren();
+  if (!comments.length) {
+    const empty = Object.assign(document.createElement("p"), { className: "guestbook-empty", textContent: "Pas encore de message. Soyez le premier à signer le livre d’or." });
+    guestbookComments.append(empty);
+    return;
+  }
+  comments.forEach(comment => {
+    const article = Object.assign(document.createElement("article"), { className: "guestbook-comment" });
+    const head = Object.assign(document.createElement("div"), { className: "guestbook-comment-head" });
+    const pseudonym = document.createElement("strong");
+    pseudonym.textContent = comment.pseudonym;
+    const date = document.createElement("time");
+    date.dateTime = comment.created_at;
+    date.textContent = formatGuestbookDate(comment.created_at);
+    const message = document.createElement("p");
+    message.textContent = comment.message;
+    head.append(pseudonym, date); article.append(head, message); guestbookComments.append(article);
+  });
+}
+
+async function loadGuestbook() {
+  if (!guestbookReady) {
+    guestbookStatus.textContent = "Le livre d’or est en cours de mise en service.";
+    guestbookForm.querySelectorAll("input, textarea, button").forEach(element => element.disabled = true);
+    return;
+  }
+  try {
+    const response = await fetch(`${guestbookConfig.supabaseUrl}/rest/v1/guestbook_comments?select=pseudonym,message,created_at&order=created_at.desc&limit=50`, { headers: guestbookHeaders() });
+    if (!response.ok) throw new Error();
+    renderGuestbookComments(await response.json());
+    guestbookStatus.textContent = "";
+  } catch {
+    guestbookStatus.textContent = "Impossible de charger le livre d’or pour le moment.";
+  }
+}
+
+guestbookForm.addEventListener("submit", async event => {
+  event.preventDefault();
+  if (!guestbookReady) return;
+  const data = new FormData(guestbookForm);
+  if (String(data.get("website") || "").trim()) return;
+  const pseudonym = String(data.get("pseudonym") || "").trim();
+  const message = String(data.get("message") || "").trim();
+  if (pseudonym.length < 2 || message.length < 2) return;
+  const submit = guestbookForm.querySelector("button[type=submit]");
+  submit.disabled = true; guestbookStatus.textContent = "Publication…";
+  try {
+    const response = await fetch(`${guestbookConfig.supabaseUrl}/rest/v1/guestbook_comments`, {
+      method: "POST",
+      headers: guestbookHeaders({ "Content-Type": "application/json", Prefer: "return=representation" }),
+      body: JSON.stringify({ pseudonym, message })
+    });
+    if (!response.ok) throw new Error();
+    guestbookForm.reset(); guestbookStatus.textContent = "Merci, votre message est publié.";
+    await loadGuestbook();
+  } catch {
+    guestbookStatus.textContent = "La publication a échoué. Réessayez dans un instant.";
+  } finally {
+    submit.disabled = false;
+  }
+});
+
+loadGuestbook();
 document.querySelector("#reset-content").addEventListener("click", () => {
   if (!confirm("Restaurer tous les textes et supprimer les cartes ajoutées ?")) return;
   localStorage.removeItem(STORAGE_KEY); applyState(); notify("Portfolio restauré");
