@@ -582,10 +582,13 @@ const goupillePhrases = [
   "Je m’appelle Goupille.",
   "Louis a fait sa dernière alternance chez Ready Study Go.",
   "Il a obtenu 860 points au TOEIC.",
-  "Son CV est disponible juste ici, dans la section contact.",
+  "Son CV est ici. Veux-tu y aller ?",
   "Il travaille entre réseaux, systèmes et cybersécurité.",
-  "Tu peux retrouver ses projets et ses dépôts GitHub sur ce site."
+  "Il prépare un Master 2 Cybersécurité à l’ESGI Reims.",
+  "Tu peux retrouver ses projets et ses dépôts GitHub sur ce site.",
+  "Je n’ai plus d’idée."
 ];
+const goupilleCVPrompt = "Son CV est ici. Veux-tu y aller ?";
 let goupillePhraseIndex = -1;
 let goupilleSpeechTimer;
 let goupilleSpamTimer;
@@ -593,7 +596,18 @@ let goupilleSpamCount = 0;
 
 function talkToGoupille(message) {
   clearTimeout(goupilleSpeechTimer);
-  goupilleMessage.textContent = message;
+  goupilleMessage.replaceChildren(document.createTextNode(message));
+  if (message === goupilleCVPrompt) {
+    const cvButton = document.createElement("button");
+    cvButton.type = "button";
+    cvButton.className = "goupille-cv-link";
+    cvButton.textContent = "Oui, allons-y";
+    cvButton.addEventListener("click", () => {
+      document.querySelector('a[href="assets/CV-Louis-Jouhannet.pdf"]')?.scrollIntoView({ behavior: "smooth", block: "center" });
+      goupilleWidget.classList.remove("is-open");
+    });
+    goupilleMessage.append(cvButton);
+  }
   goupilleWidget.classList.add("is-open");
   goupilleSpeechTimer = setTimeout(() => goupilleWidget.classList.remove("is-open"), 5000);
 }
