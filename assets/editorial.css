@@ -522,3 +522,21 @@ footer { background: var(--paper); color: var(--muted); }
   .skill-tabs { grid-template-columns: 1fr; }
   .skill-tabs button:last-child { grid-column: auto; }
 }
+
+/* Dark theme: the light theme above remains the default and unchanged. */
+.theme-toggle { display: inline-flex; align-items: center; gap: .45rem; margin-left: auto; margin-right: clamp(1rem, 2vw, 2rem); padding: .48rem .72rem; border: 1px solid var(--ink); border-radius: 999px; background: transparent; color: var(--ink); cursor: pointer; font: 500 .68rem "DM Mono", monospace; transition: background .2s ease, color .2s ease, border-color .2s ease; }
+.theme-toggle span:first-child { font-size: .95rem; line-height: 1; }
+.theme-toggle:hover, .theme-toggle:focus-visible { background: var(--ink); color: var(--paper); }
+html[data-theme="dark"] { color-scheme: dark; --ink: #f3f1ea; --panel: #20211e; --panel-2: #2a2b27; --paper: #151614; --white: #fff; --muted: #aaa9a2; --line: #454640; --accent: #ff6748; --accent-2: #ff6748; }
+html[data-theme="dark"] .site-header { background: rgba(21,22,20,.92); border-bottom-color: var(--line); }
+html[data-theme="dark"] .hero, html[data-theme="dark"] .about-section, html[data-theme="dark"] .stats-section { background: var(--paper); }
+html[data-theme="dark"] .hero-intro, html[data-theme="dark"] .about-copy { color: #c5c3bb; }
+html[data-theme="dark"] .portrait-wrap { background: #292a26; }
+html[data-theme="dark"] .skills-section { background: #242522; border-top-color: var(--line); }
+html[data-theme="dark"] .skill-tabs button[aria-selected="true"] { background: #30312d; }
+html[data-theme="dark"] .skill-proof { background: #20211e; }
+html[data-theme="dark"] .stat-card, html[data-theme="dark"] .project-card, html[data-theme="dark"] .github-card, html[data-theme="dark"] .certification-card { background: var(--panel); }
+html[data-theme="dark"] .journey-section { background: var(--paper); }
+html[data-theme="dark"] .timeline li::before { background: var(--paper); }
+html[data-theme="dark"] .theme-toggle { background: var(--ink); color: var(--paper); }
+html[data-theme="dark"] .theme-toggle:hover, html[data-theme="dark"] .theme-toggle:focus-visible { background: var(--accent); border-color: var(--accent); color: #fff; }

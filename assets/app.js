@@ -1,3 +1,23 @@
+const themeToggle = document.querySelector("#theme-toggle");
+try {
+  if (localStorage.getItem("portfolio-theme") === "dark") document.documentElement.dataset.theme = "dark";
+} catch {}
+function updateThemeToggle() {
+  const dark = document.documentElement.dataset.theme === "dark";
+  themeToggle?.setAttribute("aria-pressed", String(dark));
+  if (themeToggle) {
+    themeToggle.querySelector("span:first-child").textContent = dark ? "☀" : "☾";
+    themeToggle.querySelector("span:last-child").textContent = dark ? "Mode clair" : "Mode sombre";
+  }
+}
+updateThemeToggle();
+themeToggle?.addEventListener("click", () => {
+  const dark = document.documentElement.dataset.theme !== "dark";
+  document.documentElement.dataset.theme = dark ? "dark" : "light";
+  try { localStorage.setItem("portfolio-theme", dark ? "dark" : "light"); } catch {}
+  updateThemeToggle();
+});
+
 const skills = {
   cyber: {
     number: "01", kicker: "Protéger · Détecter · Analyser", title: "Cybersécurité",
