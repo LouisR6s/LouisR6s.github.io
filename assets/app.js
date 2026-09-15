@@ -222,6 +222,18 @@ nav.querySelectorAll("a").forEach(link => link.addEventListener("click", () => {
   nav.classList.remove("open"); navToggle.setAttribute("aria-expanded", "false");
 }));
 
+document.querySelectorAll(".copy-email").forEach(button => button.addEventListener("click", async () => {
+  const email = button.dataset.email;
+  const original = button.textContent;
+  try {
+    await navigator.clipboard.writeText(email);
+    button.textContent = "E-mail copié ✓";
+  } catch {
+    button.textContent = email;
+  }
+  setTimeout(() => { button.textContent = original; }, 2200);
+}));
+
 const contactLink = document.querySelector(".nav-cta");
 const contactPhone = document.querySelector("#contact-phone");
 const phoneHome = document.querySelector("#phone-home");
