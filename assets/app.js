@@ -494,7 +494,7 @@ function scheduleStandbyMode() {
   standbyInactivityTimer = setTimeout(() => {
     if (document.activeElement === switchTerminalInput || document.hidden) return scheduleStandbyMode();
     startSlideshow();
-  }, 10000);
+  }, 60000);
 }
 
 function renderStandbySlide() {
