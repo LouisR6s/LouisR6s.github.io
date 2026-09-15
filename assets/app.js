@@ -542,6 +542,7 @@ document.querySelector("#import-content").addEventListener("change", async event
 const goupilleButton = document.querySelector("#goupille-button");
 const goupilleWidget = document.querySelector("#goupille-widget");
 const goupilleMessage = document.querySelector("#goupille-message");
+const goupilleImage = document.querySelector("#goupille-image");
 const goupilleBlanketToggle = document.querySelector("#goupille-blanket-toggle");
 const goupillePhrases = [
   "Je m’appelle Goupille.",
@@ -569,11 +570,15 @@ if (goupilleButton && goupilleWidget) {
       clearTimeout(goupilleSpeechTimer);
       goupilleWidget.classList.remove("is-open", "is-petted");
       goupilleWidget.classList.add("is-asleep");
+      goupilleImage.src = "assets/goupille-sleep.svg";
+      goupilleImage.alt = "Goupille dort sous sa couverture";
       goupilleButton.setAttribute("aria-label", "Goupille dort sous sa couverture");
       return;
     }
 
     goupilleWidget.classList.remove("is-asleep");
+    goupilleImage.src = "assets/goupille.png";
+    goupilleImage.alt = "Goupille, un petit chat noir assis";
     goupilleButton.setAttribute("aria-label", "Caresser Goupille");
     goupilleWidget.classList.remove("is-petted");
     void goupilleWidget.offsetWidth;
@@ -604,6 +609,8 @@ if (goupilleBlanketToggle && goupilleWidget) {
     goupilleWidget.classList.remove("is-open", "is-petted");
     if (!isTucked) {
       goupilleWidget.classList.remove("is-asleep");
+      goupilleImage.src = "assets/goupille.png";
+      goupilleImage.alt = "Goupille, un petit chat noir assis";
       goupilleButton.setAttribute("aria-label", "Caresser Goupille");
     }
   });

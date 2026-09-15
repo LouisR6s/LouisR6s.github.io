@@ -11,7 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="assets/logo-lj.png">
   <link rel="stylesheet" href="assets/styles.css">
-  <link rel="stylesheet" href="assets/editorial.css?v=goupille-sleep-fix">
+  <link rel="stylesheet" href="assets/editorial.css?v=goupille-sleep-asset">
 </head>
 <body>
   <a class="skip-link" href="#main">Aller au contenu</a>
@@ -386,8 +386,7 @@
   <aside class="goupille-widget" id="goupille-widget" aria-label="Goupille, le chat du portfolio">
     <p class="goupille-bubble" id="goupille-message" role="status" aria-live="polite">Je m’appelle Goupille.</p>
     <button class="goupille-button" id="goupille-button" type="button" aria-describedby="goupille-message" aria-label="Caresser Goupille">
-      <img src="assets/goupille.png" alt="Goupille, un petit chat noir assis">
-      <span class="goupille-sleep-eyes" aria-hidden="true"><i></i><i></i></span>
+      <img id="goupille-image" src="assets/goupille.png" alt="Goupille, un petit chat noir assis">
     </button>
     <span class="goupille-blanket" aria-hidden="true"></span>
     <button class="goupille-blanket-toggle" id="goupille-blanket-toggle" type="button" aria-pressed="false">Couvrir Goupille</button>
@@ -478,6 +477,6 @@
 
   <div class="edit-toast" id="edit-toast" role="status" aria-live="polite"></div>
 
-  <script src="assets/app.js?v=goupille-sleep"></script>
+  <script src="assets/app.js?v=goupille-sleep-asset"></script>
 </body>
 </html>
