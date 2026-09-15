@@ -600,7 +600,7 @@ function talkToGoupille(message) {
   if (message === goupilleCVPrompt) {
     const cvLink = document.createElement("a");
     cvLink.className = "goupille-cv-link";
-    cvLink.href = "#contact";
+    cvLink.href = "#cv-download";
     cvLink.textContent = "Oui, allons-y";
     cvLink.addEventListener("click", () => setTimeout(() => goupilleWidget.classList.remove("is-open"), 350));
     goupilleMessage.append(cvLink);
