@@ -370,9 +370,9 @@ h1 span {
 .goupille-button:hover img, .goupille-button:focus-visible img { transform: translateY(-5px) rotate(-3deg); filter: drop-shadow(0 12px 10px rgba(0,0,0,.18)); }
 .goupille-button:focus-visible { outline: 2px solid var(--accent); outline-offset: 7px; border-radius: 16px; }
 .goupille-widget.is-petted img { animation: goupille-purr .52s ease-in-out; }
-.goupille-bubble { width: max-content; max-width: 190px; margin: 0 0 .45rem; padding: .6rem .7rem; border: 1px solid var(--ink); background: #fff; color: var(--ink); font: 500 .67rem/1.35 "DM Mono", monospace; text-align: center; opacity: 0; transform: translateY(8px); transition: opacity .2s ease, transform .2s ease; pointer-events: none; }
+.goupille-bubble { width: max-content; max-width: 190px; margin: 0 0 .45rem; padding: .6rem .7rem; border: 1px solid var(--ink); background: #fff; color: var(--ink); font: 500 .67rem/1.35 "DM Mono", monospace; text-align: center; opacity: 0; transform: translate(-2.4rem, 8px); transition: opacity .2s ease, transform .2s ease; pointer-events: none; }
 .goupille-bubble::after { content: ""; position: absolute; right: 29px; bottom: -7px; width: 12px; height: 12px; border-right: 1px solid var(--ink); border-bottom: 1px solid var(--ink); background: #fff; transform: rotate(45deg); }
-.goupille-widget.is-open .goupille-bubble { position: relative; opacity: 1; transform: none; }
+.goupille-widget.is-open .goupille-bubble { position: relative; opacity: 1; transform: translateX(-2.4rem); }
 .goupille-caption { margin: .1rem 0 0; color: var(--muted); font: 500 .53rem/1.2 "DM Mono", monospace; letter-spacing: .08em; text-transform: uppercase; white-space: nowrap; }
 @keyframes goupille-purr { 25% { transform: rotate(-4deg) scale(1.05); } 75% { transform: rotate(4deg) scale(1.05); } }
 footer { background: var(--paper); color: var(--muted); }
