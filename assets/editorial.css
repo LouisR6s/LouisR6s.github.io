@@ -371,8 +371,8 @@ h1 span {
 .goupille-button:focus-visible { outline: 2px solid var(--accent); outline-offset: 7px; border-radius: 16px; }
 .goupille-widget.is-petted img { animation: goupille-purr .52s ease-in-out; }
 .goupille-widget.is-stretched img { animation: goupille-stretch .72s cubic-bezier(.22, 1.25, .4, 1); }
-.goupille-sleep-eyes { position: absolute; z-index: 2; top: 31%; left: 50%; display: flex; gap: 8px; width: 50px; transform: translateX(-50%); opacity: 0; transition: opacity .18s ease; pointer-events: none; }
-.goupille-sleep-eyes i { display: block; width: 21px; height: 11px; border-bottom: 2px solid #f8f8f5; border-radius: 0 0 50% 50%; background: #020202; }
+.goupille-sleep-eyes { position: absolute; z-index: 2; top: 30%; left: 50%; display: flex; gap: 3px; width: 42px; transform: translateX(-50%); opacity: 0; transition: opacity .18s ease; pointer-events: none; }
+.goupille-sleep-eyes i { display: block; width: 19px; height: 16px; border-bottom: 2px solid #f8f8f5; border-radius: 0 0 50% 50%; background: #020202; }
 .goupille-widget.is-asleep .goupille-sleep-eyes { opacity: 1; animation: goupille-eyes-close .3s ease-out; }
 .goupille-blanket { position: absolute; z-index: 2; left: 50%; bottom: 1.75rem; width: 116px; height: 58px; border: 1px solid #7e1d16; border-radius: 14px 14px 8px 8px; background: repeating-linear-gradient(90deg, #c94232 0 14px, #f2d5bd 14px 18px, #a92c25 18px 32px); box-shadow: 0 5px 10px rgba(0,0,0,.18); transform: translate(-50%, 120%); transform-origin: bottom center; transition: transform .45s cubic-bezier(.2,.85,.25,1.1); pointer-events: none; }
 .goupille-blanket::after { content: ""; position: absolute; inset: 8px 0 auto; height: 1px; background: rgba(255,255,255,.5); box-shadow: 0 17px 0 rgba(255,255,255,.35), 0 34px 0 rgba(255,255,255,.3); }
