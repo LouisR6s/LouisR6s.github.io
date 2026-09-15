@@ -291,8 +291,8 @@ h1 span {
 .project-glyph { border-color: #41413e; color: var(--accent); }
 .enigma-art { place-self: center; width: min(185px, 100%); aspect-ratio: 1; display: grid; place-items: center; overflow: hidden; }
 .enigma-art img { display: block; width: 100%; height: 100%; object-fit: cover; }
-.paf-art { place-self: center; width: min(220px, 100%); aspect-ratio: 1; display: grid; place-items: center; }
-.paf-art img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.paf-art { place-self: center; width: min(220px, 100%); aspect-ratio: 1; display: grid; place-items: center; overflow: hidden; border-radius: 50%; background: #f5f4ef; box-shadow: 0 14px 34px rgba(11, 11, 10, .12); }
+.paf-art img { display: block; width: 108%; height: 108%; object-fit: contain; }
 .omnidev-art { place-self: center; width: min(210px, 100%); aspect-ratio: 1; display: grid; place-items: center; }
 .omnidev-art img { display: block; width: 100%; height: 100%; object-fit: contain; }
 .terminal-art { border-radius: 14px; box-shadow: none; background: #e8e7e2; color: #65655f; }
