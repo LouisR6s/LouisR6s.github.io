@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1254 1254" role="img" aria-label="Goupille endormi">
-  <image href="goupille.png" width="1254" height="1254"/>
-  <ellipse cx="434" cy="393" rx="55" ry="49" fill="#020202"/>
-  <ellipse cx="620" cy="393" rx="55" ry="49" fill="#020202"/>
-  <path d="M390 402 Q434 440 478 402" fill="none" stroke="#f8f8f5" stroke-width="19" stroke-linecap="round"/>
-  <path d="M576 402 Q620 440 664 402" fill="none" stroke="#f8f8f5" stroke-width="19" stroke-linecap="round"/>
-</svg>

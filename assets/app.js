@@ -570,7 +570,7 @@ if (goupilleButton && goupilleWidget) {
       clearTimeout(goupilleSpeechTimer);
       goupilleWidget.classList.remove("is-open", "is-petted");
       goupilleWidget.classList.add("is-asleep");
-      goupilleImage.src = "assets/goupille-sleep.svg";
+      goupilleImage.src = "assets/goupille-sleep.png";
       goupilleImage.alt = "Goupille dort sous sa couverture";
       goupilleButton.setAttribute("aria-label", "Goupille dort sous sa couverture");
       return;
