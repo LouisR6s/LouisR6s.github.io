@@ -589,10 +589,31 @@ const goupillePhrases = [
   "Je n’ai plus d’idée."
 ];
 const goupilleCVPrompt = "Son CV est ici. Veux-tu y aller ?";
+const goupilleLastIdea = "Je n’ai plus d’idée.";
 let goupillePhraseIndex = -1;
 let goupilleSpeechTimer;
 let goupilleSpamTimer;
 let goupilleSpamCount = 0;
+let goupilleAutoCoverTimer;
+let goupilleAutoSleepTimer;
+
+function cancelGoupilleAutoSleep() {
+  clearTimeout(goupilleAutoCoverTimer);
+  clearTimeout(goupilleAutoSleepTimer);
+}
+
+function tuckGoupilleAutomatically() {
+  if (goupilleWidget.classList.contains("is-tucked")) return;
+  goupilleWidget.classList.add("is-tucked");
+  goupilleBlanketToggle.setAttribute("aria-pressed", "true");
+  goupilleBlanketToggle.textContent = "Découvrir Goupille";
+  goupilleAutoSleepTimer = setTimeout(() => {
+    goupilleWidget.classList.add("is-asleep");
+    goupilleImage.src = "assets/goupille-sleep.png";
+    goupilleImage.alt = "Goupille dort sous sa couverture";
+    goupilleButton.setAttribute("aria-label", "Goupille dort sous sa couverture");
+  }, 2000);
+}
 
 function talkToGoupille(message) {
   clearTimeout(goupilleSpeechTimer);
@@ -607,10 +628,15 @@ function talkToGoupille(message) {
   }
   goupilleWidget.classList.add("is-open");
   goupilleSpeechTimer = setTimeout(() => goupilleWidget.classList.remove("is-open"), 5000);
+  if (message === goupilleLastIdea) {
+    cancelGoupilleAutoSleep();
+    goupilleAutoCoverTimer = setTimeout(tuckGoupilleAutomatically, 700);
+  }
 }
 
 if (goupilleButton && goupilleWidget) {
   goupilleButton.addEventListener("click", () => {
+    cancelGoupilleAutoSleep();
     if (goupilleWidget.classList.contains("is-tucked")) {
       clearTimeout(goupilleSpeechTimer);
       goupilleWidget.classList.remove("is-open", "is-petted");
@@ -654,6 +680,7 @@ if (goupilleButton && goupilleWidget) {
 
 if (goupilleBlanketToggle && goupilleWidget) {
   goupilleBlanketToggle.addEventListener("click", () => {
+    cancelGoupilleAutoSleep();
     const isTucked = goupilleWidget.classList.toggle("is-tucked");
     goupilleBlanketToggle.setAttribute("aria-pressed", String(isTucked));
     goupilleBlanketToggle.textContent = isTucked ? "Découvrir Goupille" : "Couvrir Goupille";
