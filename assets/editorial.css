@@ -349,7 +349,7 @@ h1 span {
 
 .journey-section { background: #fff; color: var(--ink); border-top: 1px solid var(--line); }
 .journey-column > h3 { color: var(--accent); }
-.timeline { --timeline-dot-size: 10px; --timeline-dot-top: .3rem; }
+.timeline { --timeline-dot-size: 10px; --timeline-dot-top: calc(.3rem + 10px); }
 .timeline li { border-left: 0; padding-left: 3rem; }
 .timeline li::before { z-index: 2; width: var(--timeline-dot-size); height: var(--timeline-dot-size); left: 0; top: var(--timeline-dot-top); box-sizing: border-box; transform: translateX(-50%); background: #fff; border-color: var(--accent); }
 .timeline li:not(:last-child)::after { content: ""; position: absolute; z-index: 0; left: 0; top: var(--timeline-dot-top); bottom: calc(-1 * var(--timeline-dot-top)); width: 1px; background: var(--line); transform: translateX(-50%); }
