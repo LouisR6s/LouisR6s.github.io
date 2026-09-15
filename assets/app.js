@@ -6,7 +6,8 @@ function updateThemeToggle() {
   const dark = document.documentElement.dataset.theme === "dark";
   themeToggle?.setAttribute("aria-pressed", String(dark));
   if (themeToggle) {
-    themeToggle.querySelector("span:first-child").textContent = dark ? "☀" : "☾";
+    themeToggle.querySelector(".theme-moon").style.opacity = dark ? ".45" : "1";
+    themeToggle.querySelector(".theme-sun").style.opacity = dark ? "1" : ".45";
     themeToggle.setAttribute("aria-label", dark ? "Activer le mode clair" : "Activer le mode sombre");
   }
 }
