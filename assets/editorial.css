@@ -384,6 +384,9 @@ h1 span {
 .guestbook-comment p { margin: .6rem 0 0; color: #4d4c48; white-space: pre-wrap; overflow-wrap: anywhere; }
 .guestbook-empty { padding: 1rem 0; color: var(--muted); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 footer { background: var(--paper); color: var(--muted); }
+footer .footer-brand-copy { display: grid; gap: .16rem; }
+footer .footer-brand-copy > span { color: var(--ink); }
+footer .footer-brand-copy small { color: var(--muted); font: 400 .55rem/1.1 "DM Mono", monospace; letter-spacing: .06em; }
 
 .edit-launcher { border: 1px solid var(--ink); background: var(--ink); color: #fff; box-shadow: 0 10px 30px rgba(0,0,0,.16); }
 .edit-launcher:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
