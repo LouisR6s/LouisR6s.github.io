@@ -542,12 +542,22 @@ document.querySelector("#import-content").addEventListener("change", async event
 const goupilleButton = document.querySelector("#goupille-button");
 const goupilleWidget = document.querySelector("#goupille-widget");
 const goupilleMessage = document.querySelector("#goupille-message");
-const goupilleWater = document.querySelector("#goupille-water");
-let goupilleThirsty = false;
+const goupillePhrases = [
+  "Je m’appelle Goupille.",
+  "Mrrr… encore une caresse ?",
+  "Tu as une bonne énergie, humain.",
+  "Je surveille le réseau depuis ici.",
+  "Ronron.exe est lancé.",
+  "C’est mon meilleur endroit pour faire la sieste."
+];
+let goupillePhraseIndex = -1;
+let goupilleSpeechTimer;
 
 function talkToGoupille(message) {
+  clearTimeout(goupilleSpeechTimer);
   goupilleMessage.textContent = message;
   goupilleWidget.classList.add("is-open");
+  goupilleSpeechTimer = setTimeout(() => goupilleWidget.classList.remove("is-open"), 5000);
 }
 
 if (goupilleButton && goupilleWidget) {
@@ -555,18 +565,9 @@ if (goupilleButton && goupilleWidget) {
     goupilleWidget.classList.remove("is-petted");
     void goupilleWidget.offsetWidth;
     goupilleWidget.classList.add("is-petted");
-    talkToGoupille("Mrrr… Je m’appelle Goupille.");
+    goupillePhraseIndex = (goupillePhraseIndex + 1) % goupillePhrases.length;
+    talkToGoupille(goupillePhrases[goupillePhraseIndex]);
   });
-  goupilleWater.addEventListener("click", () => {
-    goupilleThirsty = false;
-    goupilleWidget.classList.remove("is-thirsty");
-    talkToGoupille("Miaou, merci pour l’eau !");
-  });
-  setTimeout(() => {
-    goupilleThirsty = true;
-    goupilleWidget.classList.add("is-thirsty");
-    talkToGoupille("Miaou… j’ai soif. Tu as un peu d’eau ?");
-  }, 45000);
 }
 document.querySelector("#reset-content").addEventListener("click", () => {
   if (!confirm("Restaurer tous les textes et supprimer les cartes ajoutées ?")) return;
