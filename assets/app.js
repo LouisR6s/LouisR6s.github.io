@@ -580,11 +580,11 @@ const goupilleImage = document.querySelector("#goupille-image");
 const goupilleBlanketToggle = document.querySelector("#goupille-blanket-toggle");
 const goupillePhrases = [
   "Je m’appelle Goupille.",
-  "Mrrr… encore une caresse ?",
-  "Tu as une bonne énergie, humain.",
-  "Je surveille le réseau depuis ici.",
-  "Ronron.exe est lancé.",
-  "C’est mon meilleur endroit pour faire la sieste."
+  "Louis a fait sa dernière alternance chez Ready Study Go.",
+  "Il a obtenu 860 points au TOEIC.",
+  "Son CV est disponible juste ici, dans la section contact.",
+  "Il travaille entre réseaux, systèmes et cybersécurité.",
+  "Tu peux retrouver ses projets et ses dépôts GitHub sur ce site."
 ];
 let goupillePhraseIndex = -1;
 let goupilleSpeechTimer;
