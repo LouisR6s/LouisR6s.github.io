@@ -374,6 +374,7 @@ h1 span {
 .contact-section .button-secondary:hover { background: #fff; color: var(--ink); }
 .goupille-widget { position: fixed; z-index: 260; right: clamp(.75rem, 2vw, 1.5rem); bottom: clamp(.75rem, 2vw, 1.5rem); display: grid; justify-items: center; width: 128px; }
 .goupille-button { position: relative; width: 112px; margin: 0; padding: 0; border: 0; background: transparent; cursor: pointer; }
+.goupille-button:disabled { cursor: default; }
 .goupille-button img { display: block; width: 100%; height: auto; filter: drop-shadow(0 9px 9px rgba(0,0,0,.13)); transition: transform .2s ease, filter .2s ease; }
 .goupille-button:hover img, .goupille-button:focus-visible img { transform: translateY(-5px) rotate(-3deg); filter: drop-shadow(0 12px 10px rgba(0,0,0,.18)); }
 .goupille-button:focus-visible { outline: 2px solid var(--accent); outline-offset: 7px; border-radius: 16px; }

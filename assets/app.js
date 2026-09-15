@@ -607,12 +607,11 @@ function tuckGoupilleAutomatically() {
   goupilleWidget.classList.add("is-tucked");
   goupilleBlanketToggle.setAttribute("aria-pressed", "true");
   goupilleBlanketToggle.textContent = "Découvrir Goupille";
-  goupilleAutoSleepTimer = setTimeout(() => {
-    goupilleWidget.classList.add("is-asleep");
-    goupilleImage.src = "assets/goupille-sleep.png";
-    goupilleImage.alt = "Goupille dort sous sa couverture";
-    goupilleButton.setAttribute("aria-label", "Goupille dort sous sa couverture");
-  }, 2000);
+  goupilleWidget.classList.add("is-asleep");
+  goupilleImage.src = "assets/goupille-sleep.png";
+  goupilleImage.alt = "Goupille dort sous sa couverture";
+  goupilleButton.setAttribute("aria-label", "Goupille dort sous sa couverture");
+  goupilleButton.disabled = true;
 }
 
 function talkToGoupille(message) {
@@ -637,23 +636,6 @@ function talkToGoupille(message) {
 if (goupilleButton && goupilleWidget) {
   goupilleButton.addEventListener("click", () => {
     cancelGoupilleAutoSleep();
-    if (goupilleWidget.classList.contains("is-tucked")) {
-      clearTimeout(goupilleSpeechTimer);
-      goupilleWidget.classList.remove("is-open", "is-petted");
-      if (goupilleWidget.classList.contains("is-asleep")) {
-        goupilleWidget.classList.remove("is-asleep");
-        goupilleImage.src = "assets/goupille.png";
-        goupilleImage.alt = "Goupille est réveillé sous sa couverture";
-        goupilleButton.setAttribute("aria-label", "Goupille est réveillé");
-      } else {
-        goupilleWidget.classList.add("is-asleep");
-        goupilleImage.src = "assets/goupille-sleep.png";
-        goupilleImage.alt = "Goupille dort sous sa couverture";
-        goupilleButton.setAttribute("aria-label", "Goupille dort sous sa couverture");
-      }
-      return;
-    }
-
     goupilleWidget.classList.remove("is-asleep");
     goupilleImage.src = "assets/goupille.png";
     goupilleImage.alt = "Goupille, un petit chat noir assis";
@@ -686,7 +668,12 @@ if (goupilleBlanketToggle && goupilleWidget) {
     goupilleBlanketToggle.textContent = isTucked ? "Découvrir Goupille" : "Couvrir Goupille";
     clearTimeout(goupilleSpeechTimer);
     goupilleWidget.classList.remove("is-open", "is-petted");
-    if (!isTucked) {
+    if (isTucked) {
+      goupilleButton.disabled = true;
+      goupilleButton.setAttribute("aria-label", "Goupille est sous sa couverture");
+    } else {
+      goupillePhraseIndex = -1;
+      goupilleButton.disabled = false;
       goupilleWidget.classList.remove("is-asleep");
       goupilleImage.src = "assets/goupille.png";
       goupilleImage.alt = "Goupille, un petit chat noir assis";
