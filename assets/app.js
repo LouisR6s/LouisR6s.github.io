@@ -569,10 +569,17 @@ if (goupilleButton && goupilleWidget) {
     if (goupilleWidget.classList.contains("is-tucked")) {
       clearTimeout(goupilleSpeechTimer);
       goupilleWidget.classList.remove("is-open", "is-petted");
-      goupilleWidget.classList.add("is-asleep");
-      goupilleImage.src = "assets/goupille-sleep.png";
-      goupilleImage.alt = "Goupille dort sous sa couverture";
-      goupilleButton.setAttribute("aria-label", "Goupille dort sous sa couverture");
+      if (goupilleWidget.classList.contains("is-asleep")) {
+        goupilleWidget.classList.remove("is-asleep");
+        goupilleImage.src = "assets/goupille.png";
+        goupilleImage.alt = "Goupille est réveillé sous sa couverture";
+        goupilleButton.setAttribute("aria-label", "Goupille est réveillé");
+      } else {
+        goupilleWidget.classList.add("is-asleep");
+        goupilleImage.src = "assets/goupille-sleep.png";
+        goupilleImage.alt = "Goupille dort sous sa couverture";
+        goupilleButton.setAttribute("aria-label", "Goupille dort sous sa couverture");
+      }
       return;
     }
 
