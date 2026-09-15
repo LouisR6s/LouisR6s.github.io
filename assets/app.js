@@ -542,6 +542,7 @@ document.querySelector("#import-content").addEventListener("change", async event
 const goupilleButton = document.querySelector("#goupille-button");
 const goupilleWidget = document.querySelector("#goupille-widget");
 const goupilleMessage = document.querySelector("#goupille-message");
+const goupilleBlanketToggle = document.querySelector("#goupille-blanket-toggle");
 const goupillePhrases = [
   "Je m’appelle Goupille.",
   "Mrrr… encore une caresse ?",
@@ -581,6 +582,15 @@ if (goupilleButton && goupilleWidget) {
       goupilleWidget.classList.add("is-stretched");
       setTimeout(() => goupilleWidget.classList.remove("is-stretched"), 720);
     }
+  });
+}
+
+if (goupilleBlanketToggle && goupilleWidget) {
+  goupilleBlanketToggle.addEventListener("click", () => {
+    const isTucked = goupilleWidget.classList.toggle("is-tucked");
+    goupilleBlanketToggle.setAttribute("aria-pressed", String(isTucked));
+    goupilleBlanketToggle.textContent = isTucked ? "Découvrir Goupille" : "Couvrir Goupille";
+    talkToGoupille(isTucked ? "Mrrr… merci pour la couverture." : "J’étais bien au chaud.");
   });
 }
 document.querySelector("#reset-content").addEventListener("click", () => {

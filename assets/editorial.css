@@ -371,6 +371,11 @@ h1 span {
 .goupille-button:focus-visible { outline: 2px solid var(--accent); outline-offset: 7px; border-radius: 16px; }
 .goupille-widget.is-petted img { animation: goupille-purr .52s ease-in-out; }
 .goupille-widget.is-stretched img { animation: goupille-stretch .72s cubic-bezier(.22, 1.25, .4, 1); }
+.goupille-blanket { position: absolute; z-index: 2; left: 50%; bottom: 1.75rem; width: 116px; height: 58px; border: 1px solid #7e1d16; border-radius: 14px 14px 8px 8px; background: repeating-linear-gradient(90deg, #c94232 0 14px, #f2d5bd 14px 18px, #a92c25 18px 32px); box-shadow: 0 5px 10px rgba(0,0,0,.18); transform: translate(-50%, 120%); transform-origin: bottom center; transition: transform .45s cubic-bezier(.2,.85,.25,1.1); pointer-events: none; }
+.goupille-blanket::after { content: ""; position: absolute; inset: 8px 0 auto; height: 1px; background: rgba(255,255,255,.5); box-shadow: 0 17px 0 rgba(255,255,255,.35), 0 34px 0 rgba(255,255,255,.3); }
+.goupille-widget.is-tucked .goupille-blanket { transform: translate(-50%, 0); }
+.goupille-blanket-toggle { position: relative; z-index: 3; margin: -.15rem 0 .2rem; padding: .18rem .38rem; border: 1px solid #cfcfc8; border-radius: 999px; background: rgba(255,255,255,.92); color: var(--ink); cursor: pointer; font: 500 .5rem/1 "DM Mono", monospace; }
+.goupille-blanket-toggle:hover, .goupille-blanket-toggle:focus-visible { border-color: var(--accent); color: var(--accent); }
 .goupille-bubble { position: absolute; left: 50%; bottom: 8.25rem; width: max-content; max-width: 190px; margin: 0; padding: .6rem .7rem; border: 1px solid var(--ink); background: #fff; color: var(--ink); font: 500 .67rem/1.35 "DM Mono", monospace; text-align: center; opacity: 0; transform: translate(calc(-50% - 4.5rem), 8px); transition: opacity .2s ease, transform .2s ease; pointer-events: none; }
 .goupille-bubble::after { content: ""; position: absolute; right: 29px; bottom: -7px; width: 12px; height: 12px; border-right: 1px solid var(--ink); border-bottom: 1px solid var(--ink); background: #fff; transform: rotate(45deg); }
 .goupille-widget.is-open .goupille-bubble { opacity: 1; transform: translateX(calc(-50% - 4.5rem)); }
