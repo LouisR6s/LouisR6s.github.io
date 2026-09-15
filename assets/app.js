@@ -598,23 +598,12 @@ function talkToGoupille(message) {
   clearTimeout(goupilleSpeechTimer);
   goupilleMessage.replaceChildren(document.createTextNode(message));
   if (message === goupilleCVPrompt) {
-    const cvButton = document.createElement("button");
-    cvButton.type = "button";
-    cvButton.className = "goupille-cv-link";
-    cvButton.textContent = "Oui, allons-y";
-    cvButton.addEventListener("click", () => {
-      const contactSection = document.querySelector("#contact");
-      const cvLink = contactSection?.querySelector('a[href="assets/CV-Louis-Jouhannet.pdf"]');
-      if (!contactSection) return;
-      const targetY = contactSection.getBoundingClientRect().top + window.scrollY - 82;
-      window.scrollTo({ top: targetY, behavior: "smooth" });
-      window.history.replaceState(null, "", "#contact");
-      cvLink?.focus({ preventScroll: true });
-      contactSection?.classList.add("is-highlighted");
-      setTimeout(() => contactSection?.classList.remove("is-highlighted"), 1400);
-      setTimeout(() => goupilleWidget.classList.remove("is-open"), 350);
-    });
-    goupilleMessage.append(cvButton);
+    const cvLink = document.createElement("a");
+    cvLink.className = "goupille-cv-link";
+    cvLink.href = "#contact";
+    cvLink.textContent = "Oui, allons-y";
+    cvLink.addEventListener("click", () => setTimeout(() => goupilleWidget.classList.remove("is-open"), 350));
+    goupilleMessage.append(cvLink);
   }
   goupilleWidget.classList.add("is-open");
   goupilleSpeechTimer = setTimeout(() => goupilleWidget.classList.remove("is-open"), 5000);

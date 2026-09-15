@@ -384,7 +384,7 @@ h1 span {
 .goupille-blanket-toggle:hover, .goupille-blanket-toggle:focus-visible { border-color: var(--accent); color: var(--accent); }
 .goupille-bubble { position: absolute; left: 50%; bottom: 8.25rem; width: max-content; max-width: 190px; margin: 0; padding: .6rem .7rem; border: 1px solid var(--ink); background: #fff; color: var(--ink); font: 500 .67rem/1.35 "DM Mono", monospace; text-align: center; opacity: 0; transform: translate(calc(-50% - 4.5rem), 8px); transition: opacity .2s ease, transform .2s ease; pointer-events: none; }
 .goupille-bubble::after { content: ""; position: absolute; right: 29px; bottom: -7px; width: 12px; height: 12px; border-right: 1px solid var(--ink); border-bottom: 1px solid var(--ink); background: #fff; transform: rotate(45deg); }
-.goupille-cv-link { display: block; width: fit-content; margin: .55rem auto 0; padding: .3rem .5rem; border: 1px solid currentColor; border-radius: 999px; background: transparent; color: inherit; cursor: pointer; font: inherit; }
+.goupille-cv-link { display: block; width: fit-content; margin: .55rem auto 0; padding: .3rem .5rem; border: 1px solid currentColor; border-radius: 999px; background: transparent; color: inherit; cursor: pointer; font: inherit; text-decoration: none; }
 .goupille-cv-link:hover, .goupille-cv-link:focus-visible { background: var(--ink); color: var(--paper); }
 .goupille-widget.is-open .goupille-bubble { opacity: 1; transform: translateX(calc(-50% - 4.5rem)); }
 .goupille-caption { margin: .1rem 0 0; color: var(--muted); font: 500 .53rem/1.2 "DM Mono", monospace; letter-spacing: .08em; text-transform: uppercase; white-space: nowrap; }
