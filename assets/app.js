@@ -7,7 +7,7 @@ function updateThemeToggle() {
   themeToggle?.setAttribute("aria-pressed", String(dark));
   if (themeToggle) {
     themeToggle.querySelector("span:first-child").textContent = dark ? "☀" : "☾";
-    themeToggle.querySelector("span:last-child").textContent = dark ? "Mode clair" : "Mode sombre";
+    themeToggle.setAttribute("aria-label", dark ? "Activer le mode clair" : "Activer le mode sombre");
   }
 }
 updateThemeToggle();
