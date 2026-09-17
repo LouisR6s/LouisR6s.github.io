@@ -1,22 +1,22 @@
 /* Message d'accueil de Goupille au chargement du portfolio. */
 const goupilleWidget = document.querySelector("#goupille-widget");
 const goupilleMessage = document.querySelector("#goupille-message");
+const goupilleButton = document.querySelector("#goupille-button");
 
-if (goupilleWidget && goupilleMessage) {
+if (goupilleWidget && goupilleMessage && goupilleButton) {
   const introMessage = "Clique-moi dessus !";
+  let introActive = true;
 
   setTimeout(() => {
     if (goupilleWidget.classList.contains("is-tucked")) return;
-
     goupilleMessage.textContent = introMessage;
     goupilleWidget.classList.add("is-open");
+  }, 500);
 
-    setTimeout(() => {
-      // Ne ferme pas la bulle si l'utilisateur a déjà cliqué sur Goupille
-      // et qu'un autre message a remplacé le texte d'introduction.
-      if (goupilleMessage.textContent === introMessage) {
-        goupilleWidget.classList.remove("is-open");
-      }
-    }, 5000);
-  }, 700);
+  goupilleButton.addEventListener("click", () => {
+    if (!introActive) return;
+    introActive = false;
+    // Le gestionnaire principal de Goupille remplace ensuite ce texte
+    // par sa première phrase normale.
+  }, { once: true });
 }
