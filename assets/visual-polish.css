@@ -1,0 +1,144 @@
+/*
+ * Visual polish based on the latest design review screenshots.
+ * Kept separate from the main stylesheets so the changes stay easy to revert.
+ */
+
+/* Hero copy: remove the artificial bold-first-line treatment. */
+.hero-intro {
+  max-width: 780px;
+  color: #4f4f4b;
+  font-weight: 400;
+}
+
+.hero-intro::first-line {
+  color: inherit;
+  font-weight: inherit;
+}
+
+/* Keep the short labels visually consistent and properly capitalized. */
+.quick-facts span,
+.stat-card span {
+  text-transform: none;
+}
+
+/*
+ * Section headings: align the explanatory copy with the first line of the title
+ * instead of letting it sit near the bottom of a two-line heading.
+ */
+@media (min-width: 901px) {
+  .section-heading {
+    align-items: start;
+  }
+
+  .section-heading > p {
+    align-self: start;
+    margin-top: 2.75rem;
+  }
+
+  .skills-section .section-heading-actions {
+    align-self: start;
+    display: grid;
+    justify-items: end;
+    gap: .9rem;
+    padding-top: 2.75rem;
+  }
+
+  .skills-section .section-heading-actions > p {
+    max-width: 420px;
+    text-align: right;
+  }
+
+  /* Keep the skill description on one line on large screens. */
+  .skill-panel > p {
+    max-width: none;
+  }
+}
+
+@media (min-width: 1180px) {
+  .skill-panel > p {
+    white-space: nowrap;
+    font-size: 1.02rem;
+  }
+}
+
+/* Project cards: align content starts and remove unnecessary vertical voids. */
+.project-featured {
+  min-height: 0;
+  align-items: start;
+  align-content: start;
+  padding-block: clamp(1.7rem, 2.5vw, 2.2rem);
+}
+
+.project-featured .terminal-art {
+  align-self: center;
+}
+
+.project-card:not(.project-featured) {
+  min-height: 360px;
+  align-content: stretch;
+  grid-template-rows: auto auto 1fr;
+}
+
+.project-card:not(.project-featured) .project-body {
+  margin-top: 1.45rem;
+}
+
+.project-card:not(.project-featured) .project-body h3 {
+  margin-top: 0;
+}
+
+.project-card:not(.project-featured) > .terminal-art,
+.project-card:not(.project-featured) > .paf-art,
+.project-card:not(.project-featured) > .cert-art,
+.project-card:not(.project-featured) > .enigma-art,
+.project-card:not(.project-featured) > .omnidev-art,
+.project-card:not(.project-featured) > .project-glyph {
+  align-self: end;
+}
+
+.project-card:not(.project-featured) .project-logos {
+  margin-top: 1.4rem;
+  margin-bottom: 1.2rem;
+}
+
+/* The first two side-by-side project cards should start their titles together. */
+.project-list > .project-card:nth-child(2) .project-body,
+.project-list > .project-card:nth-child(3) .project-body {
+  margin-top: 1.45rem;
+}
+
+/* Final CTA: keep the kicker neutral and make “avenir” the true accent. */
+.contact-inner > .mono {
+  color: #fff;
+}
+
+.contact-inner h2 span {
+  color: var(--accent);
+  font-family: inherit;
+  font-weight: 650;
+  -webkit-text-stroke: 0;
+}
+
+/* Preserve the existing mobile layout and let text wrap naturally again. */
+@media (max-width: 900px) {
+  .section-heading > p {
+    margin-top: 0;
+  }
+
+  .skills-section .section-heading-actions {
+    padding-top: 0;
+  }
+
+  .project-featured {
+    min-height: 0;
+  }
+
+  .project-card:not(.project-featured) {
+    min-height: 0;
+    grid-template-rows: auto;
+  }
+
+  .project-card:not(.project-featured) .project-body {
+    margin-top: 0;
+  }
+}
