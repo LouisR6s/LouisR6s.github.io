@@ -142,3 +142,130 @@
     margin-top: 0;
   }
 }
+
+/* Unified rhythm and project visuals. */
+:root { --project-art-surface: #eeede8; }
+.section { padding-block: clamp(5.5rem, 9vw, 9rem); }
+.projects-section, .lab-section { border-top: 1px solid var(--line); }
+.project-list, .stats-grid, .certifications-grid { gap: clamp(1rem, 1.6vw, 1.35rem); }
+.project-card:not(.project-featured) {
+  min-height: 410px;
+  grid-template-rows: auto 1fr 160px;
+  row-gap: 1.25rem;
+}
+.project-list > .project-card:not(.project-featured) .project-body {
+  margin-top: 0;
+}
+.project-card:not(.project-featured) .project-logos {
+  margin-top: 1.1rem;
+  margin-bottom: 0;
+}
+.project-card:not(.project-featured) > :is(.terminal-art, .paf-art, .cert-art, .enigma-art, .omnidev-art, .project-glyph) {
+  place-self: stretch;
+  width: 100%;
+  height: 160px;
+  min-height: 0;
+  margin-top: 0;
+  padding: 1rem;
+  aspect-ratio: auto;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--project-art-surface);
+  box-shadow: none;
+}
+.project-card:not(.project-featured) > .terminal-art { justify-content: center; }
+.project-card:not(.project-featured) > :is(.paf-art, .enigma-art, .omnidev-art) img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.project-card:not(.project-featured) > .cert-art::before {
+  right: 1rem;
+  bottom: 1rem;
+  width: 50px;
+  height: 50px;
+}
+
+/* Restrained interactions and a visible keyboard focus. */
+:where(a, button, input, summary):focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+@media (hover: hover) and (pointer: fine) {
+  .project-card:hover, .certification-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 32px rgba(10, 10, 10, .11);
+  }
+  .project-logos img:hover, .button:hover { transform: translateY(-1px); }
+}
+
+/* Consistent charcoal surfaces with one warm accent. */
+html[data-theme="dark"] {
+  --paper: #121313;
+  --panel: #1d1e1e;
+  --panel-2: #292a2a;
+  --line: #444747;
+  --muted: #b4b5b1;
+  --accent: #ff866c;
+  --accent-2: #ff866c;
+  --project-art-surface: #292a2a;
+}
+html[data-theme="dark"] :is(.skills-section, .github-section) { background: #181a1a; }
+html[data-theme="dark"] .project-featured,
+html[data-theme="dark"] .certification-toeic { background: #101111; }
+html[data-theme="dark"] .stat-card-accent {
+  background: #2b211f;
+  border-color: #905b4f;
+}
+html[data-theme="dark"] .stat-card-accent :is(strong, span, small) { color: #f2f2f2; }
+html[data-theme="dark"] :is(.button-primary, .contact-section .button-primary) {
+  background: var(--accent);
+  color: #171717;
+}
+html[data-theme="dark"] .project-card:not(.project-featured) .project-logos img {
+  filter: grayscale(1) brightness(0) invert(1);
+  opacity: .72;
+}
+@media (hover: hover) and (pointer: fine) {
+  html[data-theme="dark"] .project-card:hover,
+  html[data-theme="dark"] .certification-card:hover {
+    box-shadow: 0 14px 32px rgba(0, 0, 0, .3);
+  }
+}
+
+@media (max-width: 900px) {
+  .project-card:not(.project-featured) {
+    min-height: 0;
+    grid-template-rows: auto auto 140px;
+  }
+  .project-card:not(.project-featured) > :is(.terminal-art, .paf-art, .cert-art, .enigma-art, .omnidev-art, .project-glyph) {
+    height: 140px;
+  }
+}
+@media (max-width: 700px) {
+  .goupille-widget { right: .4rem; bottom: .45rem; width: 86px; }
+  .goupille-button { width: 72px; }
+  .goupille-blanket { width: 76px; height: 38px; bottom: 1.15rem; }
+  .goupille-caption { display: none; }
+  .goupille-bubble {
+    bottom: 5.35rem;
+    max-width: 150px;
+    transform: translate(calc(-50% - 3.25rem), 8px);
+  }
+  .goupille-widget.is-open .goupille-bubble {
+    transform: translateX(calc(-50% - 3.25rem));
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal, .reveal.visible, .project-card, .certification-card,
+  .project-logos img, .button, .theme-option, nav a {
+    transition: none;
+  }
+  .project-card:hover, .certification-card:hover,
+  .project-logos img:hover, .button:hover { transform: none; }
+  .goupille-widget.is-petted img, .goupille-widget.is-stretched img {
+    animation: none;
+  }
+}
