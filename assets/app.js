@@ -1,24 +1,20 @@
-const themeToggle = document.querySelector("#theme-toggle");
+const themeOptions = document.querySelectorAll(".theme-option");
 try {
   if (localStorage.getItem("portfolio-theme") === "dark") document.documentElement.dataset.theme = "dark";
 } catch {}
 function updateThemeToggle() {
-  const dark = document.documentElement.dataset.theme === "dark";
-  themeToggle?.setAttribute("aria-pressed", String(dark));
-  if (themeToggle) {
-    themeToggle.querySelector(".theme-moon").style.opacity = dark ? ".45" : "1";
-    themeToggle.querySelector(".theme-sun").style.opacity = dark ? "1" : ".45";
-    themeToggle.querySelector(".theme-label").textContent = dark ? "Mode clair" : "Mode sombre";
-    themeToggle.setAttribute("aria-label", dark ? "Activer le mode clair" : "Activer le mode sombre");
-  }
+  const activeTheme = document.documentElement.dataset.theme === "dark" ? "dark" : "light";
+  themeOptions.forEach(option => {
+    option.setAttribute("aria-pressed", String(option.dataset.themeChoice === activeTheme));
+  });
 }
 updateThemeToggle();
-themeToggle?.addEventListener("click", () => {
-  const dark = document.documentElement.dataset.theme !== "dark";
-  document.documentElement.dataset.theme = dark ? "dark" : "light";
-  try { localStorage.setItem("portfolio-theme", dark ? "dark" : "light"); } catch {}
+themeOptions.forEach(option => option.addEventListener("click", () => {
+  const theme = option.dataset.themeChoice;
+  document.documentElement.dataset.theme = theme;
+  try { localStorage.setItem("portfolio-theme", theme); } catch {}
   updateThemeToggle();
-});
+}));
 
 const skills = {
   cyber: {
