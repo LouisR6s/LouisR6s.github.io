@@ -210,13 +210,43 @@ if (switchLab) {
 }
 const navToggle = document.querySelector(".nav-toggle");
 const nav = document.querySelector("nav");
+const navLinks = [...nav.querySelectorAll('a[href^="#"]')];
+const trackedSections = navLinks
+  .filter(link => link.getAttribute("href") !== "#contact")
+  .map(link => ({ link, section: document.querySelector(link.getAttribute("href")) }))
+  .filter(item => item.section);
+
+function setActiveNav(link) {
+  navLinks.forEach(item => {
+    if (item === link) item.setAttribute("aria-current", "location");
+    else item.removeAttribute("aria-current");
+  });
+}
+
+function updateActiveNav() {
+  if (!document.querySelector("#contact-phone").hidden) return;
+  const threshold = Math.min(window.innerHeight * .3, 240);
+  const visible = trackedSections.filter(item => item.section.getBoundingClientRect().top <= threshold);
+  setActiveNav((visible.at(-1) || trackedSections[0])?.link);
+}
+
 navToggle.addEventListener("click", () => {
   const open = nav.classList.toggle("open");
   navToggle.setAttribute("aria-expanded", String(open));
 });
-nav.querySelectorAll("a").forEach(link => link.addEventListener("click", () => {
+navLinks.forEach(link => link.addEventListener("click", () => {
+  setActiveNav(link);
   nav.classList.remove("open"); navToggle.setAttribute("aria-expanded", "false");
 }));
+let navFrame;
+window.addEventListener("scroll", () => {
+  if (!navFrame) navFrame = requestAnimationFrame(() => {
+    navFrame = null;
+    updateActiveNav();
+  });
+}, { passive: true });
+window.addEventListener("resize", updateActiveNav);
+updateActiveNav();
 
 document.querySelectorAll(".copy-email").forEach(button => button.addEventListener("click", async () => {
   const email = button.dataset.email;
@@ -236,6 +266,7 @@ const phoneHome = document.querySelector("#phone-home");
 let contactOpener = contactLink;
 function openContactPhone(opener = contactLink) {
   contactOpener = opener;
+  setActiveNav(contactLink);
   contactPhone.hidden = false;
   contactPhone.setAttribute("aria-hidden", "false");
   requestAnimationFrame(() => requestAnimationFrame(() => contactPhone.classList.add("open")));
@@ -247,6 +278,7 @@ function closeContactPhone() {
     if (!contactPhone.classList.contains("open")) {
       contactPhone.hidden = true;
       contactPhone.setAttribute("aria-hidden", "true");
+      updateActiveNav();
     }
   }, 650);
   contactOpener.focus();
