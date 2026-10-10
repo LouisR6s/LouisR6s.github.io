@@ -176,8 +176,9 @@
 }
 .project-card:not(.project-featured) > .terminal-art { justify-content: center; }
 .project-card:not(.project-featured) > :is(.paf-art, .enigma-art, .omnidev-art) img {
-  width: 100%;
-  height: 100%;
+  width: auto;
+  height: 128px;
+  max-width: 100%;
   object-fit: contain;
 }
 .project-card:not(.project-featured) > .cert-art::before {
@@ -241,6 +242,9 @@ html[data-theme="dark"] .project-card:not(.project-featured) .project-logos img 
   }
   .project-card:not(.project-featured) > :is(.terminal-art, .paf-art, .cert-art, .enigma-art, .omnidev-art, .project-glyph) {
     height: 140px;
+  }
+  .project-card:not(.project-featured) > :is(.paf-art, .enigma-art, .omnidev-art) img {
+    height: 108px;
   }
 }
 @media (max-width: 700px) {
