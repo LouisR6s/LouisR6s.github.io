@@ -80,7 +80,15 @@
   text-transform: uppercase;
 }
 
-.passion-card-r6 .passion-title { max-width: 11ch; }
+.passion-card-r6 .passion-title {
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
 
 .passion-card-footer {
   display: flex;
