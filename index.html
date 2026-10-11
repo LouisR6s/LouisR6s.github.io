@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="assets/styles.css">
   <link rel="stylesheet" href="assets/editorial.css?v=nav-outline-1">
   <link rel="stylesheet" href="assets/visual-polish.css?v=polish-3">
+  <link rel="stylesheet" href="assets/passions.css?v=1">
 </head>
 <body>
   <a class="skip-link" href="#main">Aller au contenu</a>
@@ -42,6 +43,7 @@
       <a href="#projets">Projets</a>
       <a href="#certifications">Certifications</a>
       <a href="#parcours">Parcours</a>
+      <a href="#passions">Passions</a>
       <a class="nav-cta" href="#contact">Me contacter</a>
     </nav>
   </header>
@@ -55,7 +57,6 @@
           <div class="hero-actions">
             <a class="button button-primary" href="#projets">Voir mes projets <span aria-hidden="true">↘</span></a>
             <a class="button button-secondary" href="assets/CV-Louis-Jouhannet.pdf" target="_blank" rel="noopener noreferrer">Télécharger mon CV</a>
-            <a class="button button-secondary" href="https://www.canva.com/design/DAHXvhI3p5o/edit" target="_blank" rel="noopener noreferrer">Version Canva modifiable ↗</a>
           </div>
           <ul class="quick-facts" aria-label="Informations clés">
             <li><strong>4</strong><span>Expériences terrain</span></li>
@@ -349,8 +350,36 @@
       </div>
     </section>
 
+    <section class="section passions-section" id="passions" aria-labelledby="passions-title">
+      <div class="section-heading reveal">
+        <div>
+          <div class="section-label">08 / Passions</div>
+          <h2 class="section-title" id="passions-title">Jeux vidéo.</h2>
+        </div>
+        <p>En dehors des projets techniques, je joue notamment à Valorant et Rainbow Six Siege.</p>
+      </div>
+      <div class="passion-grid">
+        <article class="passion-card passion-card-valorant reveal">
+          <div class="passion-media">
+            <img src="assets/passions-valorant.webp" alt="" width="1400" height="788" loading="lazy" decoding="async">
+            <span class="passion-index">01 / Jeu vidéo</span>
+            <h3 class="passion-title">Valorant</h3>
+          </div>
+          <div class="passion-card-footer"><span>FPS tactique</span><span>Riot Games</span></div>
+        </article>
+        <article class="passion-card passion-card-r6 reveal">
+          <div class="passion-media">
+            <img src="assets/passions-r6.webp" alt="" width="1400" height="788" loading="lazy" decoding="async">
+            <span class="passion-index">02 / Jeu vidéo</span>
+            <h3 class="passion-title">Rainbow Six Siege</h3>
+          </div>
+          <div class="passion-card-footer"><span>FPS tactique</span><span>Ubisoft</span></div>
+        </article>
+      </div>
+    </section>
+
     <section class="section lab-section" id="network-lab">
-      <div class="section-heading"><div><div class="section-label">08 / LAB INTERACTIF</div><h2 class="section-title">À toi de<br>rétablir le lien.</h2></div><p>Simulation locale · PC-A ne joint plus PC-B. Diagnostique le switch, réactive le port et vérifie son VLAN.</p></div>
+      <div class="section-heading"><div><div class="section-label">09 / LAB INTERACTIF</div><h2 class="section-title">À toi de<br>rétablir le lien.</h2></div><p>Simulation locale · PC-A ne joint plus PC-B. Diagnostique le switch, réactive le port et vérifie son VLAN.</p></div>
       <div class="lab-workspace">
         <aside class="lab-brief"><span class="mono">INCIDENT #002</span><h3>Deux PC. Un lien coupé.</h3><p>Les deux postes doivent communiquer sur le VLAN 10. PC-A utilise 192.168.10.10 et PC-B 192.168.10.20.</p><ol><li>Inspecter les interfaces</li><li>Réactiver Gi0/2</li><li>Aligner le VLAN d’accès</li><li>Valider avec un ping</li></ol><details><summary>Besoin d’un indice ?</summary><p>Tape <code>help</code>. Pour configurer : <code>configure terminal</code>, puis <code>interface gi0/2</code>. Utilise <code>no shutdown</code> et <code>switchport access vlan 10</code>, puis <code>end</code>.</p></details></aside>
             <div class="nerd-widget" aria-label="Oscilloscope réseau interactif">
@@ -386,7 +415,6 @@
           <button class="button button-secondary copy-email" type="button" data-email="louisjouhannet@gmail.com">Copier mon e-mail</button>
           <button class="button button-secondary open-phone-contact" type="button">Ouvrir ma carte contact</button>
           <a class="button button-secondary cv-download-target" id="cv-download" href="assets/CV-Louis-Jouhannet.pdf" target="_blank" rel="noopener noreferrer">Télécharger mon CV ↓</a>
-          <a class="button button-secondary" href="https://www.canva.com/design/DAHXvhI3p5o/edit" target="_blank" rel="noopener noreferrer">Version Canva modifiable ↗</a>
           <a class="button button-secondary" href="https://www.linkedin.com/in/louis-jouhannet-dumoulin/" target="_blank" rel="noreferrer">LinkedIn ↗</a>
           <a class="button button-secondary" href="https://github.com/LouisR6s" target="_blank" rel="noreferrer">GitHub ↗</a>
         </div>
