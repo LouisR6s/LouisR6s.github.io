@@ -522,7 +522,7 @@ function scheduleStandbyMode() {
   standbyInactivityTimer = setTimeout(() => {
     if (document.activeElement === switchTerminalInput || document.hidden) return scheduleStandbyMode();
     startSlideshow();
-  }, 60000);
+  }, 180000);
 }
 
 function renderStandbySlide() {
