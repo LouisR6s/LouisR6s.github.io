@@ -94,120 +94,6 @@ if (signalLine) {
   speedControl.addEventListener("input", syncSignal); amplitudeControl.addEventListener("input", syncSignal); syncSignal(); drawSignal();
 }
 
-const switchLab = document.querySelector("#switch-lab");
-const switchTerminalForm = document.querySelector("#switch-terminal-form");
-const switchTerminalInput = document.querySelector("#switch-terminal-input");
-const switchTerminalOutput = document.querySelector("#switch-terminal-output");
-const switchStatus = document.querySelector("#switch-status");
-const switchScore = document.querySelector("#switch-score");
-const labPreview = document.querySelector("#lab-preview");
-const labPreviewTitle = document.querySelector("#lab-preview-title");
-const labPreviewMessage = document.querySelector("#lab-preview-message");
-let labMode = "exec";
-let labPortUp = false;
-let labVlan = 20;
-let activeLabDevice = "switch";
-const labDeviceButtons = {
-  switch: document.querySelector("#lab-switch-device"),
-  "pc-a": document.querySelector("#lab-pc-a"),
-  "pc-b": document.querySelector("#lab-pc-b")
-};
-function labPrint(text, error = false) {
-  const line = document.createElement("p");
-  line.textContent = text;
-  if (error) line.className = "terminal-error";
-  switchTerminalOutput.append(line);
-  while (switchTerminalOutput.children.length > 100) switchTerminalOutput.firstElementChild.remove();
-  switchTerminalOutput.scrollTop = switchTerminalOutput.scrollHeight;
-}
-function updateLab() {
-  const ready = labPortUp && labVlan === 10;
-  switchLab.classList.toggle("port-up", labPortUp);
-  switchLab.classList.toggle("connected", ready);
-  switchStatus.textContent = labPortUp ? "Gi0/2 UP" : "Gi0/2 DOWN";
-  switchScore.textContent = ready ? "VLAN 10 · CONNECTÉ" : labPortUp ? "VLAN INCORRECT" : "HORS LIGNE";
-  switchLab.querySelector(".lab-switch small").textContent = "Gi0/2 · VLAN " + labVlan;
-  switchTerminalForm.querySelector("span").textContent = activeLabDevice === "pc-a" ? "PC-A>" : activeLabDevice === "pc-b" ? "PC-B>" : labMode === "interface" ? "SW(config-if)#" : labMode === "config" ? "SW(config)#" : "SW#";
-  Object.entries(labDeviceButtons).forEach(([device, button]) => button.classList.toggle("active", device === activeLabDevice));
-  labPreview.classList.toggle("online", ready);
-  labPreviewTitle.textContent = ready ? "intranet.local est accessible" : "Connexion impossible";
-  labPreviewMessage.textContent = ready ? "PC-A communique avec PC-B · 192.168.10.20" : "En attente d’un chemin réseau vers intranet.local";
-}
-function resetSwitchGame() {
-  activeLabDevice = "switch"; labMode = "exec"; labPortUp = false; labVlan = 20;
-  switchTerminalOutput.replaceChildren();
-  labPrint("SW-REIMS-01 — simulation de dépannage");
-  labPrint("Incident : PC-A ne peut pas joindre 192.168.10.20.");
-  labPrint("Tape help pour consulter les commandes.");
-  switchTerminalInput.value = ""; updateLab();
-}
-function selectLabDevice(device) {
-  activeLabDevice = device;
-  switchTerminalOutput.replaceChildren();
-  if (device === "switch") {
-    labMode = "exec"; labPrint("SW-REIMS-01 — console du switch"); labPrint("Tape help pour consulter les commandes.");
-  } else {
-    const name = device === "pc-a" ? "PC-A" : "PC-B";
-    const ip = device === "pc-a" ? "192.168.10.10" : "192.168.10.20";
-    labPrint(`${name} — console poste client`); labPrint(`Adresse IP : ${ip} / 24`); labPrint("Tape help pour ipconfig, ping ou clear.");
-  }
-  updateLab(); switchTerminalInput.focus();
-}
-if (switchLab) {
-  switchTerminalForm.addEventListener("submit", event => {
-    event.preventDefault();
-    const command = switchTerminalInput.value.trim().toLowerCase().replace(/\s+/g, " ");
-    if (!command) return;
-    labPrint(switchTerminalForm.querySelector("span").textContent + " " + command);
-    switchTerminalInput.value = "";
-    if (activeLabDevice !== "switch") {
-      const isPcA = activeLabDevice === "pc-a";
-      const localIp = isPcA ? "192.168.10.10" : "192.168.10.20";
-      const remoteIp = isPcA ? "192.168.10.20" : "192.168.10.10";
-      if (command === "help" || command === "?") labPrint("ipconfig | ping " + remoteIp + " | clear");
-      else if (command === "ipconfig") { labPrint("IPv4 Address . . . . . : " + localIp); labPrint("Subnet Mask  . . . . . : 255.255.255.0"); }
-      else if (command === "ping " + remoteIp) labPrint(labPortUp && labVlan === 10 ? "Reply from " + remoteIp + ": bytes=32 time<1ms TTL=128" : "Request timed out.", !(labPortUp && labVlan === 10));
-      else if (command === "clear") switchTerminalOutput.replaceChildren();
-      else labPrint("Commande inconnue. Tape help.", true);
-      updateLab(); return;
-    }
-    if (command === "help" || command === "?") {
-      labPrint("show interfaces status | show vlan brief | configure terminal");
-      labPrint("interface gi0/2 | no shutdown | shutdown | switchport access vlan 10");
-      labPrint("exit | end | ping 192.168.10.20 | clear");
-    } else if (["show interfaces status", "show interface status", "show interface gi0/2", "show interfaces gi0/2"].includes(command)) {
-      labPrint("PORT    ÉTAT                    VLAN");
-      labPrint("Gi0/1   connected               10");
-      labPrint("Gi0/2   " + (labPortUp ? "connected" : "administratively down") + "       " + labVlan);
-    } else if (command === "show vlan brief") {
-      labPrint("VLAN 10  USERS   Gi0/1" + (labVlan === 10 ? ", Gi0/2" : ""));
-      labPrint("VLAN 20  GUESTS  " + (labVlan === 20 ? "Gi0/2" : "—"));
-    } else if (command === "configure terminal" || command === "conf t") {
-      if (labMode !== "exec") labPrint("Quitte le mode actuel avec end.", true);
-      else labMode = "config";
-    } else if (command === "interface gi0/2" || command === "int gi0/2") {
-      if (labMode === "exec") labPrint("Entre d’abord dans configure terminal.", true);
-      else labMode = "interface";
-    } else if (["no shutdown", "no shut", "shutdown"].includes(command)) {
-      if (labMode !== "interface") labPrint("Sélectionne interface gi0/2 en mode configuration.", true);
-      else { labPortUp = command !== "shutdown"; labPrint("%LINK: Gi0/2 changed state to " + (labPortUp ? "up" : "down")); }
-    } else if (command === "switchport access vlan 10") {
-      if (labMode !== "interface") labPrint("Cette commande nécessite le mode interface.", true);
-      else { labVlan = 10; labPrint("Gi0/2 affectée au VLAN 10."); }
-    } else if (command === "end") labMode = "exec";
-    else if (command === "exit") labMode = labMode === "interface" ? "config" : "exec";
-    else if (command === "ping 192.168.10.20") {
-      if (labMode !== "exec") labPrint("Tape end pour lancer le diagnostic.", true);
-      else if (labPortUp && labVlan === 10) { labPrint("!!!!! 5/5 réponses — 0 % de perte."); labPrint("Incident résolu : PC-A et PC-B communiquent."); }
-      else labPrint("..... 0/5 réponses — vérifie l’état du port et le VLAN.", true);
-    } else if (command === "clear") switchTerminalOutput.replaceChildren();
-    else labPrint("% Commande inconnue. Tape help.", true);
-    updateLab();
-  });
-  document.querySelector("#switch-game-reset").addEventListener("click", () => { resetSwitchGame(); switchTerminalInput.focus(); });
-  Object.entries(labDeviceButtons).forEach(([device, button]) => button.addEventListener("click", () => selectLabDevice(device)));
-  resetSwitchGame();
-}
 const navToggle = document.querySelector(".nav-toggle");
 const nav = document.querySelector("nav");
 const navLinks = [...nav.querySelectorAll('a[href^="#"]')];
@@ -520,7 +406,7 @@ function scheduleStandbyMode() {
   clearTimeout(standbyInactivityTimer);
   if (slideshowActive || editorDialog.open) return;
   standbyInactivityTimer = setTimeout(() => {
-    if (document.activeElement === switchTerminalInput || document.hidden) return scheduleStandbyMode();
+    if (document.activeElement === document.querySelector("#soc-input") || document.hidden) return scheduleStandbyMode();
     startSlideshow();
   }, 180000);
 }

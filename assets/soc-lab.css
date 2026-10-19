@@ -1,0 +1,113 @@
+/* Lab SOC / styles isolés pour préserver le reste du portfolio. */
+.soc-lab-section {
+  border-top: 1px solid var(--line);
+  padding: clamp(3.4rem, 6vw, 5.5rem) clamp(1rem, 2.8vw, 3rem) !important;
+}
+.soc-lab-section .soc-intro {
+  display: flex; align-items: end; justify-content: space-between; gap: 1.5rem;
+  margin: 0 0 1.4rem;
+}
+.soc-lab-section .soc-intro h2 {
+  color: var(--ink); font: 700 clamp(1.7rem, 3vw, 2.8rem)/1.1 "Space Grotesk", "Manrope", sans-serif;
+  letter-spacing: -.045em; margin: .7rem 0 0;
+}
+.soc-lab-section .soc-intro p { margin: 0; max-width: 49ch; color: var(--muted); font: 400 .9rem/1.7 "Manrope", sans-serif; }
+.soc-layout {
+  display: grid; grid-template-columns: minmax(260px, .37fr) minmax(0, 1fr);
+  align-items: stretch; gap: 1rem;
+}
+.soc-brief {
+  display: flex; flex-direction: column; gap: 1rem;
+  min-width: 0; border: 1px solid var(--line); border-radius: 19px;
+  padding: clamp(1.2rem, 2.2vw, 2rem); background: rgba(140,140,130,.035);
+  color: var(--ink); font-family: "Manrope", sans-serif;
+}
+.soc-eyebrow { color: var(--muted); font: 500 .74rem "DM Mono", monospace; letter-spacing: .09em; }
+.soc-brief h3 { color: var(--ink); margin: 1rem 0 .8rem; font: 700 clamp(1.35rem, 2.1vw, 2rem)/1.2 "Space Grotesk", sans-serif; letter-spacing: -.035em; }
+.soc-brief > div > p { margin: 0; color: var(--muted); font: 400 .87rem/1.75 "Manrope", sans-serif; }
+.soc-steps { counter-reset: soc-counter; display: grid; gap: .85rem; padding: 1.15rem 0 0; margin: 0; border-top: 1px solid var(--line); list-style: none; }
+.soc-steps li { display: flex; align-items: center; gap: .85rem; font-size: .84rem; font-weight: 650; line-height: 1.45; }
+.soc-steps li::before { counter-increment: soc-counter; content: counter(soc-counter); display: grid; place-items: center; flex: 0 0 28px; height: 28px; border-radius: 50%; background: rgba(130,130,125,.09); color: var(--ink); font: 500 .76rem "DM Mono", monospace; }
+.soc-brief-bottom { display: grid; gap: .8rem; margin-top: auto; padding-top: 1rem; border-top: 1px solid var(--line); }
+.soc-flag-label { display: flex; justify-content: space-between; align-items: center; gap: 1rem; color: var(--muted); font-size: .79rem; }
+.soc-flag-label strong { color: var(--ink); }
+.soc-hints { padding: .85rem 1rem; border: 1px solid var(--line); border-radius: 10px; font-size: .78rem; background: rgba(130,130,130,.035); }
+.soc-hints summary { cursor: pointer; color: var(--ink); font-weight: 700; }
+.soc-hints p { margin: .65rem 0 0; color: var(--muted); line-height: 1.65; }
+.soc-console {
+  display: flex; flex-direction: column; min-width: 0; min-height: 540px;
+  height: min(66vh, 650px);
+  border: 1px solid #292e32; border-radius: 19px; overflow: hidden;
+  background: #0f1215; color: #e9edf0;
+  box-shadow: 0 13px 35px rgba(0,0,0,.075);
+  font-family: "DM Mono", ui-monospace, monospace;
+}
+.soc-console-header {
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  padding: 1.05rem 1.35rem; border-bottom: 1px solid #292f33;
+  font: 500 .75rem/1.4 "DM Mono", monospace; color: #b8c1c6;
+}
+.soc-live { display: inline-flex; align-items: center; gap: .6rem; }
+.soc-live::before { content: ""; height: 8px; width: 8px; border-radius: 50%; background: #57c68c; box-shadow: 0 0 0 4px rgba(87,198,140,.1); }
+.soc-reset { cursor: pointer; color: #b8c1c6; background: transparent; border: 1px solid #343b42; padding: .45rem .75rem; border-radius: 8px; font: 500 .75rem "Manrope", sans-serif; transition: border-color .2s, color .2s; }
+.soc-reset:hover, .soc-reset:focus-visible { color: white; border-color: #a6adb3; }
+.soc-output {
+  flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain;
+  padding: 1.3rem 1.35rem; scrollbar-color: #465059 transparent;
+  font: 400 clamp(.76rem, 1.05vw, .87rem)/1.9 "DM Mono", monospace;
+  cursor: text; white-space: pre-wrap; overflow-wrap: anywhere;
+}
+.soc-line { color: #cdd4d7; }
+.soc-line-title { color: #f5f8f8; font-weight: 500; }
+.soc-line-muted { color: #829098; }
+.soc-line-accent { color: #a5d7c6; }
+.soc-line-success { color: #7ed7a9; }
+.soc-line-error { color: #ff8f85; }
+.soc-line-command { color: #f0f2f5; margin-top: .28rem; }
+.soc-form {
+  display: flex; gap: .85rem; align-items: center; min-width: 0;
+  padding: .95rem 1.35rem; border-top: 1px solid #292f33;
+}
+.soc-form label { white-space: nowrap; color: #7ed7a9; font: 500 .76rem "DM Mono", monospace; }
+.soc-form input {
+  flex: 1; width: 100%; min-width: 0; outline: none; background: transparent;
+  border: 0; border-radius: 0; color: white;
+  font: 400 16px/1.6 "DM Mono", monospace; caret-color: #7ed7a9;
+}
+.soc-form input::placeholder { color: #677179; }
+.soc-console-foot {
+  display: flex; flex-wrap: wrap; justify-content: space-between; gap: .65rem;
+  padding: .75rem 1.35rem; border-top: 1px solid #292f33;
+  color: #8d999f; font: 400 .69rem/1.5 "DM Mono", monospace;
+}
+.soc-console-foot #soc-status { color: #c5d1d2; }
+.soc-completed .soc-console { border-color: #3d8261; }
+.soc-legend {
+  display: grid; grid-template-columns: 1.2fr repeat(3, 1fr); gap: 1.4rem;
+  margin-top: 1rem; padding: 1.2rem 1.4rem;
+  border: 1px solid var(--line); border-radius: 15px; background: rgba(130,130,130,.025);
+  font-family: "Manrope", sans-serif;
+}
+.soc-legend > div { min-width: 0; }
+.soc-legend strong { display: block; margin: 0 0 .3rem; color: var(--ink); font-size: .82rem; }
+.soc-legend p { margin: 0; color: var(--muted); font-size: .76rem; line-height: 1.65; }
+.soc-legend code { font: 500 .76rem "DM Mono", monospace; color: var(--ink); }
+@media (max-width: 1050px) {
+  .soc-layout { grid-template-columns: minmax(215px, .4fr) minmax(0, 1fr); }
+  .soc-console { min-height: 500px; }
+  .soc-legend { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 760px) {
+  .soc-lab-section .soc-intro { display: block; }
+  .soc-lab-section .soc-intro p { margin-top: .7rem; }
+  .soc-layout { grid-template-columns: minmax(0,1fr); }
+  .soc-console { height: 510px; min-height: 410px; }
+  .soc-brief { padding: 1.3rem; }
+  .soc-form { gap: .45rem; padding: .8rem .9rem; }
+  .soc-form label { font-size: .65rem; }
+  .soc-output { padding: 1rem .9rem; }
+  .soc-console-header, .soc-console-foot { padding-left: .9rem; padding-right: .9rem; }
+}
+@media (max-width: 480px) {
+  .soc-legend { grid-template-columns: 1fr; gap: 1rem; }
+}
