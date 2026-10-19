@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="assets/editorial.css?v=nav-outline-1">
   <link rel="stylesheet" href="assets/visual-polish.css?v=polish-3">
   <link rel="stylesheet" href="assets/passions.css?v=3">
+  <link rel="stylesheet" href="assets/soc-lab.css?v=1">
 </head>
 <body>
   <a class="skip-link" href="#main">Aller au contenu</a>
@@ -425,31 +426,69 @@
       </section>
     </section>
 
-    <section class="section lab-section" id="network-lab">
-      <div class="section-heading"><div><div class="section-label">09 / LAB INTERACTIF</div><h2 class="section-title">À toi de<br>rétablir le lien.</h2></div><p>Simulation locale · PC-A ne joint plus PC-B. Diagnostique le switch, réactive le port et vérifie son VLAN.</p></div>
-      <div class="lab-workspace">
-        <aside class="lab-brief"><span class="mono">INCIDENT #002</span><h3>Deux PC. Un lien coupé.</h3><p>Les deux postes doivent communiquer sur le VLAN 10. PC-A utilise 192.168.10.10 et PC-B 192.168.10.20.</p><ol><li>Inspecter les interfaces</li><li>Réactiver Gi0/2</li><li>Aligner le VLAN d’accès</li><li>Valider avec un ping</li></ol><details><summary>Besoin d’un indice ?</summary><p>Tape <code>help</code>. Pour configurer : <code>configure terminal</code>, puis <code>interface gi0/2</code>. Utilise <code>no shutdown</code> et <code>switchport access vlan 10</code>, puis <code>end</code>.</p></details></aside>
-            <div class="nerd-widget" aria-label="Oscilloscope réseau interactif">
-              <div class="nerd-widget-head"><span><i></i> SWITCH LAB / SW-REIMS-01</span><button id="switch-game-reset" type="button">RESET</button></div>
-              <div class="switch-lab" id="switch-lab">
-                <div class="network-map" aria-label="Deux PC reliés par un switch">
-                  <button class="lab-pc" id="lab-pc-a" type="button">PC-A</button><i class="lab-link lab-link-left"></i><button class="lab-switch" id="lab-switch-device" type="button">SW<br><small>Gi0/2</small></button><i class="lab-link lab-link-right"></i><button class="lab-pc" id="lab-pc-b" type="button">PC-B</button>
-                </div>
-                <div class="terminal-window">
-                  <div class="terminal-output" id="switch-terminal-output" aria-live="polite"><p><span>SW-REIMS-01#</span> show interface gi0/2</p><p class="terminal-error">Gi0/2 is administratively down</p><p class="terminal-hint">// essaye : port up gi0/2</p></div>
-                  <form id="switch-terminal-form"><span>SW#</span><input id="switch-terminal-input" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Commande du switch" placeholder="commande..."></form>
-                </div>
-              </div>
-              <div class="signal-metrics"><span>INCIDENT <b id="switch-status">PORT DOWN</b></span><span>RÉSEAU <b id="switch-score">OFFLINE</b></span></div>
-              <div class="lab-preview" id="lab-preview" aria-live="polite">
-                <div class="lab-preview-bar"><i></i><i></i><i></i><span>PC-A / navigateur</span></div>
-                <div class="lab-preview-screen">
-                  <span class="lab-preview-icon">⌁</span>
-                  <strong id="lab-preview-title">Connexion impossible</strong>
-                  <p id="lab-preview-message">En attente d’un chemin réseau vers intranet.local</p>
-                </div>
-              </div>
-            </div>
+    <section class="section soc-lab-section" id="network-lab" aria-labelledby="soc-title">
+      <div class="soc-intro">
+        <div>
+          <div class="section-label">09 / LAB SOC INTERACTIF</div>
+          <h2 id="soc-title">Une alerte. Trois flags.<br>À toi d'enquêter.</h2>
+        </div>
+        <p>Un incident Windows fictif, des preuves à recouper et un terminal interactif. Aucun système réel n'est connecté.</p>
+      </div>
+      <div class="soc-layout" id="soc-lab">
+        <aside class="soc-brief" aria-label="Briefing de l'enquête">
+          <div>
+            <span class="soc-eyebrow">INCIDENT #002 · BLUE TEAM</span>
+            <h3>Activité suspecte sur PC-WS-01.</h3>
+            <p>Un poste Windows a déclenché plusieurs alertes de connexion et d'exécution. En tant qu'analyste SOC, identifie ce qui s'est passé et simule la réponse à incident.</p>
+          </div>
+          <ol class="soc-steps">
+            <li>Explorer les journaux disponibles</li>
+            <li>Recouper les preuves</li>
+            <li>Retrouver les trois flags</li>
+            <li>Contenir et valider l'incident</li>
+          </ol>
+          <div class="soc-brief-bottom">
+            <div class="soc-flag-label"><span>PROGRESSION</span><strong id="soc-flag-progress">0 / 3 flags</strong></div>
+            <div class="soc-flag-label"><span>CONFINEMENT</span><strong id="soc-containment">Poste non isolé</strong></div>
+            <details class="soc-hints">
+              <summary>Besoin d'un indice ?</summary>
+              <p>Commence par <code>help</code> et <code>ls</code>. Lis le fichier de mission, puis compare les événements d'authentification, de processus et de persistance. Les flags ne sont pas donnés directement : il faut les déduire.</p>
+            </details>
+          </div>
+        </aside>
+        <div class="soc-console" role="region" aria-label="Terminal d'investigation SOC simulé">
+          <header class="soc-console-header">
+            <span class="soc-live">SOC LAB <span aria-hidden="true">/</span> analyst@PC-WS-01</span>
+            <button class="soc-reset" type="button" id="soc-reset">Recommencer</button>
+          </header>
+          <div class="soc-output" id="soc-output" role="log" aria-live="polite" aria-relevant="additions" aria-label="Résultats du terminal"></div>
+          <form class="soc-form" id="soc-form" autocomplete="off">
+            <label for="soc-input" id="soc-prompt">analyst@soc:~$</label>
+            <input id="soc-input" name="command" aria-label="Saisir une commande de diagnostic" placeholder="Tape help pour commencer" autocapitalize="off" autocomplete="off" spellcheck="false" maxlength="250">
+          </form>
+          <footer class="soc-console-foot">
+            <span id="soc-status" role="status">Investigation en cours</span>
+            <span>↑↓ historique · Entrée exécuter · help commandes</span>
+          </footer>
+        </div>
+      </div>
+      <div class="soc-legend" aria-label="Pourquoi faire ce laboratoire">
+        <div>
+          <strong>Pourquoi ce lab ?</strong>
+          <p>En SOC, une alerte n'est qu'un point de départ. Il faut établir les faits avant toute décision.</p>
+        </div>
+        <div>
+          <strong>01 · Investiguer</strong>
+          <p>Les événements Windows et Wazuh permettent de distinguer un usage normal d'une intrusion.</p>
+        </div>
+        <div>
+          <strong>02 · Corréler</strong>
+          <p>Associe les connexions, processus et tâches planifiées pour reconstruire la chronologie.</p>
+        </div>
+        <div>
+          <strong>03 · Contenir</strong>
+          <p>Isoler un hôte suspect limite la propagation et préserve le temps nécessaire à l'analyse.</p>
+        </div>
       </div>
     </section>
     <section class="contact-section" id="contact">
@@ -570,6 +609,7 @@
   <div class="edit-toast" id="edit-toast" role="status" aria-live="polite"></div>
 
   <script src="assets/app.js?v=standby-3min-1"></script>
+  <script src="assets/soc-lab.js?v=1"></script>
   <script type="module" src="assets/goupille-intro.js"></script>
 </body>
 </html>
