@@ -31,20 +31,20 @@
     ],
     "/evidence/wazuh/alerts.log": [
       "14:11:12 | level=3  | agent=PC-WS-01 | Windows logon success | src=192.168.10.42 | event=4624",
-      "14:16:20 | level=6  | agent=PC-WS-01 | Network scan pattern | src=185.199.110.23",
-      "14:17:54 | level=12 | agent=PC-WS-01 | RDP logon type=10 | src=185.199.110.23 | event=4624",
+      "14:16:20 | level=6  | agent=PC-WS-01 | Network scan pattern | src=198.51.100.23",
+      "14:17:54 | level=12 | agent=PC-WS-01 | RDP logon type=10 | src=198.51.100.23 | event=4624",
       "14:18:01 | level=10 | agent=PC-WS-01 | Account added to local Administrators | event=4732",
       "14:20:47 | level=8  | agent=PC-WS-01 | Scheduled task created | event=4698",
       "14:21:03 | level=12 | agent=PC-WS-01 | Suspicious process from AppData | sysmon=1",
       "14:22:58 | level=8  | agent=PC-WS-01 | Failed network logons x5 | event=4625",
-      "14:23:11 | level=12 | agent=PC-WS-01 | External RDP connection | src=185.199.110.23"
+      "14:23:11 | level=12 | agent=PC-WS-01 | External RDP connection | src=198.51.100.23"
     ],
     "/evidence/windows/security.log": [
       "14:11:12 EventID=4624 Type=2 User=j.dupont SourceIP=192.168.10.42 Result=SUCCESS",
       "14:14:20 EventID=4625 Type=3 User=guest SourceIP=10.0.0.55 Result=FAIL",
-      "14:16:51 EventID=4625 Type=10 User=j.dupont SourceIP=185.199.110.23 Result=FAIL",
-      "14:17:12 EventID=4625 Type=10 User=j.dupont SourceIP=185.199.110.23 Result=FAIL",
-      "14:17:54 EventID=4624 Type=10 User=j.dupont SourceIP=185.199.110.23 Result=SUCCESS",
+      "14:16:51 EventID=4625 Type=10 User=j.dupont SourceIP=198.51.100.23 Result=FAIL",
+      "14:17:12 EventID=4625 Type=10 User=j.dupont SourceIP=198.51.100.23 Result=FAIL",
+      "14:17:54 EventID=4624 Type=10 User=j.dupont SourceIP=198.51.100.23 Result=SUCCESS",
       "14:18:01 EventID=4732 User=j.dupont MemberAdded=j.dupont Group=Administrators",
       "14:20:47 EventID=4698 User=j.dupont TaskCreated=true"
     ],
@@ -62,14 +62,14 @@
     ],
     "/evidence/network/connections.log": [
       "14:11:12 PC-WS-01 TCP 192.168.10.42:51442 -> 192.168.10.15:3389 ESTABLISHED (interne)",
-      "14:17:54 PC-WS-01 TCP 185.199.110.23:52810 -> 192.168.10.15:3389 ESTABLISHED (RDP)",
+      "14:17:54 PC-WS-01 TCP 198.51.100.23:52810 -> 192.168.10.15:3389 ESTABLISHED (RDP)",
       "14:21:04 PC-WS-01 TCP 192.168.10.15:50222 -> 203.0.113.77:443 ESTABLISHED (sortant)",
-      "14:22:58 PC-WS-01 TCP 185.199.110.23:53219 -> 192.168.10.15:3389 CLOSED"
+      "14:22:58 PC-WS-01 TCP 198.51.100.23:53219 -> 192.168.10.15:3389 CLOSED"
     ]
   };
 
   const solutions = new Map([
-    ["FLAG{185_199_110_23}", 1],
+    ["FLAG{198_51_100_23}", 1],
     ["FLAG{UPDATE}", 2],
     ["FLAG{WINUPDATE}", 3]
   ]);
@@ -151,7 +151,6 @@
     print("À toi d'explorer les preuves, trouver 3 flags et contenir le poste.");
     print("");
     print("Commence par help ou ls. Les consignes sont dans mission.txt.", "accent");
-    input.focus();
   }
 
   function run(commandLine) {
@@ -304,6 +303,6 @@
   });
 
   output.addEventListener("click", () => input.focus());
-  resetButton.addEventListener("click", reset);
+  resetButton.addEventListener("click", () => { reset(); input.focus(); });
   reset();
 })();
