@@ -392,7 +392,7 @@
     if (action === "ip") executeCommand("cat /evidence/network/connections.log");
     if (action === "isolate") executeCommand("isolate PC-WS-01");
   }));
-  startButton.addEventListener("click", () => { reset(); input.focus(); });
+  startButton.addEventListener("click", () => input.focus());
 
   input.addEventListener("keydown", event => {
     if (event.key !== "ArrowUp" && event.key !== "ArrowDown") return;
