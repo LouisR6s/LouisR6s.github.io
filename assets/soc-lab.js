@@ -12,6 +12,87 @@
   const containment = document.querySelector("#soc-containment");
   const status = document.querySelector("#soc-status");
   const resetButton = document.querySelector("#soc-reset");
+  const startButton = document.querySelector("#soc-start");
+  const tabs = [...root.querySelectorAll("[data-soc-tab]")];
+  const alertRows = [...root.querySelectorAll("[data-soc-alert]")];
+  const evidenceRows = [...root.querySelectorAll("[data-soc-command]")];
+  const actionButtons = [...root.querySelectorAll("[data-soc-action]")];
+
+  /* Détails d'alerte cohérents avec les fichiers de preuves fictifs. */
+  const alerts = {
+    rdp: {
+      severity: "critical", label: "CRITIQUE", time: "14:23:11",
+      title: "Connexion depuis une IP inhabituelle",
+      rows: [["Utilisateur", "j.dupont"], ["Adresse IP", "198.51.100.23"],
+        ["Événement", "Windows Security · 4624"], ["Type de connexion", "RDP · Logon Type 10"]],
+      description: "Un accès RDP provenant d'une adresse externe a été signalé. Compare les alertes avec les événements Windows avant de conclure."
+    },
+    failures: {
+      severity: "warning", label: "ÉLEVÉE", time: "14:22:58",
+      title: "Échecs d'authentification répétés",
+      rows: [["Hôte", "PC-WS-01"], ["Tentatives", "5"], ["Événement", "Windows Security · 4625"],
+        ["Contexte", "Connexions réseau"]],
+      description: "Plusieurs échecs rapprochés ont été détectés. Observe la chronologie et cherche une authentification réussie."
+    },
+    process: {
+      severity: "warning", label: "ÉLEVÉE", time: "14:21:03",
+      title: "Processus suspect exécuté",
+      rows: [["Hôte", "PC-WS-01"], ["Source", "Sysmon · Event ID 1"],
+        ["Emplacement", "Profil utilisateur / AppData"], ["Analyse", "À confirmer dans les journaux"]],
+      description: "Un processus a été exécuté depuis un répertoire atypique. Vérifie son chemin, son parent et ses connexions."
+    },
+    admin: {
+      severity: "info", label: "INFORMATION", time: "14:18:01",
+      title: "Modification d'un groupe privilégié",
+      rows: [["Utilisateur", "j.dupont"], ["Événement", "Windows Security · 4732"],
+        ["Groupe", "Administrators"], ["Hôte", "PC-WS-01"]],
+      description: "Une appartenance à un groupe administrateur a été modifiée peu après les événements d'authentification."
+    },
+    scan: {
+      severity: "info", label: "INFORMATION", time: "14:16:20",
+      title: "Scan de ports détecté",
+      rows: [["Hôte", "PC-WS-01"], ["Source", "Wazuh"],
+        ["Catégorie", "Comportement réseau"], ["Statut", "À investiguer"]],
+      description: "Une séquence de connexions a déclenché une détection réseau. Vérifie si elle appartient au même incident."
+    }
+  };
+
+  function selectAlert(id) {
+    const alert = alerts[id];
+    if (!alert) return;
+    alertRows.forEach(row => {
+      const selected = row.dataset.socAlert === id;
+      row.classList.toggle("is-selected", selected);
+      row.setAttribute("aria-pressed", String(selected));
+    });
+    const level = document.querySelector("#soc-detail-level");
+    level.textContent = alert.label;
+    level.className = "soc-detail-level " + alert.severity;
+    document.querySelector("#soc-detail-time").textContent = alert.time;
+    document.querySelector("#soc-detail-title").textContent = alert.title;
+    document.querySelector("#soc-detail-description").textContent = alert.description;
+    const data = document.querySelector("#soc-detail-data");
+    data.replaceChildren();
+    alert.rows.forEach(([key, value]) => {
+      const pair = document.createElement("div");
+      const dt = document.createElement("dt");
+      const dd = document.createElement("dd");
+      dt.textContent = key;
+      dd.textContent = value;
+      pair.append(dt, dd);
+      data.append(pair);
+    });
+  }
+
+  function selectTab(name) {
+    tabs.forEach(button => {
+      const active = button.dataset.socTab === name;
+      button.classList.toggle("is-active", active);
+      button.setAttribute("aria-selected", String(active));
+      document.querySelector("#soc-view-" + button.dataset.socTab).hidden = !active;
+    });
+  }
+
 
   /* Tous les événements sont inventés pour l'exercice. */
   const files = {
@@ -127,9 +208,9 @@
     progress.textContent = found.size + " / 3 flags";
     containment.textContent = isolated ? "Poste isolé" : "Poste non isolé";
     containment.classList.toggle("contained", isolated);
-    status.textContent = completed ? "Incident résolu" : found.size === 3
-      ? "Flags validés · confinement attendu"
-      : "Investigation en cours";
+    const state = completed ? "resolved" : (found.size || isolated) ? "warning" : "critical";
+    root.dataset.socState = state;
+    status.textContent = state === "resolved" ? "RÉSOLU" : state === "warning" ? "EN COURS" : "CRITIQUE";
     root.classList.toggle("soc-completed", completed);
   }
 
@@ -144,13 +225,8 @@
     input.value = "";
     updatePrompt();
     updateState();
-    print("SOC LAB / INCIDENT #002", "title");
-    print("Session locale · preuves fictives · aucun système réel connecté.", "muted");
-    print("");
-    print("Une activité anormale a été détectée sur PC-WS-01.");
-    print("À toi d'explorer les preuves, trouver 3 flags et contenir le poste.");
-    print("");
-    print("Commence par help ou ls. Les consignes sont dans mission.txt.", "accent");
+    selectTab("alerts");
+    selectAlert("rdp");
   }
 
   function run(commandLine) {
@@ -280,9 +356,8 @@
     print("Commande indisponible dans cette simulation. Tape help.", "error");
   }
 
-  form.addEventListener("submit", event => {
-    event.preventDefault();
-    const raw = input.value.trim();
+  function executeCommand(raw) {
+    raw = String(raw).trim();
     if (!raw) return;
     if (raw.length > 250) { print("Commande trop longue.", "error"); return; }
     print(prompt.textContent + " " + raw, "command");
@@ -292,7 +367,32 @@
     input.value = "";
     run(raw);
     input.focus();
+  }
+
+  form.addEventListener("submit", event => {
+    event.preventDefault();
+    executeCommand(input.value);
   });
+
+  tabs.forEach((button, index) => {
+    button.addEventListener("click", () => selectTab(button.dataset.socTab));
+    button.addEventListener("keydown", event => {
+      if (event.key !== "ArrowRight" && event.key !== "ArrowLeft") return;
+      event.preventDefault();
+      const next = tabs[(index + tabs.length + (event.key === "ArrowRight" ? 1 : -1)) % tabs.length];
+      selectTab(next.dataset.socTab);
+      next.focus();
+    });
+  });
+  alertRows.forEach(button => button.addEventListener("click", () => selectAlert(button.dataset.socAlert)));
+  evidenceRows.forEach(button => button.addEventListener("click", () => executeCommand(button.dataset.socCommand)));
+  actionButtons.forEach(button => button.addEventListener("click", () => {
+    const action = button.dataset.socAction;
+    if (action === "logs") selectTab("logs");
+    if (action === "ip") executeCommand("cat /evidence/network/connections.log");
+    if (action === "isolate") executeCommand("isolate PC-WS-01");
+  }));
+  startButton.addEventListener("click", () => { reset(); input.focus(); });
 
   input.addEventListener("keydown", event => {
     if (event.key !== "ArrowUp" && event.key !== "ArrowDown") return;
