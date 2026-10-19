@@ -49,16 +49,16 @@
       "14:20:47 EventID=4698 User=j.dupont TaskCreated=true"
     ],
     "/evidence/windows/sysmon.log": [
-      "14:13:05 EventID=1 Image=C:\Windows\System32\notepad.exe ParentImage=explorer.exe User=j.dupont",
-      "14:18:14 EventID=3 Image=C:\Windows\System32\svchost.exe DestinationIp=192.168.10.10",
-      "14:21:03 EventID=1 Image=C:\Users\j.dupont\AppData\Roaming\update.exe ParentImage=powershell.exe User=j.dupont",
-      "14:21:04 EventID=3 Image=C:\Users\j.dupont\AppData\Roaming\update.exe DestinationIp=203.0.113.77 DestinationPort=443",
-      "14:21:29 EventID=1 Image=C:\Windows\System32\cmd.exe ParentImage=explorer.exe User=SYSTEM"
+      "14:13:05 EventID=1 Image=C:\\Windows\\System32\\notepad.exe ParentImage=explorer.exe User=j.dupont",
+      "14:18:14 EventID=3 Image=C:\\Windows\\System32\\svchost.exe DestinationIp=192.168.10.10",
+      "14:21:03 EventID=1 Image=C:\\Users\\j.dupont\\AppData\\Roaming\\update.exe ParentImage=powershell.exe User=j.dupont",
+      "14:21:04 EventID=3 Image=C:\\Users\\j.dupont\\AppData\\Roaming\\update.exe DestinationIp=203.0.113.77 DestinationPort=443",
+      "14:21:29 EventID=1 Image=C:\\Windows\\System32\\cmd.exe ParentImage=explorer.exe User=SYSTEM"
     ],
     "/evidence/windows/tasks.txt": [
-      "TaskName=OneDriveSync User=j.dupont Action=C:\Program Files\Microsoft OneDrive\OneDrive.exe Status=READY",
-      "TaskName=DefenderCleanup User=SYSTEM Action=C:\Windows\System32\MpCmdRun.exe Status=READY",
-      "TaskName=WinUpdate User=j.dupont Action=C:\Users\j.dupont\AppData\Roaming\update.exe Status=READY Created=14:20:47"
+      "TaskName=OneDriveSync User=j.dupont Action=C:\\Program Files\\Microsoft OneDrive\\OneDrive.exe Status=READY",
+      "TaskName=DefenderCleanup User=SYSTEM Action=C:\\Windows\\System32\\MpCmdRun.exe Status=READY",
+      "TaskName=WinUpdate User=j.dupont Action=C:\\Users\\j.dupont\\AppData\\Roaming\\update.exe Status=READY Created=14:20:47"
     ],
     "/evidence/network/connections.log": [
       "14:11:12 PC-WS-01 TCP 192.168.10.42:51442 -> 192.168.10.15:3389 ESTABLISHED (interne)",
