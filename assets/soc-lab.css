@@ -2,7 +2,7 @@
 .soc-visually-hidden{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;clip-path:inset(50%)}
 .soc-lab-section{border-top:1px solid var(--line);padding:clamp(1rem,2vw,2rem) clamp(1rem,2.4vw,2.6rem) clamp(3rem,5vw,4.8rem)!important}
 .soc-lab-section *{box-sizing:border-box}
-.soc-layout{display:grid;grid-template-columns:minmax(310px,.35fr) minmax(0,1fr);gap:clamp(1rem,1.75vw,2rem);align-items:stretch;min-height:665px;height:clamp(665px,calc(100svh - 160px),795px)}
+.soc-layout{display:grid;grid-template-columns:minmax(310px,.35fr) minmax(0,1fr);gap:clamp(1rem,1.75vw,2rem);align-items:stretch;min-height:clamp(665px,calc(100svh - 160px),795px)}
 .soc-brief{min-width:0;display:flex;flex-direction:column;gap:1.2rem;padding:.75rem .55rem .35rem .2rem;color:var(--ink);font-family:"Manrope",sans-serif}
 .soc-eyebrow{display:block;color:var(--muted);font:500 clamp(.78rem,1vw,.88rem)/1.65 "DM Mono",monospace;letter-spacing:.09em}
 .soc-brief h3{margin:1.15rem 0 .85rem;color:var(--ink);font:700 clamp(1.4rem,2.35vw,2.3rem)/1.16 "Space Grotesk","Manrope",sans-serif;letter-spacing:-.045em}
