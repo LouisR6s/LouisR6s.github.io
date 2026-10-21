@@ -507,3 +507,29 @@ html[data-theme="dark"] .progress-rail-nav {
   .progress-rail a,
   .progress-rail a::after { transition: none; }
 }
+
+/* Illustration panels follow their card palette; keep pipeline terminal legible. */
+.project-paf { --project-art: #fff7f5; }
+.project-pipeline { --project-art: #203846; }
+.project-pki { --project-art: #f4faf3; }
+.project-enigma { --project-art: #fff9ea; }
+.project-omnidev { --project-art: #f8f6ff; }
+
+html[data-theme="dark"] .project-paf { --project-art: #422d30; }
+html[data-theme="dark"] .project-pipeline { --project-art: #203846; }
+html[data-theme="dark"] .project-pki { --project-art: #2a3b30; }
+html[data-theme="dark"] .project-enigma { --project-art: #403825; }
+html[data-theme="dark"] .project-omnidev { --project-art: #38344c; }
+
+.project-card.project-themed > :is(.terminal-art, .paf-art, .cert-art, .enigma-art, .omnidev-art) {
+  background: var(--project-art);
+  border-color: var(--project-border);
+}
+
+.project-card.project-pipeline > .terminal-art {
+  color: #c9dce5;
+}
+
+.project-card.project-pipeline > .terminal-art .ok {
+  color: #a6e3c6;
+}
