@@ -12,7 +12,7 @@
   <link rel="icon" type="image/png" href="assets/logo-lj.png">
   <link rel="stylesheet" href="assets/styles.css">
   <link rel="stylesheet" href="assets/editorial.css?v=nav-outline-1">
-  <link rel="stylesheet" href="assets/visual-polish.css?v=polish-4">
+  <link rel="stylesheet" href="assets/visual-polish.css?v=polish-5">
   <link rel="stylesheet" href="assets/passions.css?v=3">
   <link rel="stylesheet" href="assets/soc-lab.css?v=3">
 </head>
@@ -49,6 +49,20 @@
       <a class="nav-cta" href="#contact">Me contacter</a>
     </nav>
   </header>
+
+    <aside class="progress-rail" id="progress-rail" aria-label="Progression dans le portfolio">
+    <nav class="progress-rail-nav" aria-label="Sections du portfolio">
+      <a href="#profil" data-rail-link data-label="Profil" aria-current="location"><span aria-hidden="true">⌂</span><span class="progress-rail-label">Profil</span></a>
+      <a href="#statistiques" data-rail-link data-label="Statistiques"><span aria-hidden="true">◫</span><span class="progress-rail-label">Statistiques</span></a>
+      <a href="#competences" data-rail-link data-label="Compétences"><span aria-hidden="true">◇</span><span class="progress-rail-label">Compétences</span></a>
+      <a href="#projets" data-rail-link data-label="Projets"><span aria-hidden="true">▣</span><span class="progress-rail-label">Projets</span></a>
+      <a href="#certifications" data-rail-link data-label="Certifications"><span aria-hidden="true">◎</span><span class="progress-rail-label">Certifications</span></a>
+      <a href="#parcours" data-rail-link data-label="Parcours"><span aria-hidden="true">↗</span><span class="progress-rail-label">Parcours</span></a>
+      <a href="#passions" data-rail-link data-label="Passions"><span aria-hidden="true">✦</span><span class="progress-rail-label">Passions</span></a>
+      <a href="#network-lab" data-rail-link data-label="Lab SOC"><span aria-hidden="true">⌘</span><span class="progress-rail-label">Lab SOC</span></a>
+      <a href="#contact" data-rail-link data-label="Contact"><span aria-hidden="true">✉</span><span class="progress-rail-label">Contact</span></a>
+    </nav>
+  </aside>
 
   <main id="main">
     <section class="hero" id="profil">
@@ -158,7 +172,7 @@
         <p>Six projets qui croisent supervision, sécurité, infrastructure et automatisation.</p>
       </div>
       <div class="project-list">
-        <article class="project-card project-featured project-rsg reveal">
+        <article class="project-card project-featured reveal">
           <div class="project-index mono">01 — SUPERVISION / AGENTS</div>
           <div class="project-body">
             <h3>Portail RSG — Supervision centralisée</h3>
@@ -176,7 +190,7 @@
           <div class="terminal-art rsg-art" aria-label="Illustration de supervision RSG"><span>$ rsg-agent.status()</span><span class="ok">✓ agents Windows connectés</span><span class="ok">✓ agents Linux connectés</span><span class="ok">✓ API opérationnelle</span></div>
         </article>
 
-        <article class="project-card project-paf reveal">
+        <article class="project-card reveal">
           <div class="project-index mono">02 — RED TEAM / BLUE TEAM</div>
           <div class="project-body">
             <h3>PAF — Pénétration Attaque Furtive</h3>
@@ -189,7 +203,7 @@
           <div class="paf-art" aria-label="Borne Wi-Fi avec Raspberry Pi"><img src="assets/paf-ubiquiti-raspberrypi.png" alt="Borne Wi-Fi ouverte intégrant un Raspberry Pi"></div>
         </article>
 
-        <article class="project-card project-cicd reveal">
+        <article class="project-card reveal">
           <div class="project-index mono">03 — DEVOPS</div>
           <div class="project-body">
             <h3>Pipeline CI/CD Flask + Jenkins</h3>
@@ -202,7 +216,7 @@
           <div class="terminal-art" aria-label="Illustration d'un pipeline réussi"><span>$ pipeline.run()</span><span class="ok">✓ tests</span><span class="ok">✓ build</span><span class="ok">✓ deploy</span></div>
         </article>
 
-        <article class="project-card project-pki reveal">
+        <article class="project-card reveal">
           <div class="project-index mono">04 — CRYPTOGRAPHIE</div>
           <div class="project-body">
             <h3>Infrastructure PKI & HTTPS</h3>
@@ -215,7 +229,7 @@
           <div class="cert-art" aria-hidden="true"><span>CA</span><i></i><small>TRUST CHAIN</small></div>
         </article>
 
-        <article class="project-card project-enigma reveal">
+        <article class="project-card reveal">
           <div class="project-index mono">05 — AUTOMATISATION SÉCURITÉ</div>
           <div class="project-body">
             <h3>Enigma</h3>
@@ -228,7 +242,7 @@
           <div class="enigma-art" aria-label="Logo Enigma"><img src="assets/enigma-logo.png" alt="Logo Enigma"></div>
         </article>
 
-        <article class="project-card project-omnidev reveal">
+        <article class="project-card reveal">
           <div class="project-index mono">06 — AGENT &amp; INFRASTRUCTURE</div>
           <div class="project-body">
             <h3>Omnidev</h3>
@@ -643,6 +657,7 @@
   <div class="edit-toast" id="edit-toast" role="status" aria-live="polite"></div>
 
   <script src="assets/app.js?v=standby-3min-2"></script>
+  <script src="assets/progress-rail.js?v=1"></script>
   <script src="assets/soc-lab.js?v=2"></script>
   <script type="module" src="assets/goupille-intro.js"></script>
 </body>
