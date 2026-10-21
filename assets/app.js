@@ -365,7 +365,7 @@ function applyState() { const state = readState(); applyTexts(state.texts); rend
 applyState();
 
 const standbySlides = [
-  { index: "01 / PROFIL", title: "Louis Jouhannet", text: "Master 2 Cybersécurité à l’ESGI Reims. Réseaux, systèmes et sécurité au quotidien.", tags: ["CYBERSÉCURITÉ", "RÉSEAUX", "SYSTÈMES"] },
+  { index: "01 / PROFIL", title: "Louis Jouhannet", text: "Diplômé d’un Master 2 Cybersécurité à l’ESGI Reims. Réseaux, systèmes et sécurité au quotidien.", tags: ["CYBERSÉCURITÉ", "RÉSEAUX", "SYSTÈMES"] },
   { index: "02 / COMPÉTENCES", title: "Construire, superviser, sécuriser.", text: "Des environnements fiables, de la configuration réseau à la protection des systèmes.", tags: ["LINUX", "VLAN", "FIREWALL", "WAZUH"] },
   { index: "03 / PROJETS", title: "Six projets techniques, testés sur le terrain.", text: "Supervision, automatisation, infrastructure et sécurité : des réalisations conçues pour être démontrables.", tags: ["RSG", "ENIGMA", "OMNIDEV", "PKI"] },
   { index: "04 / CERTIFICATIONS", title: "Certifier les acquis.", text: "Parcours CCNA et anglais professionnel validés en complément de la pratique.", tags: ["CCNA 1", "CCNA 2", "CCNA 3", "TOEIC"] },
@@ -498,7 +498,7 @@ const goupillePhrases = [
   "Il a obtenu 860 points au TOEIC.",
   "Son CV est ici. Veux-tu y aller ?",
   "Il travaille entre réseaux, systèmes et cybersécurité.",
-  "Il prépare un Master 2 Cybersécurité à l’ESGI Reims.",
+  "Il est diplômé d’un Master 2 Cybersécurité à l’ESGI Reims.",
   "Tu peux retrouver ses projets et ses dépôts GitHub sur ce site.",
   "Je n’ai plus d’idée."
 ];
