@@ -273,3 +273,184 @@ html[data-theme="dark"] .project-card:not(.project-featured) .project-logos img 
     animation: none;
   }
 }
+
+
+/*
+ * Project cards — one visual identity per project.
+ * Kept in this polish layer so reverting this visual exploration is one commit.
+ */
+.project-card:is(.project-rsg, .project-paf, .project-cicd, .project-pki, .project-enigma, .project-omnidev) {
+  --project-accent: #ff866c;
+  --project-copy: #c4cdd2;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  color: #f5f7f8;
+  border-color: color-mix(in srgb, var(--project-accent) 44%, #344049);
+  box-shadow: inset 4px 0 0 var(--project-accent);
+}
+
+.project-card:is(.project-rsg, .project-paf, .project-cicd, .project-pki, .project-enigma, .project-omnidev)::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  content: "";
+  pointer-events: none;
+  opacity: .95;
+}
+
+.project-card:is(.project-rsg, .project-paf, .project-cicd, .project-pki, .project-enigma, .project-omnidev) .project-index {
+  color: var(--project-accent);
+}
+
+.project-card:is(.project-rsg, .project-paf, .project-cicd, .project-pki, .project-enigma, .project-omnidev) .project-body > p,
+.project-card:is(.project-rsg, .project-paf, .project-cicd, .project-pki, .project-enigma, .project-omnidev) .project-outcomes {
+  color: var(--project-copy);
+}
+
+.project-card:is(.project-rsg, .project-paf, .project-cicd, .project-pki, .project-enigma, .project-omnidev) .tag-row span {
+  color: #f5f7f8;
+  border-color: color-mix(in srgb, var(--project-accent) 56%, #59636c);
+  background: color-mix(in srgb, var(--project-accent) 11%, transparent);
+}
+
+.project-card:is(.project-rsg, .project-paf, .project-cicd, .project-pki, .project-enigma, .project-omnidev) .project-logos img {
+  filter: grayscale(1) brightness(0) invert(1);
+  opacity: .75;
+}
+
+/* 01 — centralised supervision: node grid and live-status surface. */
+.project-rsg {
+  --project-accent: #ff7458;
+  background: #101a22;
+}
+
+.project-rsg::before {
+  background:
+    radial-gradient(circle at 87% 16%, rgba(255,116,88,.23), transparent 25%),
+    linear-gradient(rgba(159,198,216,.075) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(159,198,216,.075) 1px, transparent 1px);
+  background-size: auto, 28px 28px, 28px 28px;
+}
+
+.project-rsg .terminal-art {
+  border-color: rgba(255,116,88,.38);
+  background: rgba(7,14,19,.76);
+}
+
+/* 02 — Red Team hardware: warmer field with a discreet signal sweep. */
+.project-paf {
+  --project-accent: #f0a35a;
+  --project-copy: #d8c9ba;
+  background: #201814;
+}
+
+.project-paf::before {
+  background:
+    radial-gradient(circle at 92% 18%, rgba(240,163,90,.25), transparent 18%),
+    repeating-radial-gradient(circle at 92% 18%, rgba(240,163,90,.10) 0 1px, transparent 1px 30px);
+}
+
+.project-paf .paf-art {
+  border-color: rgba(240,163,90,.38);
+  background: linear-gradient(135deg, rgba(240,163,90,.14), rgba(14,11,10,.4)) !important;
+}
+
+.project-paf .paf-art img {
+  filter: drop-shadow(0 12px 18px rgba(0,0,0,.42));
+}
+
+/* 03 — CI/CD: a cold blue pipeline of ordered stages. */
+.project-cicd {
+  --project-accent: #67b9ff;
+  --project-copy: #c2d4e4;
+  background: #111d2a;
+}
+
+.project-cicd::before {
+  background:
+    radial-gradient(circle at 86% 18%, rgba(103,185,255,.20), transparent 23%),
+    linear-gradient(90deg, transparent 0 72%, rgba(103,185,255,.1) 72% 73%, transparent 73%),
+    repeating-linear-gradient(90deg, transparent 0 48px, rgba(103,185,255,.05) 48px 50px);
+}
+
+.project-cicd .terminal-art {
+  border-color: rgba(103,185,255,.38);
+  background: rgba(5,13,21,.72);
+}
+
+.project-cicd .terminal-art .ok { color: #8fe0b6; }
+
+/* 04 — PKI: certificate-chain greens and a trust seal. */
+.project-pki {
+  --project-accent: #7bd6a8;
+  --project-copy: #c1d8cb;
+  background: #10201a;
+}
+
+.project-pki::before {
+  background:
+    radial-gradient(circle at 83% 22%, rgba(123,214,168,.23), transparent 18%),
+    linear-gradient(135deg, transparent 0 48%, rgba(123,214,168,.08) 48% 49%, transparent 49%),
+    linear-gradient(45deg, transparent 0 52%, rgba(123,214,168,.05) 52% 53%, transparent 53%);
+}
+
+.project-pki .cert-art {
+  border-color: rgba(123,214,168,.40);
+  background: radial-gradient(circle at 82% 75%, rgba(123,214,168,.16), transparent 30%) !important;
+}
+
+.project-pki .cert-art span,
+.project-pki .cert-art small { color: #c4f1d7; }
+
+/* 05 — Enigma: a violet cipher field, distinct from the other projects. */
+.project-enigma {
+  --project-accent: #c69cff;
+  --project-copy: #d7c8e7;
+  background: #211629;
+}
+
+.project-enigma::before {
+  background:
+    radial-gradient(circle at 87% 14%, rgba(198,156,255,.25), transparent 20%),
+    repeating-linear-gradient(135deg, rgba(198,156,255,.075) 0 1px, transparent 1px 14px);
+}
+
+.project-enigma .enigma-art {
+  border-color: rgba(198,156,255,.42);
+  background: radial-gradient(circle, rgba(198,156,255,.18), transparent 66%) !important;
+}
+
+.project-enigma .enigma-art img {
+  filter: drop-shadow(0 10px 20px rgba(0,0,0,.42));
+}
+
+/* 06 — Omnidev: infrastructure in a cyan, machine-like environment. */
+.project-omnidev {
+  --project-accent: #65d5ce;
+  --project-copy: #bfdbd8;
+  background: #102020;
+}
+
+.project-omnidev::before {
+  background:
+    radial-gradient(circle at 88% 16%, rgba(101,213,206,.22), transparent 22%),
+    linear-gradient(rgba(101,213,206,.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(101,213,206,.06) 1px, transparent 1px);
+  background-size: auto, 24px 24px, 24px 24px;
+}
+
+.project-omnidev .omnidev-art {
+  border-color: rgba(101,213,206,.42);
+  background: linear-gradient(135deg, rgba(101,213,206,.13), rgba(5,15,15,.35)) !important;
+}
+
+.project-omnidev .omnidev-art img {
+  filter: drop-shadow(0 10px 18px rgba(0,0,0,.42));
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .project-card:is(.project-rsg, .project-paf, .project-cicd, .project-pki, .project-enigma, .project-omnidev):hover {
+    box-shadow: inset 4px 0 0 var(--project-accent), 0 20px 42px color-mix(in srgb, var(--project-accent) 18%, transparent);
+  }
+}
