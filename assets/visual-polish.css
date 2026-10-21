@@ -286,7 +286,7 @@ html[data-theme="dark"] .project-card:not(.project-featured) .project-logos img 
 .progress-rail-nav {
   position: relative;
   display: grid;
-  gap: .38rem;
+  gap: .6rem;
   padding: .48rem;
   border: 1px solid color-mix(in srgb, var(--line) 86%, transparent);
   border-radius: 999px;
@@ -341,14 +341,17 @@ html[data-theme="dark"] .project-card:not(.project-featured) .project-logos img 
   white-space: nowrap;
 }
 
-.progress-rail a:hover,
-.progress-rail a:focus-visible {
+.progress-rail a:hover:not([aria-current="location"]),
+.progress-rail a:focus-visible:not([aria-current="location"]) {
   z-index: 1;
-  border-color: var(--accent);
-  color: var(--paper);
-  background: var(--accent);
-  outline: 0;
-  transform: scale(1.08);
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
+  color: var(--accent);
+  background: var(--paper);
+}
+
+.progress-rail a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
 }
 
 .progress-rail a:hover::after,
