@@ -387,3 +387,24 @@ html[data-theme="dark"] .progress-rail-nav {
   .progress-rail a,
   .progress-rail a::after { transition: none; }
 }
+
+
+/* Drag feedback for the section tracker. */
+.progress-rail-nav {
+  touch-action: none;
+}
+
+.progress-rail.is-dragging,
+.progress-rail.is-dragging * {
+  cursor: ns-resize;
+  user-select: none;
+}
+
+.progress-rail.is-dragging .progress-rail-nav {
+  border-color: var(--accent);
+  box-shadow: 0 12px 30px color-mix(in srgb, var(--accent) 22%, transparent);
+}
+
+.progress-rail.is-dragging a {
+  pointer-events: none;
+}
