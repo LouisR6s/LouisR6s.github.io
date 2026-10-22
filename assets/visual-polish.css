@@ -519,6 +519,37 @@ html[data-theme="dark"] .progress-rail-nav {
   .hero-intro { margin-block: 1rem; }
   .hero .quick-facts { margin-top: 1rem; padding-top: 1rem; }
 }
-
-
-
+/* Goupille leaves after the final message, with a way to call him back. */
+.goupille-widget {
+  transition: transform .75s cubic-bezier(.4, 0, .7, 1), opacity .5s ease;
+}
+.goupille-widget.is-leaving {
+  transform: translateX(calc(100% + 80px));
+  opacity: 0;
+  pointer-events: none;
+}
+.goupille-widget[hidden],
+.goupille-recall[hidden] { display: none; }
+.goupille-recall {
+  position: fixed;
+  z-index: 259;
+  right: 0;
+  bottom: 1.25rem;
+  width: 28px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-right: 0;
+  border-radius: 12px 0 0 12px;
+  background: var(--paper);
+  color: var(--ink);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, .12);
+  cursor: pointer;
+  font-size: 26px;
+}
+.goupille-recall:hover { color: var(--accent); }
+@media (prefers-reduced-motion: reduce) {
+  .goupille-widget { transition: none; }
+}

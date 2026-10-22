@@ -531,6 +531,7 @@ const goupilleWidget = document.querySelector("#goupille-widget");
 const goupilleMessage = document.querySelector("#goupille-message");
 const goupilleImage = document.querySelector("#goupille-image");
 const goupilleBlanketToggle = document.querySelector("#goupille-blanket-toggle");
+const goupilleRecall = document.querySelector("#goupille-recall");
 const goupillePhrases = [
   "Je m’appelle Goupille.",
   "Louis a fait sa dernière alternance chez Ready Study Go.",
@@ -549,6 +550,7 @@ let goupilleSpamTimer;
 let goupilleSpamCount = 0;
 let goupilleAutoCoverTimer;
 let goupilleAutoSleepTimer;
+let goupilleDepartureTimer;
 
 function cancelGoupilleAutoSleep() {
   clearTimeout(goupilleAutoCoverTimer);
@@ -567,6 +569,27 @@ function tuckGoupilleAutomatically() {
   goupilleButton.disabled = true;
 }
 
+function slideGoupilleAway() {
+  goupilleRecall.hidden = false;
+  if (goupilleWidget.contains(document.activeElement)) goupilleRecall.focus({ preventScroll: true });
+  goupilleWidget.inert = true;
+  goupilleWidget.classList.add("is-leaving");
+  clearTimeout(goupilleDepartureTimer);
+  const duration = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : 800;
+  goupilleDepartureTimer = setTimeout(() => {
+    goupilleWidget.hidden = true;
+  }, duration);
+}
+
+goupilleRecall.addEventListener("click", () => {
+  clearTimeout(goupilleDepartureTimer);
+  goupilleWidget.hidden = false;
+  goupilleWidget.inert = false;
+  goupilleWidget.classList.remove("is-leaving");
+  goupilleRecall.hidden = true;
+  goupilleBlanketToggle.focus({ preventScroll: true });
+});
+
 function talkToGoupille(message) {
   clearTimeout(goupilleSpeechTimer);
   goupilleMessage.replaceChildren(document.createTextNode(message));
@@ -579,7 +602,10 @@ function talkToGoupille(message) {
     goupilleMessage.append(cvLink);
   }
   goupilleWidget.classList.add("is-open");
-  goupilleSpeechTimer = setTimeout(() => goupilleWidget.classList.remove("is-open"), 5000);
+  goupilleSpeechTimer = setTimeout(() => {
+    goupilleWidget.classList.remove("is-open");
+    if (message === goupilleLastIdea) slideGoupilleAway();
+  }, 5000);
   if (message === goupilleLastIdea) {
     cancelGoupilleAutoSleep();
     tuckGoupilleAutomatically();
