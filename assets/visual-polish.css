@@ -553,3 +553,9 @@ html[data-theme="dark"] .progress-rail-nav {
 @media (prefers-reduced-motion: reduce) {
   .goupille-widget { transition: none; }
 }
+
+/* Keep Goupille and his recall control on the desktop version only. */
+@media (max-width: 700px), (max-width: 900px) and (max-height: 500px) and (pointer: coarse) {
+  .goupille-widget,
+  .goupille-recall { display: none; }
+}
