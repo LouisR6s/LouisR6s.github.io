@@ -410,33 +410,14 @@ html[data-theme="dark"] .progress-rail-nav {
 }
 
 @media (max-width: 600px) {
-  .site-header {
-    width: calc(100% - 16px);
-    max-width: none;
-    gap: 8px;
-    margin: .75rem 8px;
-    padding: 8px;
-    border: 1px solid var(--line);
-    border-radius: 25px;
-  }
-  .site-header .theme-switch {
-    width: calc((100% - 40px) / 6);
-    flex-direction: column;
-    gap: 8px;
-    padding: 0;
-    border: 0;
-  }
-  .site-header .theme-option { width: 34px; height: 34px; }
-  .site-header .progress-rail { flex: 1; }
+  .site-header { gap: .45rem; }
   .progress-rail-nav {
     --rail-icon-size: 34px;
     --rail-spacing: 8px;
     display: grid;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-    justify-items: center;
+    grid-template-columns: repeat(5, var(--rail-icon-size));
     gap: var(--rail-spacing);
-    padding: 0;
-    border: 0;
+    padding: var(--rail-spacing);
     border-radius: calc(var(--rail-icon-size) / 2 + var(--rail-spacing));
   }
   .progress-rail-nav::before { display: none; }

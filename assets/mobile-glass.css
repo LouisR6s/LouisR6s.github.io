@@ -91,34 +91,5 @@
       backdrop-filter: none;
     }
   }
-
-  /* One full-width glass surface, with theme controls in the first column. */
-  @media (max-width: 600px) {
-    html .site-header,
-    html[data-theme="dark"] .site-header {
-      background: linear-gradient(145deg, var(--glass-sheen), transparent 55%), var(--glass-surface);
-      border-color: var(--glass-edge);
-      box-shadow: inset 0 1px 0 var(--glass-highlight), 0 10px 28px var(--glass-shadow);
-      -webkit-backdrop-filter: var(--glass-filter);
-      backdrop-filter: var(--glass-filter);
-    }
-
-    html .site-header :is(.progress-rail-nav, .theme-switch) {
-      background: transparent;
-      box-shadow: none;
-      -webkit-backdrop-filter: none;
-      backdrop-filter: none;
-    }
-
-    @media (forced-colors: active) {
-      html .site-header,
-      html[data-theme="dark"] .site-header {
-        background: Canvas;
-        border-color: CanvasText;
-        box-shadow: none;
-        -webkit-backdrop-filter: none;
-        backdrop-filter: none;
-      }
-    }
-  }
 }
+
