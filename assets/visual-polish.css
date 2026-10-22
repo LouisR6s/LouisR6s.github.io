@@ -274,14 +274,14 @@ html[data-theme="dark"] .project-card:not(.project-featured) .project-logos img 
   }
 }
 
-/* Main icon navigation, centered above the portfolio. */
+/* Main icon navigation, aligned to the upper right. */
 .site-header {
   width: fit-content;
   max-width: calc(100% - 1rem);
   top: .75rem;
   height: auto;
   gap: .65rem;
-  margin: .75rem auto;
+  margin: .75rem clamp(.5rem, 1.7vw, 1.6rem) .75rem auto;
   padding: 0;
   border: 0;
   background: transparent;
