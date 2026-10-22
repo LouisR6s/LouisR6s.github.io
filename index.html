@@ -12,17 +12,13 @@
   <link rel="icon" type="image/png" href="assets/logo-lj.png">
   <link rel="stylesheet" href="assets/styles.css">
   <link rel="stylesheet" href="assets/editorial.css?v=controls-3">
-  <link rel="stylesheet" href="assets/visual-polish.css?v=polish-12">
+  <link rel="stylesheet" href="assets/visual-polish.css?v=top-navigation-1">
   <link rel="stylesheet" href="assets/passions.css?v=3">
   <link rel="stylesheet" href="assets/soc-lab.css?v=3">
 </head>
 <body>
   <a class="skip-link" href="#main">Aller au contenu</a>
   <header class="site-header" id="top">
-    <a class="brand" href="#top" aria-label="Accueil Louis Jouhannet">
-      <span class="brand-mark" aria-hidden="true">LJ</span>
-      <span>Louis Jouhannet</span>
-    </a>
     <div class="theme-switch" role="group" aria-label="Choix du thème">
       <button class="theme-option" type="button" data-theme-choice="light" aria-label="Thème clair" aria-pressed="true">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
@@ -36,22 +32,8 @@
         </svg>
       </button>
     </div>
-    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="navigation">Menu</button>
-    <nav id="navigation" aria-label="Navigation principale">
-      <a href="#profil">Profil</a>
-      <a href="#statistiques">Statistiques</a>
-      <a href="#competences">Compétences</a>
-      <a href="#projets">Projets</a>
-      <a href="#certifications">Certifications</a>
-      <a href="#parcours">Parcours</a>
-      <a href="#passions">Passions</a>
-      <a href="#network-lab">Lab SOC</a>
-      <a class="nav-cta" href="#contact">Me contacter</a>
-    </nav>
-  </header>
-
-    <aside class="progress-rail" id="progress-rail" aria-label="Progression dans le portfolio">
-    <nav class="progress-rail-nav" aria-label="Sections du portfolio">
+    <div class="progress-rail" id="progress-rail" aria-label="Progression dans le portfolio">
+    <nav class="progress-rail-nav" id="navigation" aria-label="Navigation principale">
       <a href="#profil" data-rail-link data-label="Profil" aria-current="location"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="8" r="4"></circle><path d="M4 21v-2a8 8 0 0 1 16 0v2"></path></svg><span class="progress-rail-label">Profil</span></a>
       <a href="#statistiques" data-rail-link data-label="Statistiques"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 20h16M7 16v-5m5 5V4m5 12V8"></path></svg><span class="progress-rail-label">Statistiques</span></a>
       <a href="#competences" data-rail-link data-label="Compétences"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14.7 6.3a5 5 0 0 0-6.4 6.4L3 18a2.1 2.1 0 0 0 3 3l5.3-5.3a5 5 0 0 0 6.4-6.4l-3.4 3.4-3-3 3.4-3.4Z"></path></svg><span class="progress-rail-label">Compétences</span></a>
@@ -64,6 +46,7 @@
       <a href="#contact" data-rail-link data-label="Contact"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m2 6 10 7L22 6"></path></svg><span class="progress-rail-label">Contact</span></a>
     </nav>
   </aside>
+  </header>
 
   <main id="main">
     <section class="hero" id="profil">
@@ -657,8 +640,7 @@
 
   <div class="edit-toast" id="edit-toast" role="status" aria-live="polite"></div>
 
-  <script src="assets/app.js?v=standby-3min-2"></script>
-  <script src="assets/progress-rail.js?v=3"></script>
+  <script src="assets/app.js?v=top-navigation-1"></script>
   <script src="assets/soc-lab.js?v=2"></script>
   <script type="module" src="assets/goupille-intro.js"></script>
 </body>

@@ -94,11 +94,9 @@ if (signalLine) {
   speedControl.addEventListener("input", syncSignal); amplitudeControl.addEventListener("input", syncSignal); syncSignal(); drawSignal();
 }
 
-const navToggle = document.querySelector(".nav-toggle");
-const nav = document.querySelector("nav");
+const nav = document.querySelector("#navigation");
 const navLinks = [...nav.querySelectorAll('a[href^="#"]')];
 const trackedSections = navLinks
-  .filter(link => link.getAttribute("href") !== "#contact")
   .map(link => ({ link, section: document.querySelector(link.getAttribute("href")) }))
   .filter(item => item.section);
 
@@ -116,14 +114,7 @@ function updateActiveNav() {
   setActiveNav((visible.at(-1) || trackedSections[0])?.link);
 }
 
-navToggle.addEventListener("click", () => {
-  const open = nav.classList.toggle("open");
-  navToggle.setAttribute("aria-expanded", String(open));
-});
-navLinks.forEach(link => link.addEventListener("click", () => {
-  setActiveNav(link);
-  nav.classList.remove("open"); navToggle.setAttribute("aria-expanded", "false");
-}));
+navLinks.forEach(link => link.addEventListener("click", () => setActiveNav(link)));
 let navFrame;
 window.addEventListener("scroll", () => {
   if (!navFrame) navFrame = requestAnimationFrame(() => {
@@ -146,7 +137,7 @@ document.querySelectorAll(".copy-email").forEach(button => button.addEventListen
   setTimeout(() => { button.textContent = original; }, 2200);
 }));
 
-const contactLink = document.querySelector(".nav-cta");
+const contactLink = nav.querySelector('a[href="#contact"]');
 const contactPhone = document.querySelector("#contact-phone");
 const phoneHome = document.querySelector("#phone-home");
 let contactOpener = contactLink;
@@ -626,3 +617,4 @@ document.addEventListener("pointermove", event => {
   const icon = event.target.closest(".project-logos img[title]");
   if (icon) positionTechnologyTooltip(icon);
 });
+
