@@ -1,0 +1,95 @@
+/* Translucent surfaces for the mobile portfolio. */
+@media (max-width: 700px) {
+  :root {
+    --glass-opaque: #f5f4f1;
+    --glass-translucent: rgba(255, 255, 255, .58);
+    --glass-surface: var(--glass-opaque);
+    --glass-sheen: rgba(255, 255, 255, .65);
+    --glass-edge: rgba(255, 255, 255, .82);
+    --glass-highlight: rgba(255, 255, 255, .92);
+    --glass-shadow: rgba(34, 40, 48, .10);
+    --glass-control: rgba(255, 255, 255, .22);
+    --glass-warm: rgba(235, 77, 47, .08);
+    --glass-cool: rgba(113, 151, 179, .09);
+    --glass-filter: none;
+  }
+
+  html[data-theme="dark"] {
+    --glass-opaque: #242727;
+    --glass-translucent: rgba(32, 36, 38, .64);
+    --glass-sheen: rgba(255, 255, 255, .10);
+    --glass-edge: rgba(255, 255, 255, .19);
+    --glass-highlight: rgba(255, 255, 255, .20);
+    --glass-shadow: rgba(0, 0, 0, .22);
+    --glass-control: rgba(255, 255, 255, .045);
+    --glass-warm: rgba(255, 134, 108, .065);
+    --glass-cool: rgba(115, 159, 188, .075);
+  }
+
+  html :is(.stats-section, .skills-section, .projects-section,
+    .certifications-section, .github-section, .passions-section) {
+    background-image:
+      radial-gradient(ellipse at 5% 10%, var(--glass-warm), transparent 60%),
+      radial-gradient(ellipse at 100% 90%, var(--glass-cool), transparent 60%);
+  }
+
+  html .site-header :is(.progress-rail-nav, .theme-switch),
+  html .hero-actions .button-secondary,
+  html :is(.stat-card:not(.stat-card-accent), .skill-tabs button, .skill-panel,
+    .project-card:not(.project-featured), .certification-card:not(.certification-toeic),
+    .github-preview, .passion-card, .photo-card) {
+    background:
+      linear-gradient(145deg, var(--glass-sheen), transparent 55%),
+      var(--glass-surface);
+    border-color: var(--glass-edge);
+    box-shadow:
+      inset 0 1px 0 var(--glass-highlight),
+      inset 0 -1px 0 rgba(0, 0, 0, .045),
+      0 10px 28px var(--glass-shadow);
+    -webkit-backdrop-filter: var(--glass-filter);
+    backdrop-filter: var(--glass-filter);
+  }
+
+  html .progress-rail a:not([aria-current="location"]) {
+    background: var(--glass-control);
+    box-shadow: inset 0 1px 0 var(--glass-highlight);
+  }
+
+  html :is(.progress-rail a, .theme-option, .hero-actions .button-secondary) {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  html .skill-tabs button[aria-selected="true"] {
+    border-color: var(--accent);
+    box-shadow: inset 0 1px 0 var(--glass-highlight), 0 0 0 1px var(--accent);
+  }
+
+  @supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    :root {
+      --glass-surface: var(--glass-translucent);
+      --glass-filter: blur(18px) saturate(150%);
+    }
+  }
+
+  @media (prefers-reduced-transparency: reduce) {
+    :root {
+      --glass-surface: var(--glass-opaque);
+      --glass-filter: none;
+    }
+  }
+
+  @media (forced-colors: active) {
+    html .site-header :is(.progress-rail-nav, .theme-switch),
+    html .hero-actions .button-secondary,
+    html :is(.stat-card:not(.stat-card-accent), .skill-tabs button, .skill-panel,
+      .project-card:not(.project-featured), .certification-card:not(.certification-toeic),
+      .github-preview, .passion-card, .photo-card) {
+      border-color: CanvasText;
+      background: Canvas;
+      box-shadow: none;
+      -webkit-backdrop-filter: none;
+      backdrop-filter: none;
+    }
+  }
+}
+
