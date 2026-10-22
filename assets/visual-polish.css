@@ -412,10 +412,13 @@ html[data-theme="dark"] .progress-rail-nav {
 @media (max-width: 600px) {
   .site-header { gap: .45rem; }
   .progress-rail-nav {
+    --rail-icon-size: 34px;
+    --rail-spacing: 8px;
     display: grid;
-    grid-template-columns: repeat(5, 34px);
-    gap: .35rem;
-    padding: .4rem;
+    grid-template-columns: repeat(5, var(--rail-icon-size));
+    gap: var(--rail-spacing);
+    padding: var(--rail-spacing);
+    border-radius: calc(var(--rail-icon-size) / 2 + var(--rail-spacing));
   }
   .progress-rail-nav::before { display: none; }
   .progress-rail a { position: static; }
