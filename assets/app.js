@@ -108,7 +108,7 @@ function setActiveNav(link) {
 }
 
 function updateActiveNav() {
-  if (!document.querySelector("#contact-phone").hidden) return;
+  if (document.querySelector("#contact-terminal").open) return;
   const threshold = Math.min(window.innerHeight * .3, 240);
   const visible = trackedSections.filter(item => item.section.getBoundingClientRect().top <= threshold);
   setActiveNav((visible.at(-1) || trackedSections[0])?.link);
@@ -138,55 +138,103 @@ document.querySelectorAll(".copy-email").forEach(button => button.addEventListen
 }));
 
 const contactLink = nav.querySelector('a[href="#contact"]');
-const contactPhone = document.querySelector("#contact-phone");
-const phoneHome = document.querySelector("#phone-home");
+const contactTerminal = document.querySelector("#contact-terminal");
+const terminalClose = document.querySelector("#terminal-close");
+const terminalInput = document.querySelector("#terminal-command-input");
+const terminalOutput = document.querySelector("#terminal-output");
+const terminalIntro = document.querySelector("#terminal-intro");
+const terminalTranscript = document.querySelector("#terminal-transcript");
+const contactDetails = document.querySelector("#terminal-contact-data");
 let contactOpener = contactLink;
-function openContactPhone(opener = contactLink) {
+let contactPageOverflow = "";
+
+function openContactTerminal(opener = contactLink) {
+  if (contactTerminal.open) return;
   contactOpener = opener;
+  contactPageOverflow = document.body.style.overflow;
+  document.body.style.overflow = "hidden";
+  terminalIntro.hidden = false;
+  terminalOutput.replaceChildren();
+  terminalInput.value = "";
   setActiveNav(contactLink);
-  contactPhone.hidden = false;
-  contactPhone.setAttribute("aria-hidden", "false");
-  requestAnimationFrame(() => requestAnimationFrame(() => contactPhone.classList.add("open")));
-  phoneHome.focus();
+  contactTerminal.showModal();
+  terminalTranscript.scrollTop = 0;
+  terminalClose.focus();
 }
-function closeContactPhone() {
-  contactPhone.classList.remove("open");
-  setTimeout(() => {
-    if (!contactPhone.classList.contains("open")) {
-      contactPhone.hidden = true;
-      contactPhone.setAttribute("aria-hidden", "true");
-      updateActiveNav();
-    }
-  }, 650);
-  contactOpener.focus();
-}
-document.querySelectorAll('a[href="#contact"], .open-phone-contact').forEach(trigger => {
-  trigger.addEventListener("click", event => { event.preventDefault(); openContactPhone(trigger); });
+
+document.querySelectorAll('a[href="#contact"], .open-terminal-contact').forEach(trigger => {
+  trigger.addEventListener("click", event => { event.preventDefault(); openContactTerminal(trigger); });
 });
-phoneHome.addEventListener("click", closeContactPhone);
-document.addEventListener("keydown", event => {
-  if (event.key === "Escape" && !contactPhone.hidden) closeContactPhone();
+terminalClose.addEventListener("click", () => contactTerminal.close());
+contactTerminal.addEventListener("keydown", event => {
+  if (event.key !== "Tab") return;
+  const controls = [...contactTerminal.querySelectorAll('a[href], button:not(:disabled), input:not(:disabled)')]
+    .filter(control => control.getClientRects().length);
+  const first = controls[0];
+  const last = controls.at(-1);
+  if (event.shiftKey && document.activeElement === first) {
+    event.preventDefault(); last.focus();
+  } else if (!event.shiftKey && document.activeElement === last) {
+    event.preventDefault(); first.focus();
+  }
+});
+contactTerminal.addEventListener("close", () => {
+  document.body.style.overflow = contactPageOverflow;
+  updateActiveNav();
+  if (contactOpener?.isConnected) contactOpener.focus();
+});
+contactTerminal.addEventListener("click", event => {
+  if (event.target !== contactTerminal) return;
+  const rect = contactTerminal.getBoundingClientRect();
+  if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) contactTerminal.close();
 });
 
-const weatherEmoji = document.querySelector("#weather-emoji");
-const weatherTemperature = document.querySelector("#weather-temperature");
-const weatherDescription = document.querySelector("#weather-description");
-const weatherStates = { 0: ["☀️", "Ensoleillé"], 1: ["🌤️", "Peu nuageux"], 2: ["⛅", "Partiellement nuageux"], 3: ["☁️", "Nuageux"], 45: ["🌫️", "Brumeux"], 48: ["🌫️", "Brume givrée"], 51: ["🌦️", "Bruine légère"], 61: ["🌧️", "Pluie"], 71: ["🌨️", "Neige"], 80: ["🌦️", "Averses"], 95: ["⛈️", "Orage"] };
-async function loadReimsWeather() {
-  try {
-    const response = await fetch("https://api.open-meteo.com/v1/forecast?latitude=49.2583&longitude=4.0317&current=temperature_2m,weather_code&timezone=Europe%2FParis");
-    if (!response.ok) throw new Error();
-    const { current } = await response.json();
-    const [emoji, label] = weatherStates[current.weather_code] || ["🌡️", "Météo à Reims"];
-    weatherTemperature.textContent = `${Math.round(current.temperature_2m)}°`;
-    weatherDescription.textContent = label;
-    weatherEmoji.textContent = emoji;
-  } catch { weatherDescription.textContent = "Reims, France"; }
-}
-function updatePhoneTime() { document.querySelector("#phone-time").textContent = new Intl.DateTimeFormat("fr-FR", { hour: "2-digit", minute: "2-digit", timeZone: "Europe/Paris" }).format(new Date()); }
-loadReimsWeather();
-updatePhoneTime();
-setInterval(updatePhoneTime, 30_000);
+document.querySelector("#terminal-command-form").addEventListener("submit", event => {
+  event.preventDefault();
+  const raw = terminalInput.value.trim();
+  terminalInput.value = "";
+  if (!raw) return;
+  const command = raw.toLowerCase();
+  if (command === "exit") { contactTerminal.close(); return; }
+  if (command === "clear") {
+    terminalIntro.hidden = true;
+    terminalOutput.replaceChildren();
+    terminalInput.focus();
+    return;
+  }
+
+  const entry = document.createElement("div");
+  const prompt = document.createElement("p");
+  prompt.className = "terminal-command";
+  const user = document.createElement("span");
+  user.textContent = "louis@portfolio";
+  const directory = document.createElement("span");
+  directory.className = "terminal-directory";
+  directory.textContent = ":~$";
+  prompt.append(user, directory, document.createTextNode(" " + raw));
+  entry.append(prompt);
+  const result = document.createElement("p");
+  result.className = "terminal-result";
+
+  if (command === "help") {
+    result.textContent = "contact  Afficher mes coordonnées\nwhoami   Afficher mon profil\nemail    Afficher mon e-mail\ngithub   Afficher mon GitHub\nlinkedin Afficher mon LinkedIn\ncv       Afficher le lien du CV\nclear    Effacer le terminal\nexit     Fermer la carte";
+  } else if (command === "whoami") {
+    result.textContent = "Louis Jouhannet\nCybersécurité · Réseaux · Systèmes\nReims, France";
+  } else if (command === "contact") {
+    const details = contactDetails.cloneNode(true);
+    details.removeAttribute("id");
+    entry.append(details);
+  } else if (["email", "github", "linkedin", "cv"].includes(command)) {
+    const source = [...contactDetails.querySelectorAll("div")].find(row => row.querySelector("dt").textContent === command);
+    result.append(source.querySelector("a").cloneNode(true));
+  } else {
+    result.textContent = "Commande inconnue. Tape help pour voir les commandes.";
+  }
+  if (result.hasChildNodes()) entry.append(result);
+  terminalOutput.append(entry);
+  while (terminalOutput.children.length > 30) terminalOutput.firstElementChild.remove();
+  terminalTranscript.scrollTop = terminalTranscript.scrollHeight;
+});
 
 const observer = new IntersectionObserver(entries => entries.forEach(entry => {
   if (entry.isIntersecting) { entry.target.classList.add("visible"); observer.unobserve(entry.target); }

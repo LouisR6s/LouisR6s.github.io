@@ -422,45 +422,6 @@ footer { background: var(--paper); color: var(--muted); }
 .standby-progress i { width: 28px; height: 2px; background: rgba(255,255,255,.25); }
 .standby-progress i.active { background: var(--accent); }
 @media (prefers-reduced-motion: reduce) { .standby-deck, .standby-slide { transition: none; } }
-.contact-phone { position: fixed; z-index: 100; right: clamp(1rem, 4vw, 4rem); bottom: 1.25rem; width: min(360px, calc(100vw - 2rem)); transform: translateY(calc(100% + 2rem)); opacity: 0; pointer-events: none; transition: transform .7s cubic-bezier(.18,.92,.26,1), opacity .25s ease; }
-.contact-phone.open { transform: translateY(0); opacity: 1; pointer-events: auto; }
-.phone-shell { position: relative; padding: 9px; border: 6px solid #3d3e3c; border-radius: 54px; background: linear-gradient(105deg, #242522, #6b6d66 46%, #292a28 65%, #4a4c47); box-shadow: inset 0 0 0 1px rgba(255,255,255,.22), 0 28px 72px rgba(0,0,0,.38); }
-.phone-shell::before, .phone-shell::after { content: ""; position: absolute; z-index: -1; width: 5px; border-radius: 4px; background: linear-gradient(to right, #2a2b29, #73756d); }
-.phone-shell::before { left: -10px; top: 112px; height: 116px; box-shadow: 0 136px 0 #4e504b; }
-.phone-shell::after { right: -10px; top: 170px; height: 76px; }
-.phone-screen { position: relative; height: min(610px, calc(100dvh - 3.5rem)); min-height: 510px; overflow: hidden; padding: 1.45rem 1.15rem 3.4rem; border-radius: 41px; background: radial-gradient(circle at 88% 86%, #ee6f62 0, transparent 29%), radial-gradient(circle at 15% 77%, #bd744d 0, transparent 32%), linear-gradient(155deg, #7093b0, #526c7d 47%, #272426 78%); color: #fff; box-shadow: inset 0 0 0 1px rgba(255,255,255,.6); }
-.phone-island { position: absolute; z-index: 2; top: 18px; left: 50%; width: 116px; height: 33px; border-radius: 999px; background: #070707; box-shadow: inset 0 0 0 1px rgba(255,255,255,.04); transform: translateX(-50%); }
-.phone-status { display: flex; justify-content: space-between; padding: .35rem .35rem 0; font-size: .73rem; font-weight: 700; }
-.phone-status span:last-child { font-size: .64rem; letter-spacing: .08em; }
-.weather-widget { display: flex; align-items: center; justify-content: space-between; min-height: 120px; margin-top: 2rem; padding: 1rem 1.15rem; border: 1px solid rgba(255,255,255,.38); border-radius: 24px; background: linear-gradient(135deg, rgba(58,118,173,.82), rgba(124,180,208,.68)); color: #fff; box-shadow: inset 0 1px rgba(255,255,255,.25); }
-.weather-widget div { display: grid; }
-.weather-location { font-size: .72rem; font-weight: 700; }
-.weather-widget strong { margin-top: .35rem; font-size: 3rem; font-weight: 500; letter-spacing: -.08em; line-height: 1; }
-.weather-widget small { margin-top: .45rem; font-size: .7rem; }
-.weather-emoji { font-size: 3.7rem; filter: drop-shadow(0 4px 8px rgba(0,0,0,.14)); }
-.phone-widget-label { margin: .35rem 0 1.25rem; color: #fff; text-align: center; font-size: .68rem; font-weight: 600; }
-.phone-app-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem .8rem; }
-.phone-app { display: grid; gap: .35rem; justify-items: center; color: #fff; text-decoration: none; font-size: .62rem; text-align: center; }
-.phone-app > span { display: grid; width: 55px; height: 55px; place-items: center; border: 1px solid rgba(255,255,255,.26); border-radius: 15px; background: rgba(28,40,53,.78); box-shadow: inset 0 1px rgba(255,255,255,.16), 0 5px 10px rgba(0,0,0,.16); font-size: 1.7rem; transition: transform .2s ease, background .2s ease; }
-.phone-app:hover > span { transform: scale(1.08); background: rgba(10,10,10,.88); }
-.phone-app small { font-size: .58rem; }
-.phone-dock { display: flex; justify-content: space-around; margin-top: 1.5rem; padding: .7rem; border: 1px solid rgba(255,255,255,.24); border-radius: 22px; background: rgba(245,245,245,.24); backdrop-filter: blur(12px); }
-.phone-dock a { display: grid; width: 52px; height: 52px; place-items: center; border-radius: 14px; background: rgba(28,40,53,.78); color: #fff; font-size: 1.6rem; text-decoration: none; }
-.phone-time { margin: 0 0 3.4rem .35rem; font-size: .72rem; font-weight: 700; }
-.phone-contact-heading > span, .phone-contact-details small { color: var(--accent); font: .62rem "DM Mono", monospace; letter-spacing: .13em; }
-.phone-contact-heading h2 { margin: .55rem 0 .35rem; font-size: 2.7rem; line-height: .9; letter-spacing: -.08em; }
-.phone-contact-heading p { margin: 0; color: var(--muted); font-size: .8rem; }
-.phone-contact-actions { display: flex; gap: .65rem; margin: 1.7rem 0; }
-.phone-contact-actions a { display: grid; flex: 1; gap: .25rem; place-items: center; padding: .7rem .35rem; border-radius: 14px; background: rgba(255,255,255,.6); color: var(--ink); text-decoration: none; font-size: .7rem; font-weight: 700; }
-.phone-contact-actions span { color: var(--accent); font-size: 1.15rem; }
-.phone-contact-details { display: grid; overflow: hidden; border: 1px solid rgba(10,10,10,.12); border-radius: 18px; background: rgba(255,255,255,.62); }
-.phone-contact-details a { display: grid; gap: .28rem; padding: .9rem; color: var(--ink); text-decoration: none; }
-.phone-contact-details a + a { border-top: 1px solid rgba(10,10,10,.1); }
-.phone-contact-details a:hover { background: #fff; }
-.phone-contact-details strong { font-size: .78rem; font-weight: 650; overflow-wrap: anywhere; }
-.phone-home { position: absolute; right: 50%; bottom: 18px; width: 110px; height: 5px; padding: 0; border: 0; border-radius: 999px; background: #fff; transform: translateX(50%); cursor: pointer; }
-.phone-home:hover, .phone-home:focus-visible { box-shadow: 0 0 0 5px rgba(255,255,255,.2); outline: 0; }
-@media (max-width: 560px) { .contact-phone { right: 50%; transform: translate(50%, calc(100% + 2rem)); } .contact-phone.open { transform: translate(50%, 0); } .phone-screen { min-height: 0; } }
 .editor-dialog { border-color: var(--line); border-radius: 20px; background: #fff; color: var(--ink); box-shadow: 0 35px 110px rgba(0,0,0,.25); }
 .editor-dialog::backdrop { background: rgba(10,10,10,.54); }
 .editor-head { background: rgba(255,255,255,.96); border-bottom-color: var(--line); }
@@ -596,3 +557,4 @@ html[data-theme="dark"] .skill-tabs button[aria-selected="true"], html[data-them
 html[data-theme="dark"] .contact-section { background: #090909; }
 html[data-theme="dark"] .contact-section .button-primary { background: #d0d0d0; color: #111; }
 html[data-theme="dark"] .contact-section .button-secondary { color: #d0d0d0; border-color: #666; }
+

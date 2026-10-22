@@ -11,11 +11,12 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="assets/logo-lj.png">
   <link rel="stylesheet" href="assets/styles.css">
-  <link rel="stylesheet" href="assets/editorial.css?v=controls-3">
+  <link rel="stylesheet" href="assets/editorial.css?v=contact-terminal-1">
   <link rel="stylesheet" href="assets/visual-polish.css?v=mobile-menu-shape-1">
   <link rel="stylesheet" href="assets/passions.css?v=3">
   <link rel="stylesheet" href="assets/soc-lab.css?v=3">
   <link rel="stylesheet" href="assets/mobile-glass.css?v=1">
+  <link rel="stylesheet" href="assets/contact-terminal.css?v=1">
 </head>
 <body>
   <a class="skip-link" href="#main">Aller au contenu</a>
@@ -532,7 +533,7 @@
         <div class="contact-actions">
           <a class="button button-primary" href="mailto:louisjouhannet@gmail.com">louisjouhannet@gmail.com</a>
           <button class="button button-secondary copy-email" type="button" data-email="louisjouhannet@gmail.com">Copier mon e-mail</button>
-          <button class="button button-secondary open-phone-contact" type="button">Ouvrir ma carte contact</button>
+          <button class="button button-secondary open-terminal-contact" type="button">Ouvrir ma carte contact</button>
           <a class="button button-secondary cv-download-target" id="cv-download" href="assets/CV-Louis-Jouhannet.pdf?v=b585e7800570" target="_blank" rel="noopener noreferrer">Télécharger mon CV ↓</a>
           <a class="button button-secondary" href="https://www.linkedin.com/in/louis-jouhannet-dumoulin/" target="_blank" rel="noreferrer">LinkedIn ↗</a>
           <a class="button button-secondary" href="https://github.com/LouisR6s" target="_blank" rel="noreferrer">GitHub ↗</a>
@@ -557,30 +558,39 @@
     <p class="goupille-caption">Pause avec Goupille</p>
   </aside>
 
-  <aside class="contact-phone" id="contact-phone" role="dialog" aria-modal="true" aria-label="Coordonnées de Louis Jouhannet" hidden>
-    <div class="phone-shell">
-      <div class="phone-island" aria-hidden="true"></div>
-      <div class="phone-screen">
-        <div class="phone-status" aria-hidden="true"><span id="phone-time">09:41</span><span>▮▮▮ ◔ ▰</span></div>
-        <section class="weather-widget" aria-live="polite">
-          <div><span class="weather-location">⌖ Reims</span><strong id="weather-temperature">—°</strong><small id="weather-description">Météo en direct</small></div>
-          <span class="weather-emoji" id="weather-emoji">⛅</span>
-        </section>
-        <p class="phone-widget-label">Météo</p>
-        <div class="phone-app-grid">
-          <a class="phone-app" href="mailto:louisjouhannet@gmail.com"><span>✉️</span><small>E-mail</small></a>
-          <a class="phone-app" href="https://www.linkedin.com/in/louis-jouhannet-dumoulin/" target="_blank" rel="noreferrer"><span>💼</span><small>LinkedIn</small></a>
-          <a class="phone-app" href="https://github.com/LouisR6s" target="_blank" rel="noreferrer"><span>👨‍💻</span><small>GitHub</small></a>
-          <a class="phone-app" href="assets/CV-Louis-Jouhannet.pdf?v=b585e7800570" target="_blank" rel="noopener noreferrer"><span>📄</span><small>Mon CV</small></a>
-          <a class="phone-app" href="#projets"><span>🧪</span><small>Projets</small></a>
-          <a class="phone-app" href="#certifications"><span>🏅</span><small>Certifs</small></a>
-          <a class="phone-app" href="#profil"><span>👤</span><small>Profil</small></a>
-        </div>
-        <div class="phone-dock"><a href="mailto:louisjouhannet@gmail.com">✉️</a><a href="https://www.linkedin.com/in/louis-jouhannet-dumoulin/" target="_blank" rel="noreferrer">💼</a><a href="https://github.com/LouisR6s" target="_blank" rel="noreferrer">👨‍💻</a></div>
-        <button class="phone-home" id="phone-home" type="button" aria-label="Fermer le téléphone"></button>
+  <dialog class="contact-terminal" id="contact-terminal" aria-labelledby="contact-terminal-title">
+    <header class="terminal-titlebar">
+      <span class="terminal-window-lights" aria-hidden="true"><i></i><i></i><i></i></span>
+      <h2 id="contact-terminal-title">louis@portfolio: ~</h2>
+      <button class="terminal-close" id="terminal-close" type="button" aria-label="Fermer la carte contact" autofocus>×</button>
+    </header>
+    <div class="terminal-transcript" id="terminal-transcript">
+      <div class="terminal-intro" id="terminal-intro">
+        <p class="terminal-command"><span>louis@portfolio</span><span class="terminal-directory">:~$</span> whoami</p>
+        <p class="terminal-name">Louis Jouhannet</p>
+        <p class="terminal-role">Cybersécurité · Réseaux · Systèmes</p>
+        <p class="terminal-command"><span>louis@portfolio</span><span class="terminal-directory">:~$</span> cat contact.conf</p>
+        <dl class="terminal-contact-data" id="terminal-contact-data">
+          <div><dt>email</dt><dd><a href="mailto:louisjouhannet@gmail.com">louisjouhannet@gmail.com</a></dd></div>
+          <div><dt>github</dt><dd><a href="https://github.com/LouisR6s" target="_blank" rel="noopener noreferrer">github.com/LouisR6s ↗</a></dd></div>
+          <div><dt>linkedin</dt><dd><a href="https://www.linkedin.com/in/louis-jouhannet-dumoulin/" target="_blank" rel="noopener noreferrer">Louis Jouhannet ↗</a></dd></div>
+          <div><dt>cv</dt><dd><a href="assets/CV-Louis-Jouhannet.pdf?v=b585e7800570" target="_blank" rel="noopener noreferrer">Télécharger mon CV.pdf ↗</a></dd></div>
+          <div><dt>location</dt><dd>Reims, France</dd></div>
+        </dl>
+        <p class="terminal-welcome">Échangeons sur vos projets.<br>Tape <strong>help</strong> pour afficher les commandes.</p>
       </div>
+      <div class="contact-terminal-output" id="terminal-output" role="log" aria-live="polite" aria-label="Réponses du terminal de contact"></div>
     </div>
-  </aside>
+    <form class="terminal-command-form" id="terminal-command-form" autocomplete="off">
+      <label for="terminal-command-input"><span>louis@portfolio</span><span class="terminal-directory">:~$</span></label>
+      <input id="terminal-command-input" name="command" aria-label="Commande du terminal de contact" placeholder="help" maxlength="120" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false">
+      <button type="submit" aria-label="Exécuter la commande">↵</button>
+    </form>
+    <footer class="terminal-footer">
+      <span><span class="terminal-ready" aria-hidden="true">●</span> help · commandes / exit · fermer</span>
+      <button class="terminal-copy-email copy-email" type="button" data-email="louisjouhannet@gmail.com">Copier l’e-mail</button>
+    </footer>
+  </dialog>
 
   <div class="edit-toolbar" id="edit-toolbar" hidden>
     <span>Mode édition actif</span>
@@ -641,7 +651,7 @@
 
   <div class="edit-toast" id="edit-toast" role="status" aria-live="polite"></div>
 
-  <script src="assets/app.js?v=top-navigation-1"></script>
+  <script src="assets/app.js?v=contact-terminal-1"></script>
   <script src="assets/soc-lab.js?v=2"></script>
   <script type="module" src="assets/goupille-intro.js"></script>
 </body>
