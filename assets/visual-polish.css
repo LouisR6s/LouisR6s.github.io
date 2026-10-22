@@ -464,9 +464,8 @@ html[data-theme="dark"] .progress-rail-nav {
   .progress-rail a[aria-current="location"] {
     box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 18%, transparent);
   }
-  main { padding-right: 42px; }
   main section[id] { scroll-margin-top: 16px; }
-  body > footer { padding-right: 42px; }
+  .skills-section { overflow-x: clip; }
   .goupille-widget { right: 46px; }
   .skill-panel { padding: 1rem; }
   .skill-panel-head { flex-wrap: wrap; gap: .75rem; }
@@ -559,3 +558,4 @@ html[data-theme="dark"] .progress-rail-nav {
   .goupille-widget,
   .goupille-recall { display: none; }
 }
+
