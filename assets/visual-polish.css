@@ -414,7 +414,7 @@ html[data-theme="dark"] .progress-rail-nav {
     position: fixed;
     top: 8px;
     right: 8px;
-    width: 52px;
+    width: 25px;
     max-width: none;
     margin: 0;
   }
@@ -422,22 +422,28 @@ html[data-theme="dark"] .progress-rail-nav {
     position: fixed;
     top: 8px;
     right: 8px;
+    gap: 1px;
+    padding: 1.5px;
+    border-width: .5px;
   }
+  .site-header .theme-option { width: 15px; height: 15px; }
+  .site-header .theme-option svg { width: 8px; height: 8px; }
   .site-header .progress-rail {
     position: fixed;
-    top: 56px;
+    top: 32px;
     right: 8px;
     bottom: 8px;
     display: flex;
     align-items: center;
   }
   .progress-rail-nav {
-    --rail-icon-size: 34px;
-    --rail-spacing: 8px;
+    --rail-icon-size: 16px;
+    --rail-spacing: 3.5px;
     display: grid;
     grid-template-columns: var(--rail-icon-size);
     gap: var(--rail-spacing);
     padding: var(--rail-spacing);
+    border-width: 1px;
     max-height: 100%;
     overflow-y: auto;
     overscroll-behavior: contain;
@@ -447,11 +453,21 @@ html[data-theme="dark"] .progress-rail-nav {
   .progress-rail-nav::-webkit-scrollbar { display: none; }
   .progress-rail-nav::before,
   .progress-rail a::after { display: none; }
-  .progress-rail a { position: relative; }
-  main { padding-right: 68px; }
+  .progress-rail a {
+    position: relative;
+    width: var(--rail-icon-size);
+    height: var(--rail-icon-size);
+    border-width: .5px;
+  }
+  .progress-rail a svg { width: 8px; height: 8px; }
+  .progress-rail a:focus-visible { outline-width: 1px; outline-offset: 1px; }
+  .progress-rail a[aria-current="location"] {
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 18%, transparent);
+  }
+  main { padding-right: 42px; }
   main section[id] { scroll-margin-top: 16px; }
-  body > footer { padding-right: 68px; }
-  .goupille-widget { right: 72px; }
+  body > footer { padding-right: 42px; }
+  .goupille-widget { right: 46px; }
   .skill-panel { padding: 1rem; }
   .skill-panel-head { flex-wrap: wrap; gap: .75rem; }
   .skill-panel-head > div { flex: 1 1 100%; min-width: 0; }
