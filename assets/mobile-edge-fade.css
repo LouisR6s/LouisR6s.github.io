@@ -1,5 +1,5 @@
 /* Mobile-only edge fade: the page gently dissolves into the viewport edges. */
-@media (max-width: 700px) and (pointer: coarse), (max-width: 900px) and (max-height: 500px) and (pointer: coarse) {
+@media (max-width: 700px), (max-width: 900px) and (max-height: 500px) {
   .site-header { display: none !important; }
   body::before,
   body::after {

@@ -1,5 +1,5 @@
 .boot-intro { display: none; }
-@media (max-width: 700px), (max-width: 900px) and (max-height: 500px) and (pointer: coarse) {
+@media (max-width: 700px), (max-width: 900px) and (max-height: 500px) {
   .boot-intro-active .boot-intro { display: none !important; }
 }
 .boot-intro-active .boot-intro {
