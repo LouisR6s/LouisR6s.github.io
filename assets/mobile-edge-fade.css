@@ -1,29 +1,5 @@
-/* Mobile-only edge fade: the page gently dissolves into the viewport edges. */
+/* Mobile-only layout adjustments. */
 @media (max-width: 700px), (max-width: 900px) and (max-height: 500px) {
   .site-header { display: none !important; }
-  body::before,
-  body::after {
-    position: fixed;
-    z-index: 240;
-    right: 0;
-    left: 0;
-    height: 34px;
-    content: "";
-    pointer-events: none;
-  }
-  body::before {
-    top: 0;
-    background: linear-gradient(to bottom, var(--paper) 0%, color-mix(in srgb, var(--paper) 72%, transparent) 38%, transparent 100%);
-  }
-  body::after {
-    bottom: 0;
-    background: linear-gradient(to top, var(--paper) 0%, color-mix(in srgb, var(--paper) 72%, transparent) 38%, transparent 100%);
-  }
-  html[data-theme="dark"] body::before {
-    background: linear-gradient(to bottom, var(--paper) 0%, color-mix(in srgb, var(--paper) 72%, transparent) 38%, transparent 100%);
-  }
-  html[data-theme="dark"] body::after {
-    background: linear-gradient(to top, var(--paper) 0%, color-mix(in srgb, var(--paper) 72%, transparent) 38%, transparent 100%);
-  }
   .portrait-wrap img { transition: filter .28s ease; }
 }
