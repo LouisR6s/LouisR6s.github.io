@@ -247,15 +247,12 @@ if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches && "Intersect
     countObserver.unobserve(entry.target);
     const number = entry.target.querySelector("strong");
     const target = Number(number.dataset.countTarget);
-    const duration = 1000;
-    const start = performance.now();
-    const tick = now => {
-      const progress = Math.min((now - start) / duration, 1);
-      const value = Math.round(target * progress);
-      if (number.textContent !== String(value)) number.textContent = value;
-      if (progress < 1) requestAnimationFrame(tick);
-    };
-    requestAnimationFrame(tick);
+    if (target === 0) return;
+    let value = 0;
+    const timer = setInterval(() => {
+      number.textContent = ++value;
+      if (value >= target) clearInterval(timer);
+    }, 500);
   }), { threshold: .35 });
   statNumbers.forEach(number => {
     const target = Number(number.textContent.trim());
