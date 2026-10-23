@@ -1,5 +1,6 @@
 /* Mobile-only layout adjustments. */
 @media (max-width: 700px), (max-width: 900px) and (max-height: 500px) {
   .site-header { display: none !important; }
+  .hero::before { display: none; }
   .portrait-wrap img { transition: filter .28s ease; }
 }
