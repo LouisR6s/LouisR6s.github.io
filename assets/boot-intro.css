@@ -1,0 +1,51 @@
+.boot-intro { display: none; }
+.boot-intro-active .boot-intro {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: grid;
+  place-items: center;
+  background: var(--paper, #f3f2ee);
+  pointer-events: none;
+}
+.boot-terminal {
+  width: min(320px, calc(100vw - 48px));
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, .15);
+  border-radius: 12px;
+  background: #1b1c1e;
+  color: #f1f1ef;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, .15);
+  font: 12px/1.6 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+.boot-terminal-bar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 34px;
+  border-bottom: 1px solid rgba(255, 255, 255, .06);
+  background: #28292c;
+  color: #b7b8ba;
+  font-size: 10px;
+}
+.boot-terminal-dots { position: absolute; left: 12px; display: flex; gap: 6px; }
+.boot-terminal-dots i { width: 7px; height: 7px; border-radius: 50%; background: #ff6058; }
+.boot-terminal-dots i:nth-child(2) { background: #febc2e; }
+.boot-terminal-dots i:nth-child(3) { background: #28c840; }
+.boot-terminal-body { padding: 21px 22px 23px; }
+.boot-terminal-line { display: flex; align-items: center; gap: 10px; }
+.boot-terminal-prompt { color: #f07559; }
+.boot-terminal-command { display: inline-block; width: 11ch; overflow: hidden; white-space: nowrap; border-right: 1px solid #f07559; }
+.boot-terminal-output { margin-top: 10px; color: #8c8e92; opacity: 0; }
+.boot-intro-running .boot-terminal-command { animation: boot-command 420ms steps(11, end) 80ms both; }
+.boot-intro-running .boot-terminal-output { animation: boot-output 120ms ease 550ms forwards; }
+.boot-intro-running .boot-intro { animation: boot-exit 180ms ease 740ms forwards; }
+.boot-intro-active .hero-type-title .hero-type-letter { animation-play-state: paused; }
+@keyframes boot-command { from { width: 0; } to { width: 11ch; } }
+@keyframes boot-output { to { opacity: 1; } }
+@keyframes boot-exit { to { opacity: 0; visibility: hidden; } }
+@media (prefers-reduced-motion: reduce) {
+  .boot-intro-active .boot-intro { display: none; }
+  .boot-intro-active .hero-type-title .hero-type-letter { animation-play-state: running; }
+}
