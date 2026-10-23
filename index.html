@@ -12,13 +12,42 @@
   <link rel="icon" type="image/png" href="assets/logo-lj.png">
   <link rel="stylesheet" href="assets/styles.css">
   <link rel="stylesheet" href="assets/editorial.css?v=contact-terminal-1">
-  <link rel="stylesheet" href="assets/visual-polish.css?v=pc-liquid-glass-1">
+  <link rel="stylesheet" href="assets/visual-polish.css?v=pc-glass-refraction-1">
   <link rel="stylesheet" href="assets/passions.css?v=3">
   <link rel="stylesheet" href="assets/soc-lab.css?v=3">
   <link rel="stylesheet" href="assets/mobile-glass.css?v=mobile-right-rail-1">
   <link rel="stylesheet" href="assets/contact-terminal.css?v=1">
 </head>
 <body>
+  <!-- RGB refraction from the supplied liquid-glass demo; maps fit the two menu capsules. -->
+  <svg class="menu-glass-filters" width="0" height="0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <filter id="menu-glass-refraction" color-interpolation-filters="sRGB" x="0%" y="0%" width="100%" height="100%">
+        <feImage href="assets/menu-glass-map.png" x="0" y="0" width="100%" height="100%" preserveAspectRatio="none" result="map" />
+        <feDisplacementMap in="SourceGraphic" in2="map" scale="-20" xChannelSelector="R" yChannelSelector="G" result="dispRed" />
+        <feColorMatrix in="dispRed" type="matrix" values="1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0" result="red" />
+        <feDisplacementMap in="SourceGraphic" in2="map" scale="-24" xChannelSelector="R" yChannelSelector="G" result="dispGreen" />
+        <feColorMatrix in="dispGreen" type="matrix" values="0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 0" result="green" />
+        <feDisplacementMap in="SourceGraphic" in2="map" scale="-28" xChannelSelector="R" yChannelSelector="G" result="dispBlue" />
+        <feColorMatrix in="dispBlue" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 1 0" result="blue" />
+        <feBlend in="red" in2="green" mode="screen" result="rg" />
+        <feBlend in="rg" in2="blue" mode="screen" result="output" />
+        <feGaussianBlur in="output" stdDeviation="3" />
+      </filter>
+      <filter id="theme-glass-refraction" color-interpolation-filters="sRGB" x="0%" y="0%" width="100%" height="100%">
+        <feImage href="assets/theme-glass-map.png" x="0" y="0" width="100%" height="100%" preserveAspectRatio="none" result="map" />
+        <feDisplacementMap in="SourceGraphic" in2="map" scale="-20" xChannelSelector="R" yChannelSelector="G" result="dispRed" />
+        <feColorMatrix in="dispRed" type="matrix" values="1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0" result="red" />
+        <feDisplacementMap in="SourceGraphic" in2="map" scale="-24" xChannelSelector="R" yChannelSelector="G" result="dispGreen" />
+        <feColorMatrix in="dispGreen" type="matrix" values="0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 0" result="green" />
+        <feDisplacementMap in="SourceGraphic" in2="map" scale="-28" xChannelSelector="R" yChannelSelector="G" result="dispBlue" />
+        <feColorMatrix in="dispBlue" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 1 0" result="blue" />
+        <feBlend in="red" in2="green" mode="screen" result="rg" />
+        <feBlend in="rg" in2="blue" mode="screen" result="output" />
+        <feGaussianBlur in="output" stdDeviation="3" />
+      </filter>
+    </defs>
+  </svg>
   <a class="skip-link" href="#main">Aller au contenu</a>
   <header class="site-header" id="top">
     <div class="theme-switch" role="group" aria-label="Choix du thème">

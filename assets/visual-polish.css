@@ -409,11 +409,13 @@ html[data-theme="dark"] .progress-rail-nav {
   box-shadow: 0 12px 30px rgba(0,0,0,.35);
 }
 
-/* Clear glass for the desktop navigation and theme selector. */
+.menu-glass-filters { position: absolute; pointer-events: none; }
+
+/* Refraction and RGB dispersion adapted from the supplied liquid-glass demo. */
 @media (min-width: 901px) {
   .site-header {
-    --nav-glass-tint: rgba(255, 255, 255, .10);
-    --nav-glass-sheen: rgba(255, 255, 255, .20);
+    --nav-glass-tint: rgba(255, 255, 255, .06);
+    --nav-glass-sheen: rgba(255, 255, 255, .12);
     --nav-glass-edge: rgba(255, 255, 255, .50);
     --nav-glass-highlight: rgba(255, 255, 255, .70);
     --nav-glass-shadow: rgba(20, 25, 30, .09);
@@ -421,7 +423,7 @@ html[data-theme="dark"] .progress-rail-nav {
     --nav-glass-hover: rgba(255, 255, 255, .22);
   }
   html[data-theme="dark"] .site-header {
-    --nav-glass-tint: rgba(16, 18, 22, .18);
+    --nav-glass-tint: rgba(0, 0, 0, .10);
     --nav-glass-sheen: rgba(255, 255, 255, .08);
     --nav-glass-edge: rgba(255, 255, 255, .20);
     --nav-glass-highlight: rgba(255, 255, 255, .26);
@@ -433,8 +435,11 @@ html[data-theme="dark"] .progress-rail-nav {
     background: color-mix(in srgb, var(--paper) 92%, transparent);
     border-color: var(--nav-glass-edge);
     box-shadow:
-      inset 0 1px 0 var(--nav-glass-highlight),
-      inset 0 -1px 0 rgba(0, 0, 0, .06),
+      inset 0 0 2px 1px rgba(255, 255, 255, .35),
+      inset 0 0 10px 4px rgba(255, 255, 255, .15),
+      inset 0 4px 16px rgba(17, 17, 26, .05),
+      inset 0 8px 24px rgba(17, 17, 26, .05),
+      inset 0 6px 56px rgba(17, 17, 26, .05),
       0 8px 24px var(--nav-glass-shadow);
   }
   @supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
@@ -442,8 +447,18 @@ html[data-theme="dark"] .progress-rail-nav {
       background:
         linear-gradient(135deg, var(--nav-glass-sheen), transparent 48%),
         var(--nav-glass-tint);
-      -webkit-backdrop-filter: blur(16px) saturate(180%);
-      backdrop-filter: blur(16px) saturate(180%);
+      -webkit-backdrop-filter: blur(3px) saturate(120%);
+      backdrop-filter: blur(3px) saturate(120%);
+    }
+  }
+  @supports (backdrop-filter: url("#menu-glass-refraction")) {
+    html .site-header .progress-rail-nav {
+      -webkit-backdrop-filter: url("#menu-glass-refraction") saturate(120%);
+      backdrop-filter: url("#menu-glass-refraction") saturate(120%);
+    }
+    html .site-header .theme-switch {
+      -webkit-backdrop-filter: url("#theme-glass-refraction") saturate(120%);
+      backdrop-filter: url("#theme-glass-refraction") saturate(120%);
     }
   }
   .progress-rail-nav::before { display: none; }
