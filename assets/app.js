@@ -247,20 +247,13 @@ if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches && "Intersect
     countObserver.unobserve(entry.target);
     const number = entry.target.querySelector("strong");
     const target = Number(number.dataset.countTarget);
-    const duration = 1050;
+    const duration = 1000;
     const start = performance.now();
-    number.classList.add("is-counting");
     const tick = now => {
       const progress = Math.min((now - start) / duration, 1);
-      const eased = 1 - (1 - progress) ** 3;
-      number.textContent = Math.floor(target * eased);
-      if (progress < 1) {
-        requestAnimationFrame(tick);
-      } else {
-        number.textContent = target;
-        number.classList.remove("is-counting");
-        number.classList.add("is-settled");
-      }
+      const value = Math.round(target * progress);
+      if (number.textContent !== String(value)) number.textContent = value;
+      if (progress < 1) requestAnimationFrame(tick);
     };
     requestAnimationFrame(tick);
   }), { threshold: .35 });
