@@ -248,7 +248,9 @@ if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
   let portraitFrame;
   const updatePortraitBlur = () => {
     portraitFrame = undefined;
-    const progress = Math.min(Math.max(window.scrollY / (hero.offsetHeight * .72), 0), 1);
+    const progress = window.matchMedia("(max-width: 700px) and (pointer: coarse), (max-width: 900px) and (max-height: 500px) and (pointer: coarse)").matches
+      ? 1 - Math.min(Math.max(window.scrollY / (hero.offsetHeight * .72), 0), 1)
+      : Math.min(Math.max(window.scrollY / (hero.offsetHeight * .72), 0), 1);
     portraitImage.style.setProperty("--portrait-blur", `${(progress * 8).toFixed(2)}px`);
   };
   window.addEventListener("scroll", () => {
