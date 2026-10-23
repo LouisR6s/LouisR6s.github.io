@@ -41,11 +41,11 @@
 .boot-intro-running .boot-terminal-command { animation: boot-command 420ms steps(11, end) 80ms both; }
 .boot-intro-running .boot-terminal-output { animation: boot-output 120ms ease 550ms forwards; }
 .boot-intro-running .boot-intro { animation: boot-exit 180ms ease 740ms forwards; }
-.boot-intro-active .hero-type-title .hero-type-letter { animation-play-state: paused; }
+.boot-intro-active .hero-type-title .hero-type-period { animation-play-state: paused; }
 @keyframes boot-command { from { width: 0; } to { width: 11ch; } }
 @keyframes boot-output { to { opacity: 1; } }
 @keyframes boot-exit { to { opacity: 0; visibility: hidden; } }
 @media (prefers-reduced-motion: reduce) {
   .boot-intro-active .boot-intro { display: none; }
-  .boot-intro-active .hero-type-title .hero-type-letter { animation-play-state: running; }
+  .boot-intro-active .hero-type-title .hero-type-period { animation-play-state: running; }
 }
