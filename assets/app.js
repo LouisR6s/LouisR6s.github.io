@@ -240,29 +240,6 @@ const observer = new IntersectionObserver(entries => entries.forEach(entry => {
   if (entry.isIntersecting) { entry.target.classList.add("visible"); observer.unobserve(entry.target); }
 }), { threshold: .12 });
 document.querySelectorAll(".reveal").forEach(element => observer.observe(element));
-const statNumbers = [...document.querySelectorAll(".stats-grid .stat-card strong")];
-if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches && "IntersectionObserver" in window) {
-  const countObserver = new IntersectionObserver(entries => entries.forEach(entry => {
-    if (!entry.isIntersecting) return;
-    countObserver.unobserve(entry.target);
-    const number = entry.target.querySelector("strong");
-    const target = Number(number.dataset.countTarget);
-    if (target === 0) return;
-    let value = 0;
-    const timer = setInterval(() => {
-      number.textContent = ++value;
-      if (value >= target) clearInterval(timer);
-    }, 500);
-  }), { threshold: .35 });
-  statNumbers.forEach(number => {
-    const target = Number(number.textContent.trim());
-    if (!Number.isInteger(target) || target < 0) return;
-    number.dataset.countTarget = target;
-    number.textContent = "0";
-    countObserver.observe(number.closest(".stat-card"));
-  });
-}
-
 document.querySelector("#year").textContent = new Date().getFullYear();
 
 const portraitImage = document.querySelector(".portrait-wrap img");
