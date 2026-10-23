@@ -2,5 +2,9 @@
 @media (max-width: 700px), (max-width: 900px) and (max-height: 500px) {
   .site-header { display: none !important; }
   .hero::before { display: none; }
-  .portrait-wrap img { transition: filter .28s ease; }
+  .portrait-wrap img {
+    --portrait-blur: 0px !important;
+    filter: grayscale(1) contrast(1.03) blur(0) !important;
+    transition: none;
+  }
 }

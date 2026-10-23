@@ -63,6 +63,7 @@ nav a[aria-current="location"] {
   background: var(--paper);
 }
 .hero::before {
+  display: none;
   width: min(52vw, 780px);
   height: min(52vw, 780px);
   right: min(-25vw, -260px);

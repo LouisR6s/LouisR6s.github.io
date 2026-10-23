@@ -249,7 +249,7 @@ if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
   const updatePortraitBlur = () => {
     portraitFrame = undefined;
     const progress = window.matchMedia("(max-width: 700px), (max-width: 900px) and (max-height: 500px)").matches
-      ? 1 - Math.min(Math.max(window.scrollY / (hero.offsetHeight * .72), 0), 1)
+      ? 0
       : Math.min(Math.max(window.scrollY / (hero.offsetHeight * .72), 0), 1);
     portraitImage.style.setProperty("--portrait-blur", `${(progress * 8).toFixed(2)}px`);
   };
