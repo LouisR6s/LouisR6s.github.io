@@ -352,8 +352,13 @@ function notify(message) {
   clearTimeout(notify.timer); notify.timer = setTimeout(() => toast.classList.remove("show"), 2200);
 }
 
+const previousHeroIntro = "Diplômé d’un Master 2 Cybersécurité à l’ESGI Reims,je travaille concrètement sur les réseaux et les systèmes :configuration, supervision et sécurité.";
 function applyTexts(texts) {
-  editableElements.forEach(element => { element.textContent = texts[element.dataset.editable] || defaults[element.dataset.editable]; });
+  editableElements.forEach(element => {
+    const key = element.dataset.editable;
+    const saved = texts[key];
+    element.textContent = key === "hero-intro" && saved === previousHeroIntro ? defaults[key] : saved || defaults[key];
+  });
 }
 
 function makeTag(label) { const tag = document.createElement("span"); tag.textContent = label; return tag; }
