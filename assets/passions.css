@@ -197,3 +197,7 @@ html[data-theme="dark"] .passion-card { background: #202121; }
   .photo-link img { transition: none; }
   .photo-link:hover img { transform: none; }
 }
+
+@media (max-width: 700px), (max-width: 900px) and (max-height: 500px) {
+  .photo-link { border: 0; background: transparent; }
+}

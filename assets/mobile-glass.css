@@ -37,7 +37,7 @@
   html .hero-actions .button-secondary,
   html :is(.stat-card:not(.stat-card-accent), .skill-tabs button, .skill-panel,
     .project-card:not(.project-featured), .certification-card:not(.certification-toeic),
-    .github-preview, .passion-card, .photo-card) {
+    .github-preview, .passion-card) {
     background:
       linear-gradient(145deg, var(--glass-sheen), transparent 55%),
       var(--glass-surface);
@@ -83,7 +83,7 @@
     html .hero-actions .button-secondary,
     html :is(.stat-card:not(.stat-card-accent), .skill-tabs button, .skill-panel,
       .project-card:not(.project-featured), .certification-card:not(.certification-toeic),
-      .github-preview, .passion-card, .photo-card) {
+      .github-preview, .passion-card) {
       border-color: CanvasText;
       background: Canvas;
       box-shadow: none;
