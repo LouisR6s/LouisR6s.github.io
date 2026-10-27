@@ -17,11 +17,25 @@
   <link rel="stylesheet" href="assets/soc-lab.css?v=3">
   <link rel="stylesheet" href="assets/mobile-glass.css?v=photos-mobile-1">
   <link rel="stylesheet" href="assets/contact-terminal.css?v=1">
+  <link rel="stylesheet" href="assets/boot-intro.css?v=2">
   <link rel="stylesheet" href="assets/mobile-edge-fade.css?v=clear-mobile-edges-1">
   <link rel="stylesheet" href="assets/site-stack.css?v=1">
+  <script src="assets/boot-intro.js?v=1"></script>
 </head>
 <body>
-  <!-- RGB refraction/ from the supplied liquid-glass demo; maps fit the two menu capsules. -->
+  <div class="boot-intro" aria-hidden="true">
+    <div class="boot-terminal">
+      <div class="boot-terminal-bar">
+        <span class="boot-terminal-dots"><i></i><i></i><i></i></span>
+        <span>louis — terminal</span>
+      </div>
+      <div class="boot-terminal-body">
+        <div class="boot-terminal-line"><span class="boot-terminal-prompt">$</span><span class="boot-terminal-command">./portfolio</span></div>
+        <div class="boot-terminal-output">Bienvenue.</div>
+      </div>
+    </div>
+  </div>
+  <!-- RGB refraction from the supplied liquid-glass demo; maps fit the two menu capsules. -->
   <svg class="menu-glass-filters" width="0" height="0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
     <defs>
       <filter id="menu-glass-refraction" color-interpolation-filters="sRGB" x="0%" y="0%" width="100%" height="100%">
@@ -557,6 +571,7 @@
       </div>
     </section>
     <section class="contact-section" id="contact">
+      <div class="contact-layout">
       <div class="contact-inner reveal">
         <p class="mono">// OUVERT AUX OPPORTUNITÉS</p>
         <h2>Parlons réseau,<br>sécurité <span>et avenir.</span></h2>
@@ -570,42 +585,27 @@
           <a class="button button-secondary" href="https://github.com/LouisR6s" target="_blank" rel="noreferrer">GitHub ↗</a>
         </div>
       </div>
-    </section>
-  </main>
-
-  <section class="site-stack" aria-labelledby="site-stack-title">
-    <div class="site-stack-inner">
-      <div class="site-stack-heading">
-        <p class="mono">// SOUS LE CAPOT</p>
-        <h2 id="site-stack-title">Ce qui fait tourner ce portfolio.</h2>
-        <p>Survolez un logo, ou touchez-le sur téléphone, pour découvrir son rôle.</p>
-      </div>
-
-      <div class="site-stack-group">
-        <h3>Technologies & services</h3>
+      <aside class="contact-stack-inline" aria-labelledby="contact-stack-title">
+        <p class="mono">// BUILT WITH</p>
+        <h3 id="contact-stack-title">Le portfolio, sous le capot.</h3>
+        <p class="contact-stack-hint">Survolez un logo ou touchez-le pour voir son rôle.</p>
         <div class="site-stack-grid">
           <button class="stack-card" type="button"><span class="stack-mark" aria-hidden="true"><img src="https://cdn.simpleicons.org/html5" alt="" loading="lazy"></span><span class="stack-name">HTML5</span><span class="stack-description"><strong>HTML5</strong><span>Structure les sections et le contenu de cette page.</span></span></button>
-          <button class="stack-card" type="button"><span class="stack-mark" aria-hidden="true"><img src="https://cdn.simpleicons.org/css" alt="" loading="lazy"></span><span class="stack-name">CSS3</span><span class="stack-description"><strong>CSS3</strong><span>Gère la mise en page, les thèmes, les animations et l’effet de verre du menu.</span></span></button>
-          <button class="stack-card" type="button"><span class="stack-mark" aria-hidden="true"><img src="https://cdn.simpleicons.org/javascript" alt="" loading="lazy"></span><span class="stack-name">JavaScript</span><span class="stack-description"><strong>JavaScript</strong><span>Anime les interactions, les onglets et les contenus dynamiques.</span></span></button>
-          <button class="stack-card" type="button"><span class="stack-mark stack-mark--vector" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none"><path d="M7 30 20 8l13 22H7Z"/><circle cx="20" cy="8" r="3"/><circle cx="7" cy="30" r="3"/><circle cx="33" cy="30" r="3"/></svg></span><span class="stack-name">SVG</span><span class="stack-description"><strong>SVG</strong><span>Dessine les pictogrammes et la réfraction du menu.</span></span></button>
-          <button class="stack-card" type="button"><span class="stack-mark stack-mark--mono" aria-hidden="true"><img src="https://cdn.simpleicons.org/github" alt="" loading="lazy"></span><span class="stack-name">GitHub Pages</span><span class="stack-description"><strong>GitHub Pages</strong><span>Publie et héberge ce site statique depuis GitHub.</span></span></button>
-          <button class="stack-card" type="button"><span class="stack-mark stack-mark--mono" aria-hidden="true"><img src="https://cdn.simpleicons.org/github" alt="" loading="lazy"></span><span class="stack-name">GitHub API</span><span class="stack-description"><strong>GitHub API</strong><span>Charge les informations et les dépôts publics du profil GitHub.</span></span></button>
-          <button class="stack-card" type="button"><span class="stack-mark" aria-hidden="true"><img src="https://cdn.simpleicons.org/googlefonts" alt="" loading="lazy"></span><span class="stack-name">Google Fonts</span><span class="stack-description"><strong>Google Fonts</strong><span>Charge Manrope, Space Grotesk et DM Mono.</span></span></button>
-          <button class="stack-card" type="button"><span class="stack-mark stack-mark--mono" aria-hidden="true"><img src="https://cdn.simpleicons.org/simpleicons" alt="" loading="lazy"></span><span class="stack-name">Simple Icons</span><span class="stack-description"><strong>Simple Icons</strong><span>Fournit les logos des technologies visibles dans les projets et ici.</span></span></button>
+          <button class="stack-card" type="button"><span class="stack-mark" aria-hidden="true"><img src="https://cdn.simpleicons.org/css" alt="" loading="lazy"></span><span class="stack-name">CSS3</span><span class="stack-description"><strong>CSS3</strong><span>Gère la mise en page et les animations.</span></span></button>
+          <button class="stack-card" type="button"><span class="stack-mark" aria-hidden="true"><img src="https://cdn.simpleicons.org/javascript" alt="" loading="lazy"></span><span class="stack-name">JavaScript</span><span class="stack-description"><strong>JavaScript</strong><span>Anime les interactions et les contenus dynamiques.</span></span></button>
+          <button class="stack-card" type="button"><span class="stack-mark stack-mark--vector" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none"><path d="M7 30 20 8l13 22H7Z"/><circle cx="20" cy="8" r="3"/><circle cx="7" cy="30" r="3"/><circle cx="33" cy="30" r="3"/></svg></span><span class="stack-name">SVG</span><span class="stack-description"><strong>SVG</strong><span>Dessine les pictogrammes du menu.</span></span></button>
+          <button class="stack-card" type="button"><span class="stack-mark stack-mark--mono" aria-hidden="true"><img src="https://cdn.simpleicons.org/github" alt="" loading="lazy"></span><span class="stack-name">GitHub Pages</span><span class="stack-description"><strong>GitHub Pages</strong><span>Héberge ce site statique.</span></span></button>
+          <button class="stack-card" type="button"><span class="stack-mark stack-mark--mono" aria-hidden="true"><img src="https://cdn.simpleicons.org/github" alt="" loading="lazy"></span><span class="stack-name">GitHub API</span><span class="stack-description"><strong>GitHub API</strong><span>Charge les dépôts publics du profil.</span></span></button>
+          <button class="stack-card" type="button"><span class="stack-mark" aria-hidden="true"><img src="https://cdn.simpleicons.org/googlefonts" alt="" loading="lazy"></span><span class="stack-name">Google Fonts</span><span class="stack-description"><strong>Google Fonts</strong><span>Charge les polices du portfolio.</span></span></button>
+          <button class="stack-card" type="button"><span class="stack-mark stack-mark--mono" aria-hidden="true"><img src="https://cdn.simpleicons.org/simpleicons" alt="" loading="lazy"></span><span class="stack-name">Simple Icons</span><span class="stack-description"><strong>Simple Icons</strong><span>Fournit les logos des technologies.</span></span></button>
+          <button class="stack-card" type="button"><span class="stack-mark stack-mark--type stack-mark--system" aria-hidden="true">Aa</span><span class="stack-name">Sans système</span><span class="stack-description"><strong>Sans système</strong><span>Police principale de l’interface.</span></span></button>
+          <button class="stack-card" type="button"><span class="stack-mark stack-mark--type stack-mark--manrope" aria-hidden="true">Mm</span><span class="stack-name">Manrope</span><span class="stack-description"><strong>Manrope</strong><span>Utilisée sur certains contrôles.</span></span></button>
+          <button class="stack-card" type="button"><span class="stack-mark stack-mark--type stack-mark--space" aria-hidden="true">Sg</span><span class="stack-name">Space Grotesk</span><span class="stack-description"><strong>Space Grotesk</strong><span>Donne du caractère aux titres.</span></span></button>
+          <button class="stack-card" type="button"><span class="stack-mark stack-mark--type stack-mark--mono-type" aria-hidden="true">01</span><span class="stack-name">DM Mono</span><span class="stack-description"><strong>DM Mono</strong><span>Habille les labels et éléments terminal.</span></span></button>
         </div>
-      </div>
-
-      <div class="site-stack-group">
-        <h3>Typographies</h3>
-        <div class="site-stack-grid">
-          <button class="stack-card" type="button"><span class="stack-mark stack-mark--type stack-mark--system" aria-hidden="true">Aa</span><span class="stack-name">Sans système</span><span class="stack-description"><strong>Sans système</strong><span>Police principale, fournie par l’appareil avec Helvetica Neue ou Arial en repli.</span></span></button>
-          <button class="stack-card" type="button"><span class="stack-mark stack-mark--type stack-mark--manrope" aria-hidden="true">Mm</span><span class="stack-name">Manrope</span><span class="stack-description"><strong>Manrope</strong><span>Utilisée sur certains boutons et champs du portfolio.</span></span></button>
-          <button class="stack-card" type="button"><span class="stack-mark stack-mark--type stack-mark--space" aria-hidden="true">Sg</span><span class="stack-name">Space Grotesk</span><span class="stack-description"><strong>Space Grotesk</strong><span>Donne du caractère aux grands titres, notamment dans la section Contact.</span></span></button>
-          <button class="stack-card" type="button"><span class="stack-mark stack-mark--type stack-mark--mono-type" aria-hidden="true">01</span><span class="stack-name">DM Mono</span><span class="stack-description"><strong>DM Mono</strong><span>Habille les étiquettes, les numéros et les éléments façon terminal.</span></span></button>
-        </div>
-      </div>
-    </div>
-  </section>
+      </aside>
+    </section>
+  </main>
 
 
   <footer>

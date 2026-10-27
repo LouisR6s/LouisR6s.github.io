@@ -136,3 +136,37 @@ html[data-theme="dark"] .stack-mark--mono img { filter: brightness(0) invert(1);
 @media (prefers-reduced-motion: reduce) {
   .stack-card, .stack-description { transition: none; }
 }
+
+/* Place the technology cards inside the empty side of the contact section. */
+.contact-layout {
+  width: min(100%, var(--max));
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(300px, .85fr);
+  align-items: center;
+  gap: clamp(2rem, 6vw, 7rem);
+}
+
+.contact-layout .contact-inner { width: auto; margin: 0; }
+.contact-stack-inline { min-width: 0; color: #fff; }
+.contact-stack-inline > .mono { margin: 0 0 .7rem; color: var(--accent); font-size: .68rem; }
+.contact-stack-inline h3 { margin: 0; color: #fff; font: 700 clamp(1.45rem, 2.5vw, 2.2rem)/1.05 inherit; letter-spacing: -.05em; }
+.contact-stack-hint { margin: .7rem 0 1.2rem; color: rgba(255,255,255,.55); font-size: .78rem; }
+.contact-stack-inline .site-stack-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .55rem; }
+.contact-stack-inline .stack-card { min-height: 88px; padding: .75rem; border-color: rgba(255,255,255,.25); background: rgba(255,255,255,.045); color: #fff; }
+.contact-stack-inline .stack-card:hover { border-color: #fff; }
+.contact-stack-inline .stack-mark { width: 27px; height: 27px; }
+.contact-stack-inline .stack-mark--type { width: auto; font-size: 1.35rem; }
+.contact-stack-inline .stack-name { font-size: .68rem; }
+.contact-stack-inline .stack-description { background: #fff; color: #111; padding: .75rem; }
+.contact-stack-inline .stack-description strong { font-size: .7rem; }
+.contact-stack-inline .stack-description > span { font-size: .62rem; line-height: 1.3; }
+
+@media (max-width: 900px) {
+  .contact-layout { display: block; }
+  .contact-stack-inline { margin-top: 3rem; }
+}
+
+@media (max-width: 480px) {
+  .contact-stack-inline .site-stack-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
