@@ -149,9 +149,6 @@ html[data-theme="dark"] .stack-mark--mono img { filter: brightness(0) invert(1);
 
 .contact-layout .contact-inner { width: auto; margin: 0; }
 .contact-stack-inline { min-width: 0; color: #fff; }
-.contact-stack-inline > .mono { margin: 0 0 .7rem; color: var(--accent); font-size: .68rem; }
-.contact-stack-inline h3 { margin: 0; color: #fff; font: 700 clamp(1.45rem, 2.5vw, 2.2rem)/1.05 inherit; letter-spacing: -.05em; }
-.contact-stack-hint { margin: .7rem 0 1.2rem; color: rgba(255,255,255,.55); font-size: .78rem; }
 .contact-stack-inline .site-stack-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .55rem; }
 .contact-stack-inline .stack-card { min-height: 88px; padding: .75rem; border-color: rgba(255,255,255,.25); background: rgba(255,255,255,.045); color: #fff; }
 .contact-stack-inline .stack-card:hover { border-color: #fff; }
