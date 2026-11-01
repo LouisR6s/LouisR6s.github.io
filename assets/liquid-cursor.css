@@ -3,16 +3,37 @@
   html.has-liquid-cursor, html.has-liquid-cursor * { cursor: none !important; }
   html.has-liquid-cursor :is(input, textarea, select, [contenteditable="true"]) { cursor: auto !important; }
   .liquid-cursor {
+    --nav-glass-tint: rgba(255, 255, 255, .06);
+    --nav-glass-sheen: rgba(255, 255, 255, .12);
+    --nav-glass-edge: rgba(255, 255, 255, .50);
+    --nav-glass-shadow: rgba(20, 25, 30, .09);
     position: fixed; z-index: 2147483647; left: 0; top: 0;
-    width: 34px; height: 34px; border: 1px solid rgba(255,255,255,.5);
+    width: 34px; height: 34px; border: 1px solid var(--nav-glass-edge);
     border-radius: 50%; pointer-events: none; opacity: 0;
     transform: translate3d(-100px,-100px,0) translate(-50%,-50%);
-    background: linear-gradient(135deg, rgba(255,255,255,.12), transparent 48%), rgba(255,255,255,.06);
-    box-shadow: inset 0 0 2px 1px rgba(255,255,255,.35), inset 0 0 10px 4px rgba(255,255,255,.15), inset 0 4px 16px rgba(17,17,26,.05), 0 8px 24px rgba(20,25,30,.09);
-    -webkit-backdrop-filter: blur(3px) saturate(120%); backdrop-filter: blur(3px) saturate(120%);
+    background: color-mix(in srgb, var(--paper) 92%, transparent);
+    box-shadow:
+      inset 0 0 2px 1px rgba(255, 255, 255, .35),
+      inset 0 0 10px 4px rgba(255, 255, 255, .15),
+      inset 0 4px 16px rgba(17, 17, 26, .05),
+      inset 0 8px 24px rgba(17, 17, 26, .05),
+      inset 0 6px 56px rgba(17, 17, 26, .05),
+      0 8px 24px var(--nav-glass-shadow);
     transition: opacity .12s ease, width .18s ease, height .18s ease;
   }
-  html[data-theme="dark"] .liquid-cursor { background: linear-gradient(135deg,rgba(255,255,255,.08),transparent 48%),rgba(0,0,0,.1); border-color: rgba(255,255,255,.2); }
+  html[data-theme="dark"] .liquid-cursor {
+    --nav-glass-tint: rgba(0, 0, 0, .10);
+    --nav-glass-sheen: rgba(255, 255, 255, .08);
+    --nav-glass-edge: rgba(255, 255, 255, .20);
+    --nav-glass-shadow: rgba(0, 0, 0, .22);
+  }
+  @supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    .liquid-cursor {
+      background: linear-gradient(135deg, var(--nav-glass-sheen), transparent 48%), var(--nav-glass-tint);
+      -webkit-backdrop-filter: blur(3px) saturate(120%);
+      backdrop-filter: blur(3px) saturate(120%);
+    }
+  }
   .liquid-cursor.is-visible { opacity: 1; }
   .liquid-cursor.is-link { width: 44px; height: 44px; }
   .liquid-cursor::after { content: ""; position: absolute; left: 50%; top: 50%; width: 4px; height: 4px; border-radius: 50%; background: var(--ink, #111); transform: translate(-50%,-50%); }
