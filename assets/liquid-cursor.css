@@ -37,8 +37,8 @@
   .liquid-cursor.is-visible { opacity: 1; }
   .liquid-cursor.is-link { width: 44px; height: 44px; }
   .liquid-cursor::after { content: ""; position: absolute; left: 50%; top: 50%; width: 4px; height: 4px; border-radius: 50%; background: var(--ink, #111); transform: translate(-50%,-50%); }
-  @supports (backdrop-filter: url("#theme-glass-refraction")) {
-    .liquid-cursor { -webkit-backdrop-filter: url("#theme-glass-refraction") saturate(120%); backdrop-filter: url("#theme-glass-refraction") saturate(120%); }
+  @supports (backdrop-filter: url("#cursor-glass-refraction")) {
+    .liquid-cursor { -webkit-backdrop-filter: url("#cursor-glass-refraction") saturate(120%); backdrop-filter: url("#cursor-glass-refraction") saturate(120%); }
   }
   @media (prefers-reduced-transparency: reduce) { .liquid-cursor { background: var(--paper, #f3f2ee); -webkit-backdrop-filter: none; backdrop-filter: none; } }
   @media (prefers-reduced-motion: reduce) { .liquid-cursor { transition: none; } }
