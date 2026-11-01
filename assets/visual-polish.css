@@ -411,8 +411,8 @@ html[data-theme="dark"] .progress-rail-nav {
 
 .menu-glass-filters { position: absolute; pointer-events: none; }
 
-/* Refraction and RGB dispersion adapted from the supplied liquid-glass demo. */
-@media (min-width: 901px) {
+/* Refraction follows the horizontal menu, including narrow desktop previews. */
+@media (min-width: 701px) {
   .site-header {
     --nav-glass-tint: rgba(255, 255, 255, .06);
     --nav-glass-sheen: rgba(255, 255, 255, .12);
